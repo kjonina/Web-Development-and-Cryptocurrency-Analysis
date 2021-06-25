@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Karina Jonina - Home</title>
+    <title>Karina Jonina - Blog</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
 
@@ -56,7 +56,7 @@
             <div class="navbar-nav">
               <a class="nav-link" href="#">LinkedIn</a>
               <a class="nav-link" href="#">Resume</a>
-              <a class="nav-link" href="#">Blog</a>
+              <a class="nav-link active" href="#">Blog</a>
             </div>
           </div>
         </div>
@@ -64,40 +64,27 @@
     </header>
 
 <main>
+  <div class="container">
+  <h1 class="text-center pt-3">Welcome to my blog!</h1>
+  <br />
+  <br />
+  <h2>Lastest Posts</h2>
+  <hr />
+    {% for blog in blogs.all %}
+    <a href=""><h3>{{ blog.title }}</h3></a>
+    {{ blog.pub_date_pretty }}
+    <br />
+    <img class="img-fluid" src="{{ blog.image.url }}" height=200 width=200/>
+    <br />
+    <p>{{ blog.summary }}</p>
 
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Hi, I am Karina!</h1>
-        <p class="lead text-muted">A student currently enrolled in Higher Diploma in Science in Data Analytics in Dublin Business School. I am really excited to learning to use Django and HTML</p>
-        <p>
-          <a href="mailto: karinajonina@yahoo.com" class="btn btn-primary my-2">Contat Me!</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-<!-- one -->
-      <div class="row">
-        {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{ job.image.url }}"/>
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
+    {% endfor %}
   </div>
+
 </main>
 
 <footer class="text-muted py-5">
-  <div class="container text-centre">
+  <div class="container text-center">
     <p>Copyright &copy Karina Jonina {% now "Y" %}</p>
   </div>
 </footer>
