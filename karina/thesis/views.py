@@ -36,7 +36,7 @@ def get_yahoo_table(request):
                    'Total Volume All Currencies (24Hr)': df_cryptolist['volumeAllCurrencies.fmt'],
                    'Circulating Supply': df_cryptolist['circulatingSupply.fmt']})
 
-    present_cryptos = df_cryptolist[['Symbol','Name','Market Cap']]
+    present_cryptos = df_cryptolist[['Symbol','Name','Market Cap']].head(10)
     return present_cryptos.to_json(orient='records')
 
 def thesis(request):
