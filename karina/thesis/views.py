@@ -22,7 +22,7 @@ def get_yahoo_table(request):
     json_data = json.loads(script_data[start:-12])
     # this is where the data is
     crypto_json = json_data['context']['dispatcher']['stores']['ScreenerResultsStore']['results']['rows']
-    # normalising the lis
+    # normalising the list
     df_cryptolist = pd.json_normalize(crypto_json)
     # creating a dataset with the right columns and correct column names
     df_cryptolist = pd.DataFrame({'Symbol': df_cryptolist['symbol'],
@@ -37,11 +37,11 @@ def get_yahoo_table(request):
                    'Circulating Supply': df_cryptolist['circulatingSupply.fmt']})
 
     present_cryptos = df_cryptolist[['Symbol','Name','Market Cap']]
-    return crypto_json
+    return present_cryptos.to_json(orient='records')
 
 def thesis(request):
     #thesis = Thesis.objects
     return render(request, 'thesis/thesis_home.html', {
     #'thesis': thesis,
-    'tablesinfo': get_yahoo_table(request)
+    'tablesinfo': json.loads(get_yahoo_table(request))
     })

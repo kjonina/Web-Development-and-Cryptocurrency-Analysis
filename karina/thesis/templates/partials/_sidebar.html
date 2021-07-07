@@ -8,53 +8,31 @@
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
-          <h5>Top 25 Cryptocurrencies</h5>
+          <h3>Top 25 Cryptocurrencies</h3>
       </div>
     <br />
 
-    <!-- Scraping and getting the yahoo finance  -->
-      <table class="table">
-          <tr  class="bg-info">
-              <th  class="bg-info" data-colname="symbol" data-order="desc">Symbol</th>
-              <th  data-colname="shortName" data-order="desc">Name</th>
-          </tr>
-          <tbody id="myTable">
-        </tbody>
-      </table>
 
-      <!-- WORKS -->
-      <!-- PLEASE DELETE WHEN CHECKING -->
-      <!-- PRINTS AN ARRAY -->
-       {{ tablesinfo }}
+    <table  class="table">
+        <thead>
+            <tr>
+              <th scope="col">Symbol</th>
+              <th scope="col">Name</th>
+              <th scope="col">Market Cap</th>
+            </tr>
+          </thead>
 
-       <!-- Does not WORK! -->
-       <!-- TRYING TO GET THE ARRAY INTO A TABLE!!!! -->
-       <script>
-       	var myArray = []
+      <tbody>
+        {% for k in tablesinfo %}
+        <tr>
+        {% for i in k.items %}
+            <td>{{ i.1 }}</td>
+        {% endfor %}
+        </tr>
+        {% endfor %}
 
-       	$.ajax({
-       		success:function(tableinfo){
-       			myArray = tableinfo.data
-       			buildTable(myArray)
-       			console.log(myArray)
-       		}
-       	})
-
-       	function buildTable(data){
-       		var table = document.getElementById('myTable')
-
-       		for (var i = 0; i < data.length; i++){
-       			var row = `<tr>
-       							<td>${data[i].symbol}</td>
-       							<td>${data[i].shortName}</td>
-       					  </tr>`
-       			table.innerHTML += row
-       		}
-       	}
-
-       </script>
-
-
+    </tbody>
+    </table>
 
       <!-- asking the user for input -->
       <div class="row">
