@@ -1,16 +1,5 @@
 from django.shortcuts import render
 from .models import Thesis
-
-
-
-
-
-def thesis(request):
-    thesis = Thesis.objects
-    return render(request, 'thesis/thesis_home.html', {'thesis': thesis})
-
-
-#importing important packages
 import re
 import json
 import requests
@@ -21,30 +10,20 @@ from pandas.io.json import json_normalize
 
 # getting the live page
 def get_yahoo_table(request):
-
     headers = {'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36'}
-
     url = 'https://finance.yahoo.com/cryptocurrencies/'
     # url = 'https://coinmarketcap.com/'
     response = requests.get(url , headers = headers)
     content = response.content
-
     soup = BeautifulSoup(content, features="html.parser")
-
     pattern = re.compile(r'\s--\sData\s--\s')
-
     script_data = soup.find('script', text = pattern).contents[0]
-
     start = script_data.find("context")-2
-
     json_data = json.loads(script_data[start:-12])
-
     # this is where the data is
     crypto_json = json_data['context']['dispatcher']['stores']['ScreenerResultsStore']['results']['rows']
-
     # normalising the list
-    df_cryptolist = pd.io.json.json_normalize(crypto_json)
-
+    df_cryptolist = pd.json_normalize(crypto_json)
     # creating a dataset with the right columns and correct column names
     df_cryptolist = pd.DataFrame({'Symbol': df_cryptolist['symbol'],
                    'Name': df_cryptolist['shortName'],
@@ -56,12 +35,16 @@ def get_yahoo_table(request):
                    'Volume in Currency (24Hr)': df_cryptolist['volume24Hr.fmt'],
                    'Total Volume All Currencies (24Hr)': df_cryptolist['volumeAllCurrencies.fmt'],
                    'Circulating Supply': df_cryptolist['circulatingSupply.fmt']})
-#    # writing the dataset to csv
-    df_cryptolist.to_csv(r"df_cryptolist.csv", index =  False)
 
-    present_cryptos = df_cryptolist[['Symbol','Name','Market Cap']].head(len(df_cryptolist))
-    return render(request, 'thesis/thesis_home.html', {'present_cryptos': present_cryptos})
+    present_cryptos = df_cryptolist[['Symbol','Name','Market Cap']]
+    return present_cryptos.to_html()
 
+def thesis(request):
+    #thesis = Thesis.objects
+    return render(request, 'thesis/thesis_home.html', {
+    #'thesis': thesis,
+    'tablesinfo': get_yahoo_table(request)
+    })
 
 def get_crypto(request):
     crypto = request.GET['fulltext']
