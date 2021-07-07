@@ -37,8 +37,7 @@ def get_yahoo_table(request):
                    'Circulating Supply': df_cryptolist['circulatingSupply.fmt']})
 
     present_cryptos = df_cryptolist[['Symbol','Name','Market Cap']]
-    bitcoin = crypto_json[0]
-    return bitcoin
+    return crypto_json
 
 def thesis(request):
     #thesis = Thesis.objects

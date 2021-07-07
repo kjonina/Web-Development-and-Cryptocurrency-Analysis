@@ -11,6 +11,7 @@
           <h5>Top 25 Cryptocurrencies</h5>
       </div>
     <br />
+
     <!-- Scraping and getting the yahoo finance  -->
       <table class="table">
           <tr  class="bg-info">
@@ -21,7 +22,38 @@
         </tbody>
       </table>
 
-      {{ tablesinfo|safe }}
+      <!-- WORKS -->
+      <!-- PLEASE DELETE WHEN CHECKING -->
+      <!-- PRINTS AN ARRAY -->
+       {{ tablesinfo }}
+
+       <!-- Does not WORK! -->
+       <!-- TRYING TO GET THE ARRAY INTO A TABLE!!!! -->
+       <script>
+       	var myArray = []
+
+       	$.ajax({
+       		success:function(tableinfo){
+       			myArray = tableinfo.data
+       			buildTable(myArray)
+       			console.log(myArray)
+       		}
+       	})
+
+       	function buildTable(data){
+       		var table = document.getElementById('myTable')
+
+       		for (var i = 0; i < data.length; i++){
+       			var row = `<tr>
+       							<td>${data[i].symbol}</td>
+       							<td>${data[i].shortName}</td>
+       					  </tr>`
+       			table.innerHTML += row
+       		}
+       	}
+
+       </script>
+
 
 
       <!-- asking the user for input -->
