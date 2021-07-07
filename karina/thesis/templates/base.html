@@ -61,6 +61,11 @@
       </div>
       <div class="row">
       {% block content %}
+
+      {% for crypto in present_cryptos %}
+      {{ crypto }}
+
+      {% endfor %}
       {% endblock %}
       </div>
     </main>
