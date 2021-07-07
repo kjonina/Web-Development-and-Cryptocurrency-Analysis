@@ -39,6 +39,8 @@ def get_yahoo_table(request):
     present_cryptos = df_cryptolist[['Symbol','Name','Market Cap']].head(10)
     return present_cryptos.to_json(orient='records')
 
+
+
 def thesis(request):
     #thesis = Thesis.objects
     return render(request, 'thesis/thesis_home.html', {

@@ -34,19 +34,38 @@
     </tbody>
     </table>
 
-      <!-- asking the user for input -->
+<body onload = "get()">
+
+  <p id="savedText"></p>
+  <p id="openedText"></p>
+</body>
       <div class="row">
           <div class="col">
               <div class="card card-body">
-                  <input id="search-input" class="form-control" type="text">
+                  <input id="input" type="text" class="form-control">
+                  <br />
+                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="save()">Submit</button>
 
               </div>
           </div>
       </div>
-
-      <!-- 4. Button to submit output -->
-      <br />
-      <button type="button" class="btn btn-sm btn-outline-secondary">Submit</button>
-      <br />
-      <!-- 4. Saving the output -->
     </nav>
+
+  <script>
+
+  var storedItem = localStorage.getItem("storedItem");
+
+  function save(){
+    var Item = document.getElementById('input').value;
+    localStorage.setItem("storedItem", Item);
+    document.getElementById("savedText").innerHTML = Item + "SAVED";
+  }
+
+  function get(){
+    localStorage.setItem("storedItem");
+    document.getElementById("openedText").innerHTML = Item + "OPENED";
+  }
+
+
+
+  </script>
