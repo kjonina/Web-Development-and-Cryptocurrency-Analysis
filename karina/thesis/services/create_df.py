@@ -4,6 +4,8 @@ import yfinance as yf
 import datetime as dt
 
 def create_df(request,x):
+    global df
+    global y
 
     start = "2009-01-01"
     end = dt.datetime.now()
@@ -49,4 +51,4 @@ def create_df(request,x):
 
 #    # CHECKING DF
 #    print(df.head())
-    return y, df
+    return df

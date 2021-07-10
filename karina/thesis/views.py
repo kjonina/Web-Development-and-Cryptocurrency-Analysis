@@ -22,7 +22,9 @@ from thesis.services.create_first_graph import create_first_graph
 def crypto_choice(request):
     crypto = request.GET['text']
     create_df(request, crypto)
-    create_first_graph(request)
+    print(df)
+#    create_first_graph(request)
+
     return JsonResponse({'item': crypto}, safe=False)
 
 def thesis(request):
