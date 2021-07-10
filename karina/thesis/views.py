@@ -9,44 +9,21 @@ import pandas as pd
 from pandas.io.json import json_normalize
 from django.http import HttpResponse
 import operator
+from django.http import JsonResponse
+
+# including python
+from thesis.services.get_yahoo_table import get_yahoo_table
+from thesis.services.create_df import create_df
+from thesis.services.create_first_graph import create_first_graph
 
 
 
-# getting the live page
-def get_yahoo_table(request):
-    headers = {'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36'}
-    url = 'https://finance.yahoo.com/cryptocurrencies/'
-    # url = 'https://coinmarketcap.com/'
-    response = requests.get(url , headers = headers)
-    content = response.content
-    soup = BeautifulSoup(content, features="html.parser")
-    pattern = re.compile(r'\s--\sData\s--\s')
-    script_data = soup.find('script', text = pattern).contents[0]
-    start = script_data.find("context")-2
-    json_data = json.loads(script_data[start:-12])
-    # this is where the data is
-    crypto_json = json_data['context']['dispatcher']['stores']['ScreenerResultsStore']['results']['rows']
-    # normalising the list
-    df_cryptolist = pd.io.json.json_normalize(crypto_json)
-    # creating a dataset with the right columns and correct column names
-    df_cryptolist = pd.DataFrame({'Symbol': df_cryptolist['symbol'],
-                   'Name': df_cryptolist['shortName'],
-                   'Price (Intraday)': df_cryptolist['regularMarketPrice.fmt'],
-                   'Change': df_cryptolist['regularMarketChange.fmt'],
-                   '% Change': df_cryptolist['regularMarketChangePercent.fmt'],
-                   'Market Cap': df_cryptolist['marketCap.fmt'],
-                   'Volume in Currency (Since 0:00 UTC)': df_cryptolist['regularMarketVolume.fmt'],
-                   'Volume in Currency (24Hr)': df_cryptolist['volume24Hr.fmt'],
-                   'Total Volume All Currencies (24Hr)': df_cryptolist['volumeAllCurrencies.fmt'],
-                   'Circulating Supply': df_cryptolist['circulatingSupply.fmt']})
 
-    present_cryptos = df_cryptolist[['Symbol','Name','Market Cap']].head(10)
-    return present_cryptos.to_json(orient='records')
-
-def get_crypto_name(request):
-    insert_crypto = request.GET['insert_crypto']
-    print(insert_crypto)
-    return insert_crypto
+def crypto_choice(request):
+    crypto = request.GET['text']
+    create_df(request, crypto)
+    create_first_graph(request)
+    return JsonResponse({'item': crypto}, safe=False)
 
 def thesis(request):
     #thesis = Thesis.objects

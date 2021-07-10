@@ -38,14 +38,25 @@
           <div class="col">
               <div class="card card-body">
                   <form action="">
-                    <textarea cols="40" rows="1" name="insert_crypto"></textarea>
+                    <textarea id="search_value" cols="40" rows="1" name="insert_crypto"></textarea>
                     <br />
-                    <input type="submit" value="Submit" />
+                    <input id="inputbutton" type="button" value="Submit" />
                     </form>
-                    <h5>Your Crypto:</h5>
-                    <br />
-                    {{ insert_crypto }}
               </div>
           </div>
       </div>
+
+      <script>
+        $('#inputbutton').on('click', function(evt){
+          evt.preventDefault();
+          evt.stopPropagation();
+          var $detailDiv = $('#dashboard-section'),
+              url='/crypto_choice?text='+ $('#search_value').val();
+
+          $.get(url, function(data) {
+            console.log(data)
+            $detailDiv.html(data.item)
+          });
+        });
+      </script>
     </nav>
