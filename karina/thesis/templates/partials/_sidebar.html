@@ -8,7 +8,7 @@
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
-          <h3>Top 25 Cryptocurrencies</h3>
+          <h3>Top 10 Cryptocurrencies</h3>
       </div>
     <br />
 
@@ -34,38 +34,18 @@
     </tbody>
     </table>
 
-<body onload = "get()">
-
-  <p id="savedText"></p>
-  <p id="openedText"></p>
-</body>
       <div class="row">
           <div class="col">
               <div class="card card-body">
-                  <input id="input" type="text" class="form-control">
-                  <br />
-                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="save()">Submit</button>
-
+                  <form action="">
+                    <textarea cols="40" rows="1" name="insert_crypto"></textarea>
+                    <br />
+                    <input type="submit" value="Submit" />
+                    </form>
+                    <h5>Your Crypto:</h5>
+                    <br />
+                    {{ insert_crypto }}
               </div>
           </div>
       </div>
     </nav>
-
-  <script>
-
-  var storedItem = localStorage.getItem("storedItem");
-
-  function save(){
-    var Item = document.getElementById('input').value;
-    localStorage.setItem("storedItem", Item);
-    document.getElementById("savedText").innerHTML = Item + "SAVED";
-  }
-
-  function get(){
-    localStorage.setItem("storedItem");
-    document.getElementById("openedText").innerHTML = Item + "OPENED";
-  }
-
-
-
-  </script>

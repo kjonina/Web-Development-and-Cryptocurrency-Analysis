@@ -7,6 +7,10 @@ import codecs
 from bs4 import BeautifulSoup
 import pandas as pd
 from pandas.io.json import json_normalize
+from django.http import HttpResponse
+import operator
+
+
 
 # getting the live page
 def get_yahoo_table(request):
@@ -23,7 +27,7 @@ def get_yahoo_table(request):
     # this is where the data is
     crypto_json = json_data['context']['dispatcher']['stores']['ScreenerResultsStore']['results']['rows']
     # normalising the list
-    df_cryptolist = pd.json_normalize(crypto_json)
+    df_cryptolist = pd.io.json.json_normalize(crypto_json)
     # creating a dataset with the right columns and correct column names
     df_cryptolist = pd.DataFrame({'Symbol': df_cryptolist['symbol'],
                    'Name': df_cryptolist['shortName'],
@@ -39,11 +43,15 @@ def get_yahoo_table(request):
     present_cryptos = df_cryptolist[['Symbol','Name','Market Cap']].head(10)
     return present_cryptos.to_json(orient='records')
 
-
+def get_crypto_name(request):
+    insert_crypto = request.GET['insert_crypto']
+    print(insert_crypto)
+    return insert_crypto
 
 def thesis(request):
     #thesis = Thesis.objects
     return render(request, 'thesis/thesis_home.html', {
     #'thesis': thesis,
-    'tablesinfo': json.loads(get_yahoo_table(request))
+    'tablesinfo': json.loads(get_yahoo_table(request)),
+#    'insert_crypto': insert_crypto
     })

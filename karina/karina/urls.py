@@ -11,4 +11,5 @@ urlpatterns = [
     path('', jobs.views.home, name =  'home'),
     path('thesis/', thesis.views.thesis, name =  'thesis'),
     path('blog/', include('blog.urls')),
+#    path('thesis/', include('thesis.urls'))
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
