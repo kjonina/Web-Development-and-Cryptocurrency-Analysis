@@ -70,7 +70,7 @@ def create_simple_graph(request):
 
     #plot_div = py.plot(fig, include_plotlyjs=False, output_type='div')
     plot_div = py.plot(fig, include_plotlyjs=False, output_type='div')
-    print(plot_div)
+    #print(plot_div)
     ##print(plot_div) prints the necessary script!!
     return plot_div
 

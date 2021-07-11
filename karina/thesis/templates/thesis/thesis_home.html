@@ -10,10 +10,15 @@
 
 <div id="dashboard-section"></div>
 
+
 {% if graph %}
-{{ simple_graph|safe }}
+<div style="width:600;height:500">
+{{ plot|safe }}
+
 {% else %}
 <p>No graph was provided.</p>
+
+</div>
 {% endif %}
 
 {% endblock %}

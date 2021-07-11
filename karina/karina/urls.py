@@ -10,6 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', jobs.views.home, name =  'home'),
     path('thesis/', thesis.views.thesis, name =  'thesis'),
+    path('simple_graph/', thesis.views.simple_graph, name =  'simple_graph'),
     path('crypto_choice/', thesis.views.crypto_choice, name =  'crypto_choice'),
     path('blog/', include('blog.urls')),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

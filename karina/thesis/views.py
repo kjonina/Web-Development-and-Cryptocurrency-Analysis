@@ -39,16 +39,20 @@ def crypto_choice(request):
     #print(y)
 
     # returning the crypto choice
-    return JsonResponse({'item': crypto,
-    }, safe=False)
+    return JsonResponse({'item': crypto}, safe=False)
+
+def simple_graph(request):
+    simple_graph = create_simple_graph(request)
+    print(simple_graph)
+    return render(request, 'simple_graph.html', {'simple_graph':simple_graph})
+
 
 def thesis(request):
 
-    simple_graph = create_simple_graph(request),
+
     #thesis = Thesis.objects
     return render(request, 'thesis/thesis_home.html', {
     #'thesis': thesis,
-    'simple_graph': simple_graph,
     'tablesinfo': json.loads(get_yahoo_table(request)),
 
 
