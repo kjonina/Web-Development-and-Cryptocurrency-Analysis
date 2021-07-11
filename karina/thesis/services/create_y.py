@@ -3,8 +3,8 @@ import numpy as np
 import yfinance as yf
 import datetime as dt
 
-def create_df(request,x):
-    global df
+def create_y(request,x):
+
     global y
 
     start = "2009-01-01"
@@ -13,12 +13,9 @@ def create_df(request,x):
     long_sma = 200
 
     # creating a dataset for selected cryptocurrency
-    df = yf.download(x, start, end,interval = '1d')
-    df = pd.DataFrame(df.dropna(), columns = ['Open', 'High','Low','Close', 'Adj Close', 'Volume'])
-    df['short_SMA'] = df.iloc[:,1].rolling(window = short_sma).mean()
-    df['long_SMA'] = df.iloc[:,1].rolling(window = long_sma).mean()
-
-    y = pd.DataFrame(df['Close'], columns = ['Close'])
+    y = yf.download(x, start, end,interval = '1d')
+    y = pd.DataFrame(y.dropna(), columns = ['Open', 'High','Low','Close', 'Adj Close', 'Volume'])
+    y = pd.DataFrame(y['Close'], columns = ['Close'])
     y.sort_index(inplace = True)
 
     # examining the pct_change
@@ -49,6 +46,4 @@ def create_df(request,x):
 #    # CHECKING Y
 #    print(y.head())
 
-    # CHECKING DF
-    print(df.head())
-    return df
+    return y

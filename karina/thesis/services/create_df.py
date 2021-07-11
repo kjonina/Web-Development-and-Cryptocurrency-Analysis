@@ -16,6 +16,5 @@ def create_df(request,x):
     df = pd.DataFrame(df.dropna(), columns = ['Open', 'High','Low','Close', 'Adj Close', 'Volume'])
     df['short_SMA'] = df.iloc[:,1].rolling(window = short_sma).mean()
     df['long_SMA'] = df.iloc[:,1].rolling(window = long_sma).mean()
-    # CHECKING DF
-    #print(df.head())
+
     return df

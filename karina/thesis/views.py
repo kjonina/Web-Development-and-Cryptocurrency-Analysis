@@ -12,13 +12,17 @@ from django.http import HttpResponse
 import operator
 from django.http import JsonResponse
 
+
 # taking functions from files and using them accordingly
 from thesis.services.get_yahoo_table import get_yahoo_table
 from thesis.services.create_df import create_df
+from thesis.services.create_y import create_y
 from thesis.services.simple_graph import create_simple_graph
+from thesis.services.create_first_graph import create_first_graph
 
 # saving the user's input and using that to download data about that ticket from Yahoo Finanace
 def crypto_choice(request):
+    global crypto, graph
     # getting the user's input
     crypto = request.GET['text'].upper()
 
@@ -26,19 +30,26 @@ def crypto_choice(request):
     # if input on the first row of the table: pass
     # else: give error
 
-    # creating the dataset
-    create_df(request, crypto)
+    # creating the df dataset
+    df = create_df(request, crypto)
+    #print(df)
+
+    # creating the df dataset
+    y = create_y(request, crypto)
+    #print(y)
+
     # returning the crypto choice
-    return JsonResponse({'item': crypto}, safe=False)
-
-
+    return JsonResponse({'item': crypto,
+    }, safe=False)
 
 def thesis(request):
+
+    simple_graph = create_simple_graph(request),
     #thesis = Thesis.objects
-    graph = create_simple_graph(request)
     return render(request, 'thesis/thesis_home.html', {
     #'thesis': thesis,
+    'simple_graph': simple_graph,
     'tablesinfo': json.loads(get_yahoo_table(request)),
-    'graph': graph,
+
 
     })

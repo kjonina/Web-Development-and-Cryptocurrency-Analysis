@@ -15,6 +15,7 @@ import plotly.offline as py
 
 from plotly.offline import download_plotlyjs, plot
 
+#https://stackoverflow.com/questions/36846395/embedding-a-plotly-chart-in-a-django-template
 # simple graph used to test whether dashboard prints anything
 def create_simple_graph(request):
     close = [457.33401489, 424.44000244, 394.79598999, 408.9039917 ,
@@ -67,6 +68,7 @@ def create_simple_graph(request):
     fig.add_trace(go.Bar(x = date,
                     y = volume), row = 2, col = 1)
 
+    #plot_div = py.plot(fig, include_plotlyjs=False, output_type='div')
     plot_div = py.plot(fig, include_plotlyjs=False, output_type='div')
     #print(plot_div)
     ##print(plot_div) prints the necessary script!!

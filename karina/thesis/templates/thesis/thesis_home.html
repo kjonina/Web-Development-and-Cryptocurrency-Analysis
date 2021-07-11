@@ -11,7 +11,7 @@
 <div id="dashboard-section"></div>
 
 {% if graph %}
-{{ graph|safe }}
+{{ simple_graph|safe }}
 {% else %}
 <p>No graph was provided.</p>
 {% endif %}

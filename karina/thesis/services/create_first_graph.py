@@ -12,10 +12,7 @@ import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.io as pio
 
-# will this import the dataset from the file?
-#from thesis.views import df
-
-def create_graphs(request, crypto_name):
+def create_first_graph(request, crypto_name):
     fig = make_subplots(rows=2, cols=1, shared_xaxes=True,  subplot_titles=[
             'Price and Moving Averages of {}'.format(str(crypto_name)),
             'Volume of {}'.format(str(crypto_name))])
@@ -25,41 +22,21 @@ def create_graphs(request, crypto_name):
                             y = df['Close'],
                             name = crypto_name,
                             mode='lines',
-                            customdata = df['Name'],
-                            # corrects hovertemplate labels!
-                            hovertemplate="<b>%{customdata}</b><br><br>" +
-                                            "Date: %{x|%d %b %Y} <br>" +
-                                            "Closing Price: %{y:$,.2f}<br>" +
-                                            "<extra></extra>",
                             line = dict(color="black")), row = 1, col = 1)
     fig.add_trace(go.Scatter(x = df.index,
                              y = df['short_SMA'],
                              name = 'Short SMA',
-                             mode = 'lines', customdata = df['Name'],
-                             hovertemplate="<b>%{customdata}</b><br><br>" +
-                                            "Date: %{x|%d %b %Y} <br>" +
-                                            "Short Moving Average Price: %{y:$,.2f}<br>" +
-                                            "<extra></extra>",
+                             mode = 'lines',
                              line = dict(color="red")), row = 1, col = 1)
     fig.add_trace(go.Scatter(x = df.index,
                              y = df['long_SMA'],
                              name = 'Long SMA',
-                             mode = 'lines',customdata = df['Name'],
-                             hovertemplate="<b>%{customdata}</b><br><br>" +
-                                            "Date: %{x|%d %b %Y} <br>" +
-                                            "Long Moving Average Price: %{y:$,.2f}<br>"+
-                                            "<extra></extra>",
+                             mode = 'lines',
                              line = dict(color="green")), row = 1, col = 1)
     # Barplot of volume
     fig.add_trace(go.Bar(x = df.index,
                     y = df['Volume'],
                     name = 'Volume',
-                    # corrects hovertemplate labels!
-                    customdata = df['Name'],
-                    hovertemplate="<b>%{customdata}</b><br><br>" +
-                                    "Date: %{x|%d %b %Y} <br>" +
-                                    "Volume: %{y:,.}<br>" +
-                                    "<extra></extra>",
                     marker = dict(color="black", opacity = True)), row = 2, col = 1)
     # Add titles
     fig.update_layout(
@@ -83,3 +60,8 @@ def create_graphs(request, crypto_name):
     fig.update_yaxes(tickprefix = '$', tickformat = ',.', row = 1, col = 1)
     #time buttons
     fig.update_xaxes(rangeselector= {'visible' :False}, row = 2, col = 1)
+
+    plot_div = py.plot(fig, include_plotlyjs=False, output_type='div')
+    #print(plot_div)
+
+    return plot_div
