@@ -10,10 +10,10 @@
 
 <div id="dashboard-section"></div>
 
-
-{% if simple_graph %}
+<!--chart for price_sma_volume_chart -->
+{% if price_sma_volume_chart %}
 <div style="width:600;height:500">
-{{ simple_graph|safe }}
+{{ price_sma_volume_chart|safe }}
 
 {% else %}
 <p>No graph was provided.</p>
@@ -21,14 +21,17 @@
 </div>
 {% endif %}
 
-{% if first_graph %}
+<!--chart for candle_stick graph -->
+{% if candle_stick %}
 <div style="width:600;height:500">
-{{ first_graph|safe }}
+{{ candle_stick|safe }}
 
 {% else %}
 <p>No graph was provided.</p>
 
 </div>
 {% endif %}
+
+
 
 {% endblock %}

@@ -28,9 +28,12 @@ from thesis.services.create_df import create_df
 from thesis.services.create_y import create_y
 from thesis.services.simple_graph import create_simple_graph
 from thesis.services.create_first_graph import create_first_graph
+from thesis.services.candle_stick import candle_stick
+from thesis.services.price_sma_volume_chart import price_sma_volume_chart
 
 # saving the user's input and using that to download data about that ticket from Yahoo Finanace
 def crypto_choice(request):
+    global crypto
     # getting the user's input
     crypto = request.GET['text'].upper()
 
@@ -38,20 +41,22 @@ def crypto_choice(request):
     # if input on the first row of the table: pass
     # else: give error
 
-
-
     # returning the crypto choice
     return JsonResponse({'item': crypto}, safe=False)
 
 
 def thesis(request):
 
-    simple_graph = create_simple_graph(request, 'Bitcoin')
-    first_graph = create_first_graph(request, 'Bitcoin')
-    #thesis = Thesis.objects
+    # creating the df dataset
+    df = create_df(request,  'BTC-USD')
+    #print(df)
+
+    # creating the df dataset
+    y = create_y(request,  'BTC-USD')
+    #print(y)
+
     return render(request, 'thesis/thesis_home.html', {
-    #'thesis': thesis,
     'tablesinfo': json.loads(get_yahoo_table(request)),
-    'simple_graph': simple_graph,
-    'first_graph': first_graph
+    'price_sma_volume_chart': price_sma_volume_chart(request, df, 'Bitcoin'),
+    'candle_stick': candle_stick(request, df, 'Bitcoin')
     })
