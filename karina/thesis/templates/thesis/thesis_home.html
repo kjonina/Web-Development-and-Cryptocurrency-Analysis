@@ -33,5 +33,28 @@
 {% endif %}
 
 
+<!--chart for hist_box_pct_change graph -->
+{% if hist_box_pct_change %}
+<div style="width:600;height:500">
+{{ hist_box_pct_change|safe }}
+
+{% else %}
+<p>No graph was provided.</p>
+
+</div>
+{% endif %}
+
+<!--chart for rolling_m_sd graph -->
+{% if rolling_m_sd %}
+<div style="width:600;height:500">
+{{ rolling_m_sd|safe }}
+
+{% else %}
+<p>No graph was provided.</p>
+
+</div>
+{% endif %}
+
+
 
 {% endblock %}

@@ -26,10 +26,10 @@ from plotly.offline import download_plotlyjs, plot
 from thesis.services.get_yahoo_table import get_yahoo_table
 from thesis.services.create_df import create_df
 from thesis.services.create_y import create_y
-from thesis.services.simple_graph import create_simple_graph
-from thesis.services.create_first_graph import create_first_graph
 from thesis.services.candle_stick import candle_stick
 from thesis.services.price_sma_volume_chart import price_sma_volume_chart
+from thesis.services.hist_box_pct_change import hist_box_pct_change
+from thesis.services.rolling_m_sd import rolling_m_sd
 
 # saving the user's input and using that to download data about that ticket from Yahoo Finanace
 def crypto_choice(request):
@@ -58,5 +58,7 @@ def thesis(request):
     return render(request, 'thesis/thesis_home.html', {
     'tablesinfo': json.loads(get_yahoo_table(request)),
     'price_sma_volume_chart': price_sma_volume_chart(request, df, 'Bitcoin'),
-    'candle_stick': candle_stick(request, df, 'Bitcoin')
+    'candle_stick': candle_stick(request, df, 'Bitcoin'),
+    'hist_box_pct_change': hist_box_pct_change(request, y, 'Bitcoin'),
+    'rolling_m_sd': rolling_m_sd(request, y, 'Bitcoin')
     })
