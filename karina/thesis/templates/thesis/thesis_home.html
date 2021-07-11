@@ -11,9 +11,19 @@
 <div id="dashboard-section"></div>
 
 
-{% if graph %}
+{% if simple_graph %}
 <div style="width:600;height:500">
-{{ graph|safe }}
+{{ simple_graph|safe }}
+
+{% else %}
+<p>No graph was provided.</p>
+
+</div>
+{% endif %}
+
+{% if first_graph %}
+<div style="width:600;height:500">
+{{ first_graph|safe }}
 
 {% else %}
 <p>No graph was provided.</p>

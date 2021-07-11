@@ -374,7 +374,7 @@ def create_simple_graph(request, crypto_name):
                     marker = dict(color="black", opacity = True)), row = 2, col = 1)
     # Add titles
     fig.update_layout(
-            title = 'Price of {}'.format(str(crypto_name)))
+            title = 'Price of (SIMPLE_GRAPH){}'.format(str(crypto_name)))
     fig['layout']['yaxis1']['title']='US Dollars'
     fig['layout']['yaxis2']['title']='Volume'
     # X-Axes
@@ -400,6 +400,6 @@ def create_simple_graph(request, crypto_name):
     #print(plot_div)
     ##print(plot_div) prints the necessary script!!
 
-    graph = fig.to_html(full_html=False, default_height=1000, default_width=1500)
+    simple_graph = fig.to_html(full_html=False, default_height=1000, default_width=1500)
 
-    return graph
+    return simple_graph

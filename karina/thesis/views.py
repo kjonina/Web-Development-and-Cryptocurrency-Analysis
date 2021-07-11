@@ -31,7 +31,6 @@ from thesis.services.create_first_graph import create_first_graph
 
 # saving the user's input and using that to download data about that ticket from Yahoo Finanace
 def crypto_choice(request):
-    global crypto, graph
     # getting the user's input
     crypto = request.GET['text'].upper()
 
@@ -39,24 +38,20 @@ def crypto_choice(request):
     # if input on the first row of the table: pass
     # else: give error
 
-    # creating the df dataset
-    df = create_df(request, crypto)
-    #print(df)
 
-    # creating the df dataset
-    y = create_y(request, crypto)
-    #print(y)
 
     # returning the crypto choice
     return JsonResponse({'item': crypto}, safe=False)
 
 
 def thesis(request):
-    graph = create_simple_graph(request, 'Bitcoin')
 
+    simple_graph = create_simple_graph(request, 'Bitcoin')
+    first_graph = create_first_graph(request, 'Bitcoin')
     #thesis = Thesis.objects
     return render(request, 'thesis/thesis_home.html', {
     #'thesis': thesis,
     'tablesinfo': json.loads(get_yahoo_table(request)),
-    'graph': graph
+    'simple_graph': simple_graph,
+    'first_graph': first_graph
     })
