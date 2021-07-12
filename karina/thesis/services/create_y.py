@@ -22,23 +22,23 @@ def create_y(request,x):
     y['Close Percentage Change'] = y['Close'].pct_change(1)
 
     # Creating a new variable, examining the difference for each observation
-    y['diff'] = y['Close'].diff()
+    y['Close Difference'] = y['Close'].diff()
 
     # logging the target varialbe due to great variance
-    y['log_Close'] = np.log(y['Close'])
+    y['Logged Close'] = np.log(y['Close'])
 
     # Creating a new variable, examining the difference for each observation
-    y['log_Close_diff'] = y['log_Close'].diff()
+    y['Logged Close Diff'] = y['Logged Close'].diff()
 
-    y['Logged Close Percentage Change'] = y['log_Close'].pct_change(1)
+    y['Logged Close Percentage Change'] = y['Logged Close'].pct_change(1)
 
     # logging the target varialbe due to great variance
-    y['sqrt_Close'] = np.sqrt(y['Close'])
+    y['Square Root Close'] = np.sqrt(y['Close'])
 
-    y['Square Root Close Percentage Change'] = y['sqrt_Close'].pct_change(1)
+    y['Square Root Close Percentage Change'] = y['Square Root Close'].pct_change(1)
 
     # Creating a new variable, examining the difference for each observation
-    y['sqrt_Close_diff'] = y['sqrt_Close'].diff()
+    y['Square Root Close Difference'] = y['Square Root Close'].diff()
 
     # dropping the first na (because there is no difference)
     y = y.dropna()

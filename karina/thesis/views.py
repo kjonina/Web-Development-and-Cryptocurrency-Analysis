@@ -44,6 +44,13 @@ def crypto_choice(request):
     # returning the crypto choice
     return JsonResponse({'item': crypto}, safe=False)
 
+#    # trying to get the name of the cryptocurrency out of the table
+#def get_crypto_name(request):
+#    crypto = crypto_choice(request)
+#    df_cryptolist = get_yahoo_table(request)
+#    crypto_name = str(df_cryptolist[df_cryptolist['Symbol'].str.contains(crypto)].iloc[:,1]).split(' ')[4]
+#    print(crypto_name)
+#    return crypto_name
 
 def thesis(request):
 
@@ -54,6 +61,9 @@ def thesis(request):
     # creating the df dataset
     y = create_y(request,  'BTC-USD')
     #print(y)
+
+#    # trying to get the name of the cryptocurrency out of the table
+#    crypto_name = get_crypto_name(request)
 
     return render(request, 'thesis/thesis_home.html', {
     'tablesinfo': json.loads(get_yahoo_table(request)),
