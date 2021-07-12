@@ -26,27 +26,43 @@ def price_sma_volume_chart(request, df, crypto_name):
                             y = df['Close'],
                             name = crypto_name,
                             mode='lines',
-                            # needs hovertemplate
+                            customdata = df['Name'],
+                            hovertemplate="<b>%{customdata}</b><br><br>" +
+                                            "Date: %{x|%d %b %Y} <br>" +
+                                            "Closing Price: %{y:$,.2f}<br>" +
+                                            "<extra></extra>",
                             line = dict(color="black")), row = 1, col = 1)
 
     fig.add_trace(go.Scatter(x = df.index,
                              y = df['short_SMA'],
                              name = 'Short SMA',
                              mode = 'lines',
-                            # needs hovertemplate
+                             customdata = df['Name'],
+                             hovertemplate="<b>%{customdata}</b><br><br>" +
+                                            "Date: %{x|%d %b %Y} <br>" +
+                                            "Short Moving Average Price: %{y:$,.2f}<br>" +
+                                            "<extra></extra>",
                              line = dict(color="red")), row = 1, col = 1)
 
     fig.add_trace(go.Scatter(x = df.index,
                              y = df['long_SMA'],
                              name = 'Long SMA',
                              mode = 'lines',
-                            # needs hovertemplate
+                             customdata = df['Name'],
+                             hovertemplate="<b>%{customdata}</b><br><br>" +
+                                            "Date: %{x|%d %b %Y} <br>" +
+                                            "Long Moving Average Price: %{y:$,.2f}<br>"+
+                                            "<extra></extra>",
                              line = dict(color="green")), row = 1, col = 1)
     # Barplot of volume
     fig.add_trace(go.Bar(x = df.index,
                     y = df['Volume'],
                     name = 'Volume',
-                    # needs hovertemplate
+                    customdata = df['Name'],
+                    hovertemplate="<b>%{customdata}</b><br><br>" +
+                                    "Date: %{x|%d %b %Y} <br>" +
+                                    "Volume: %{y:,.}<br>" +
+                                    "<extra></extra>",
                     marker = dict(color="black", opacity = True)), row = 2, col = 1)
     # Add titles
     fig.update_layout(

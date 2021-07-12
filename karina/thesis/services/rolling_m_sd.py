@@ -25,31 +25,31 @@ def rolling_m_sd(request, y, crypto_name):
                                 y = y['Close'],
                                 name = 'Original',
                                 mode='lines',
-                            #    customdata = df['Name'],
-                            #    hovertemplate="<b>%{customdata}</b><br><br>" +
-                            #        "Date: %{x|%d %b %Y} <br>" +
-                            #        "Closing Price: %{y:$,.2f}<br>" +
-                            #        "<extra></extra>",
+                                customdata = y['Name'],
+                                hovertemplate="<b>%{customdata}</b><br><br>" +
+                                    "Date: %{x|%d %b %Y} <br>" +
+                                    "Closing Price: %{y:$,.2f}<br>" +
+                                    "<extra></extra>",
                                 line = dict(color="blue")))
     fig.add_trace(go.Scatter(x = y.index,
                                 y = rolmean,
                                 name = 'Rolling Mean',
                                 mode='lines',
-                            #    customdata = df['Name'],
-                            #    hovertemplate="<b>%{customdata}</b><br><br>" +
-                            #        "Date: %{x|%d %b %Y} <br>" +
-                            #        "Rolling Mean Price: %{y:$,.2f}<br>" +
-                            #        "<extra></extra>",
+                                customdata = y['Name'],
+                                hovertemplate="<b>%{customdata}</b><br><br>" +
+                                "Date: %{x|%d %b %Y} <br>" +
+                                "Rolling Mean Price: %{y:$,.2f}<br>" +
+                                "<extra></extra>",
                                 line = dict(color="red")))
     fig.add_trace(go.Scatter(x = y.index,
                                 y = rolstd,
                                 name = 'Rolling Std',
                                 mode='lines',
-                            #    customdata = df['Name'],
-                            #    hovertemplate="<b>%{customdata}</b><br><br>" +
-                            #        "Date: %{x|%d %b %Y} <br>" +
-                            #        "Rolling Std: %{y:$,.2f}<br>" +
-                            #        "<extra></extra>",
+                               customdata = y['Name'],
+                               hovertemplate="<b>%{customdata}</b><br><br>" +
+                                   "Date: %{x|%d %b %Y} <br>" +
+                                   "Rolling Std: %{y:$,.2f}<br>" +
+                                   "<extra></extra>",
                                 line = dict(color="black")))
     # Add titles
     fig.update_layout(

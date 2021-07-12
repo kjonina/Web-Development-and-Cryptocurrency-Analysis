@@ -26,10 +26,10 @@ def hist_box_pct_change(request, y, crypto_name):
 
     #2. Boxplot
     fig.add_trace(go.Box(x = y['Close Percentage Change'], name = 'Boxplot',
-                    #     customdata = df['Name'],
-                    #     hovertemplate="<b>%{customdata}</b><br><br>" +
-                    #                        "1-Day Percentage Change: %{x:.0%}<br>"+
-                    #                "<extra></extra>"
+                         customdata = y['Name'],
+                         hovertemplate="<b>%{customdata}</b><br><br>" +
+                                            "1-Day Percentage Change: %{x:.0%}<br>"+
+                                    "<extra></extra>"
                     ), row=2, col=1)
 
     fig.update_layout(title = 'Plots of 1-Day Close Percentage Change for {}'.format(crypto_name))

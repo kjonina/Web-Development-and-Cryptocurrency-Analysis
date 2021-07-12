@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from .models import Thesis
 import re
 import json
 import html
@@ -24,6 +23,7 @@ import plotly.offline as py
 from plotly.offline import download_plotlyjs, plot
 # taking functions from files and using them accordingly
 from thesis.services.get_yahoo_table import get_yahoo_table
+from thesis.services.get_df_cryptolist import get_df_cryptolist
 from thesis.services.create_df import create_df
 from thesis.services.create_y import create_y
 from thesis.services.candle_stick import candle_stick
@@ -31,44 +31,27 @@ from thesis.services.price_sma_volume_chart import price_sma_volume_chart
 from thesis.services.hist_box_pct_change import hist_box_pct_change
 from thesis.services.rolling_m_sd import rolling_m_sd
 
-# saving the user's input and using that to download data about that ticket from Yahoo Finanace
-def crypto_choice(request):
-    global crypto
-    # getting the user's input
-    crypto = request.GET['text'].upper()
+from thesis.services.get_crypto_info import get_crypto_info
+from thesis.services.get_crypto_name import get_crypto_name
+from thesis.services.crypto_choice import crypto_choice
 
-    # NEEDS TO GIVE A USER AN ERROR MESSAGE IF THE INPUT IS NOT IN THE FIRST ROW-
-    # if input on the first row of the table: pass
-    # else: give error
-
-    # returning the crypto choice
-    return JsonResponse({'item': crypto}, safe=False)
-
-#    # trying to get the name of the cryptocurrency out of the table
-#def get_crypto_name(request):
-#    crypto = crypto_choice(request)
-#    df_cryptolist = get_yahoo_table(request)
-#    crypto_name = str(df_cryptolist[df_cryptolist['Symbol'].str.contains(crypto)].iloc[:,1]).split(' ')[4]
-#    print(crypto_name)
-#    return crypto_name
 
 def thesis(request):
+    crypto_name = get_crypto_name(request, 'BTC-USD')
 
     # creating the df dataset
-    df = create_df(request,  'BTC-USD')
+    df = create_df(request,  'BTC-USD', crypto_name)
     #print(df)
 
     # creating the df dataset
-    y = create_y(request,  'BTC-USD')
+    y = create_y(request,  'BTC-USD', crypto_name)
     #print(y)
 
-#    # trying to get the name of the cryptocurrency out of the table
-#    crypto_name = get_crypto_name(request)
-
     return render(request, 'thesis/thesis_home.html', {
+    #'get_crypto_info': json.loads(get_crypto_info(request, 'BTC-USD')),
     'tablesinfo': json.loads(get_yahoo_table(request)),
-    'price_sma_volume_chart': price_sma_volume_chart(request, df, 'Bitcoin'),
-    'candle_stick': candle_stick(request, df, 'Bitcoin'),
-    'hist_box_pct_change': hist_box_pct_change(request, y, 'Bitcoin'),
-    'rolling_m_sd': rolling_m_sd(request, y, 'Bitcoin')
+    'price_sma_volume_chart': price_sma_volume_chart(request, df, crypto_name),
+    'candle_stick': candle_stick(request, df, crypto_name),
+    'hist_box_pct_change': hist_box_pct_change(request, y, crypto_name),
+    'rolling_m_sd': rolling_m_sd(request, y, crypto_name)
     })

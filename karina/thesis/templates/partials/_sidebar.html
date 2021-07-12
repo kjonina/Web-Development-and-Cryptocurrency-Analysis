@@ -46,6 +46,22 @@
           </div>
       </div>
 
+      <div>
+      {% if get_crypto_info %}
+
+        {% for k in get_crypto_info %}
+        <tr>
+          {% for i in k.items %}
+            <td>{{ i }}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+      {% else %}
+      <p>No cryptocurrency was chosen.</p>
+      {% endif %}
+      </div>
+
+
       <script>
         $('#inputbutton').on('click', function(evt){
           evt.preventDefault();

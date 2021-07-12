@@ -3,7 +3,7 @@ import numpy as np
 import yfinance as yf
 import datetime as dt
 
-def create_y(request,x):
+def create_y(request,x, crypto_name):
 
     global y
 
@@ -16,6 +16,7 @@ def create_y(request,x):
     y = yf.download(x, start, end,interval = '1d')
     y = pd.DataFrame(y.dropna(), columns = ['Open', 'High','Low','Close', 'Adj Close', 'Volume'])
     y = pd.DataFrame(y['Close'], columns = ['Close'])
+    y['Name'] = crypto_name
     y.sort_index(inplace = True)
 
     # examining the pct_change

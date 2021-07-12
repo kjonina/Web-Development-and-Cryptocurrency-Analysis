@@ -3,14 +3,15 @@
 {% load static %}}
 {% block content %}
 
+
 <div id="dashboard-section"></div>
 
-<!--chart for price_sma_volume_chart -->
 
+
+<!--chart for price_sma_volume_chart -->
 <div id='price_sma_volume_chart_graph'>
 {% if price_sma_volume_chart %}
 {{ price_sma_volume_chart|safe }}
-
 {% else %}
 <p>No graph was provided.</p>
 {% endif %}
@@ -49,6 +50,3 @@
 
 
 {% endblock %}
-
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
