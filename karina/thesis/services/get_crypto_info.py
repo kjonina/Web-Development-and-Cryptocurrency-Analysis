@@ -18,7 +18,7 @@ def get_crypto_info(request, crypto):
     #trying to present the information
     df_new = df_cryptolist.copy()
     df_new.set_index("Symbol", inplace=True)
-    df_new.head()
     info_on_crypto = df_new.loc[crypto]
-    print(info_on_crypto)
-    return info_on_crypto
+    info_on_crypto = info_on_crypto.reset_index(drop=False)
+    print(info_on_crypto.reset_index(drop=True))
+    return info_on_crypto.to_json(orient='records')

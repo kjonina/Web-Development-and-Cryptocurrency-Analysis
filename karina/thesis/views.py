@@ -19,8 +19,8 @@ import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.io as pio
 import plotly.offline as py
-
 from plotly.offline import download_plotlyjs, plot
+
 # taking functions from files and using them accordingly
 from thesis.services.get_yahoo_table import get_yahoo_table
 from thesis.services.get_df_cryptolist import get_df_cryptolist
@@ -37,18 +37,18 @@ from thesis.services.crypto_choice import crypto_choice
 
 
 def thesis(request):
-    crypto_name = get_crypto_name(request, 'BTC-USD')
+    crypto_name = get_crypto_name(request, 'ETH-USD')
 
     # creating the df dataset
-    df = create_df(request,  'BTC-USD', crypto_name)
+    df = create_df(request,  'ETH-USD', crypto_name)
     #print(df)
 
     # creating the df dataset
-    y = create_y(request,  'BTC-USD', crypto_name)
+    y = create_y(request,  'ETH-USD', crypto_name)
     #print(y)
 
     return render(request, 'thesis/thesis_home.html', {
-    #'get_crypto_info': json.loads(get_crypto_info(request, 'BTC-USD')),
+    'get_crypto_info': json.loads(get_crypto_info(request, 'ETH-USD')),
     'tablesinfo': json.loads(get_yahoo_table(request)),
     'price_sma_volume_chart': price_sma_volume_chart(request, df, crypto_name),
     'candle_stick': candle_stick(request, df, crypto_name),

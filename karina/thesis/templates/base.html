@@ -1,68 +1,68 @@
 
 <!doctype html>
 <html lang="en">
-  <head>
-    {% load static %}
+<head>
+  {% load static %}
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="generator" content="Hugo 0.84.0">
-    <title>Karina Jonina - Thesis</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.84.0">
+  <title>Karina Jonina - Thesis</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
-
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
 
 
-    <!-- Custom styles for this template -->
-    <link href="dashboard.css" rel="stylesheet">
-  </head>
-  <body>
-<!-- header -->
-{% include 'partials/_topbar.html' %}
+  <style>
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
 
-<!-- sidebar -->
-{% include 'partials/_sidebar.html' %}
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+  </style>
 
-<!-- Main Content -->
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h1">Dashboard</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group me-2">
-            <!--Navs at the top -->
-            <button type="button" id="price_sma_volume_chart_button" class="btn btn-sm btn-outline-secondary">Price and Volume</button>
-            <button type="button" id="candle_stick_button" class="btn btn-sm btn-outline-secondary">Candlestick</button>
-            <button type="button" id="hist_box_pct_change_button" class="btn btn-sm btn-outline-secondary">Percentage Change</button>
-            <button type="button" id="rolling_m_sd_button" class="btn btn-sm btn-outline-secondary">Rolling Mean and Standard Deviation</button>
-          </div>
+
+  <!-- Custom styles for this template -->
+  <link href="dashboard.css" rel="stylesheet">
+</head>
+<body>
+  <!-- header -->
+  {% include 'partials/_topbar.html' %}
+
+  <!-- sidebar -->
+  {% include 'partials/_sidebar.html' %}
+
+  <!-- Main Content -->
+  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h1">Dashboard</h1>
+      <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+          <!--Navs at the top -->
+          <button type="button" id="price_sma_volume_chart_button" class="btn btn-sm btn-outline-secondary">Price and Volume</button>
+          <button type="button" id="candle_stick_button" class="btn btn-sm btn-outline-secondary">Candlestick</button>
+          <button type="button" id="hist_box_pct_change_button" class="btn btn-sm btn-outline-secondary">Percentage Change</button>
+          <button type="button" id="rolling_m_sd_button" class="btn btn-sm btn-outline-secondary">Rolling Mean and Standard Deviation</button>
         </div>
       </div>
-      <div class="row">
+    </div>
+    <div class="row">
 
       {% block content %}
 
       {% endblock %}
-      </div>
-    </main>
+    </div>
+  </main>
 
-    <!-- footer-->
+  <!-- footer-->
   {% include 'partials/_footer.html' %}
 
   <!-- CSS only -->
@@ -74,35 +74,35 @@
 
 
   <script type="text/javascript">
-    $(function() {
-      $('#price_sma_volume_chart_button').on('click', function(){
-        $('#price_sma_volume_chart_graph').show();
-        $('#candle_stick_graph').hide();
-        $('#hist_box_pct_change_graph').hide();
-        $('#rolling_m_sd_graph').hide();
-      });
+  $(function() {
+    $('#price_sma_volume_chart_button').on('click', function(){
+      $('#price_sma_volume_chart_graph').show();
+      $('#candle_stick_graph').hide();
+      $('#hist_box_pct_change_graph').hide();
+      $('#rolling_m_sd_graph').hide();
+    });
 
-      $('#candle_stick_button').on('click', function(){
-        $('#price_sma_volume_chart_graph').hide();
-        $('#candle_stick_graph').show();
-        $('#hist_box_pct_change_graph').hide();
-        $('#rolling_m_sd_graph').hide();
-      });
+    $('#candle_stick_button').on('click', function(){
+      $('#price_sma_volume_chart_graph').hide();
+      $('#candle_stick_graph').show();
+      $('#hist_box_pct_change_graph').hide();
+      $('#rolling_m_sd_graph').hide();
+    });
 
-      $('#hist_box_pct_change_button').on('click', function(){
-        $('#candle_stick_graph').hide();
-        $('#price_sma_volume_chart_graph').hide();
-        $('#hist_box_pct_change_graph').show();
-        $('#rolling_m_sd_graph').hide();
-      });
+    $('#hist_box_pct_change_button').on('click', function(){
+      $('#candle_stick_graph').hide();
+      $('#price_sma_volume_chart_graph').hide();
+      $('#hist_box_pct_change_graph').show();
+      $('#rolling_m_sd_graph').hide();
+    });
 
-      $('#rolling_m_sd_button').on('click', function(){
-        $('#candle_stick_graph').hide();
-        $('#price_sma_volume_chart_graph').hide();
-        $('#hist_box_pct_change_graph').hide();
-        $('#rolling_m_sd_graph').show();
-      });
+    $('#rolling_m_sd_button').on('click', function(){
+      $('#candle_stick_graph').hide();
+      $('#price_sma_volume_chart_graph').hide();
+      $('#hist_box_pct_change_graph').hide();
+      $('#rolling_m_sd_graph').show();
+    });
   });
-    </script>
-  </body>
+  </script>
+</body>
 </html>

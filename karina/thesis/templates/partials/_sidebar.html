@@ -8,57 +8,68 @@
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
-          <h3>Top 10 Cryptocurrencies</h3>
+        <h3>Top 10 Cryptocurrencies</h3>
       </div>
-    <br />
+      <br />
 
 
-    <table  class="table">
+      <table  class="table">
         <thead>
-            <tr>
-              <th scope="col">Symbol</th>
-              <th scope="col">Name</th>
-              <th scope="col">Market Cap</th>
-            </tr>
-          </thead>
+          <tr>
+            <th scope="col">Symbol</th>
+            <th scope="col">Name</th>
+            <th scope="col">Market Cap</th>
+          </tr>
+        </thead>
 
-      <tbody>
-        {% for k in tablesinfo %}
-        <tr>
-        {% for i in k.items %}
+        <tbody>
+          {% for k in tablesinfo %}
+          <tr>
+            {% for i in k.items %}
             <td>{{ i.1 }}</td>
-        {% endfor %}
-        </tr>
-        {% endfor %}
-
-    </tbody>
-    </table>
-
-      <div class="row">
-          <div class="col">
-              <div class="card card-body">
-                  <form action="">
-                    <textarea id="search_value" cols="40" rows="1" name="insert_crypto"></textarea>
-                    <br />
-                    <input id="inputbutton" type="button" value="Submit" />
-                    </form>
-              </div>
-          </div>
-      </div>
-
-      <div>
-      {% if get_crypto_info %}
-
-        {% for k in get_crypto_info %}
-        <tr>
-          {% for i in k.items %}
-            <td>{{ i }}</td>
             {% endfor %}
           </tr>
           {% endfor %}
-      {% else %}
-      <p>No cryptocurrency was chosen.</p>
-      {% endif %}
+        </tbody>
+      </table>
+
+      <div class="row">
+        <div class="col">
+          <div class="card card-body">
+            <form action="">
+              <textarea id="search_value" cols="40" rows="1" name="insert_crypto"></textarea>
+              <br />
+              <input id="inputbutton" type="button" value="Submit - DOES NOT WORK" />
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <br />
+      <div>
+        {% if get_crypto_info %}
+        <h5>Chosen Cryptocurrency</h5>
+        <table  class="table">
+          <thead>
+            <tr>
+              <th scope="col">Symbol</th>
+              <th scope="col">Info</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for k in get_crypto_info %}
+            <tr>
+              {% for i in k.items %}
+              <td>{{ i.1 }}</td>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <p>No cryptocurrency was chosen.</p>
+        {% endif %}
       </div>
 
 
@@ -67,11 +78,11 @@
           evt.preventDefault();
           evt.stopPropagation();
           var $detailDiv = $('#dashboard-section'),
-              url='/crypto_choice?text='+ $('#search_value').val();
+          url='/crypto_choice?text='+ $('#search_value').val();
 
           $.get(url, function(data) {
             console.log(data)
-            $detailDiv.html(data.item)
+            // $detailDiv.html(data.item)
           });
         });
       </script>
