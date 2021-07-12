@@ -48,10 +48,10 @@
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
             <!--Navs at the top -->
-            <button type="button" class="btn btn-sm btn-outline-secondary price_sma_volume_chart_button">Price and Volume</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary candle_stick_button">Candlestick</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary hist_box_pct_change_button">Percentage Change</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary rolling_m_sd_button">Rolling Mean and Standard Deviation</button>
+            <button type="button" id="price_sma_volume_chart_button" class="btn btn-sm btn-outline-secondary">Price and Volume</button>
+            <button type="button" id="candle_stick_button" class="btn btn-sm btn-outline-secondary">Candlestick</button>
+            <button type="button" id="hist_box_pct_change_button" class="btn btn-sm btn-outline-secondary">Percentage Change</button>
+            <button type="button" id="rolling_m_sd_button" class="btn btn-sm btn-outline-secondary">Rolling Mean and Standard Deviation</button>
           </div>
         </div>
       </div>
@@ -74,21 +74,35 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 
-  <script>
-    $(document).ready(function() {
-      $('.price_sma_volume_chart_button').on('click', function(e){
+  <script type="text/javascript">
+    $(function() {
+      $('#price_sma_volume_chart_button').on('click', function(){
         $('#price_sma_volume_chart_graph').show();
         $('#candle_stick_graph').hide();
         $('#hist_box_pct_change_graph').hide();
-        $('#rolling_m_sd').hide();
-    });
+        $('#rolling_m_sd_graph').hide();
+      });
 
-      $('.candle_stick_button').on('click', function(e){
+      $('#candle_stick_button').on('click', function(){
         $('#price_sma_volume_chart_graph').hide();
         $('#candle_stick_graph').show();
         $('#hist_box_pct_change_graph').hide();
-        $('#rolling_m_sd').hide();
-  });
+        $('#rolling_m_sd_graph').hide();
+      });
+
+      $('#hist_box_pct_change_button').on('click', function(){
+        $('#candle_stick_graph').hide();
+        $('#price_sma_volume_chart_graph').hide();
+        $('#hist_box_pct_change_graph').show();
+        $('#rolling_m_sd_graph').hide();
+      });
+
+      $('#rolling_m_sd_button').on('click', function(){
+        $('#candle_stick_graph').hide();
+        $('#price_sma_volume_chart_graph').hide();
+        $('#hist_box_pct_change_graph').hide();
+        $('#rolling_m_sd_graph').show();
+      });
   });
     </script>
   </body>
