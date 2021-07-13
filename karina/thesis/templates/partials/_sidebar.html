@@ -52,7 +52,7 @@
         $('#inputbutton').on('click', function(evt){
           evt.preventDefault();
           evt.stopPropagation();
-          var $detailDiv = $('#dashboard-section'),
+          var $detailDiv = $('#dashboard_section'),
           url='/crypto_choice?insert_crypto='+ $('#search_value').val();
 
           $.get(url, function(data) {
