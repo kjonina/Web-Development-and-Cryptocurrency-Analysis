@@ -37,16 +37,16 @@
         <div class="col">
           <div class="card card-body">
             <form action="" method="POST">
-              <textarea id="search_value" cols="40" rows="1" name="insert_crypto"></textarea>
+              <!-- {% csrf_token %} -->
+              <textarea id="search_value" cols="40" rows="1" name="crypto_ticket"></textarea>
               <br />
-              <input id="inputbutton" type="button" value="Submit - DOES NOT WORK" />
+              <input id="inputbutton" type="button" value="Submit" />
             </form>
           </div>
         </div>
       </div>
 
       <br />
-
       {% if error %}
       {{ error }}
       <br />
@@ -58,7 +58,7 @@
           evt.preventDefault();
           evt.stopPropagation();
           var $detailDiv = $('#dashboard_section'),
-          url='/crypto_choice?insert_crypto='+ $('#search_value').val();
+          url='/thesis?crypto_ticket='+ $('#search_value').val();
 
           $.get(url, function(data) {
             console.log(data)
@@ -66,4 +66,6 @@
           });
         });
       </script>
+
+
     </nav>
