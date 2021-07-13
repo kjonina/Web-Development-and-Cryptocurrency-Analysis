@@ -36,7 +36,7 @@
       <div class="row">
         <div class="col">
           <div class="card card-body">
-            <form action="">
+            <form action="" method="POST">
               <textarea id="search_value" cols="40" rows="1" name="insert_crypto"></textarea>
               <br />
               <input id="inputbutton" type="button" value="Submit - DOES NOT WORK" />
@@ -46,31 +46,6 @@
       </div>
 
       <br />
-      <div>
-        {% if get_crypto_info %}
-        <h5>Chosen Cryptocurrency</h5>
-        <table  class="table">
-          <thead>
-            <tr>
-              <th scope="col">Symbol</th>
-              <th scope="col">Info</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {% for k in get_crypto_info %}
-            <tr>
-              {% for i in k.items %}
-              <td>{{ i.1 }}</td>
-              {% endfor %}
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-        {% else %}
-        <p>No cryptocurrency was chosen.</p>
-        {% endif %}
-      </div>
 
 
       <script>
@@ -78,7 +53,7 @@
           evt.preventDefault();
           evt.stopPropagation();
           var $detailDiv = $('#dashboard-section'),
-          url='/crypto_choice?text='+ $('#search_value').val();
+          url='/crypto_choice?insert_crypto='+ $('#search_value').val();
 
           $.get(url, function(data) {
             console.log(data)

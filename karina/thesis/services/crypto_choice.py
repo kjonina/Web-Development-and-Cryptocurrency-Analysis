@@ -12,9 +12,9 @@ from django.http import JsonResponse
 
 # saving the user's input and using that to download data about that ticket from Yahoo Finanace
 def crypto_choice(request):
-    global crypto
     # getting the user's input
-    crypto = request.GET['text'].upper()
+    crypto = request.GET['insert_crypto']
+    print(crypto)
 
     # NEEDS TO GIVE A USER AN ERROR MESSAGE IF THE INPUT IS NOT IN THE FIRST ROW-
     # if input on the first row of the table: pass

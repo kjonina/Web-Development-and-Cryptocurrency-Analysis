@@ -20,6 +20,7 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
+    display: none;
   }
 
   @media (min-width: 768px) {
@@ -75,14 +76,15 @@
 
   <script type="text/javascript">
   $(function() {
-    $('#price_sma_volume_chart_button').on('click', function(){
-      $('#price_sma_volume_chart_graph').show();
-      $('#candle_stick_graph').hide();
-      $('#hist_box_pct_change_graph').hide();
-      $('#rolling_m_sd_graph').hide();
+    $('#dashboard-section').show();
+    $('#price_sma_volume_chart_graph').hide();
+    $('#candle_stick_graph').hide();
+    $('#hist_box_pct_change_graph').hide();
+    $('#rolling_m_sd_graph').hide();
     });
 
     $('#candle_stick_button').on('click', function(){
+      $('#dashboard-section').hide();
       $('#price_sma_volume_chart_graph').hide();
       $('#candle_stick_graph').show();
       $('#hist_box_pct_change_graph').hide();
@@ -90,6 +92,7 @@
     });
 
     $('#hist_box_pct_change_button').on('click', function(){
+      $('#dashboard-section').hide();
       $('#candle_stick_graph').hide();
       $('#price_sma_volume_chart_graph').hide();
       $('#hist_box_pct_change_graph').show();
@@ -97,6 +100,7 @@
     });
 
     $('#rolling_m_sd_button').on('click', function(){
+      $('#dashboard-section').hide();
       $('#candle_stick_graph').hide();
       $('#price_sma_volume_chart_graph').hide();
       $('#hist_box_pct_change_graph').hide();
