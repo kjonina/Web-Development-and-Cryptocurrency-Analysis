@@ -27,6 +27,7 @@ from thesis.services.get_yahoo_table import get_yahoo_table
 from thesis.services.create_df import create_df
 from thesis.services.create_y import create_y
 from thesis.services.candle_stick import candle_stick
+from thesis.services.death_cross import death_cross
 from thesis.services.price_sma_volume_chart import price_sma_volume_chart
 from thesis.services.hist_box_pct_change import hist_box_pct_change
 from thesis.services.rolling_m_sd import rolling_m_sd
@@ -39,25 +40,26 @@ def thesis(request):
     # crypto = request.GET['insert_crypto']
 
 
-    crypto_name = get_crypto_name(request, 'ADA-USD')
+
+    crypto_name = get_crypto_name(request, 'BTC-USD')
     print(crypto_name)
 
     # creating the df dataset
-    df = create_df(request,  'ADA-USD', crypto_name)
+    df = create_df(request,  'BTC-USD', crypto_name)
     #print(df)
 
     # creating the df dataset
-    y = create_y(request,  'ADA-USD', crypto_name)
+    y = create_y(request,  'BTC-USD', crypto_name)
     #print(y)
 
     df_cryptolist, json_three = get_yahoo_table(request)
 
     return render(request, 'thesis/thesis_home.html', {
-    # 'crypto_choice':crypto_choice(request),
-    'get_crypto_info': json.loads(get_crypto_info(request, 'ADA-USD')),
+    'crypto_choice':crypto_choice(request),
+    'get_crypto_info': json.loads(get_crypto_info(request, 'BTC-USD')),
     'tablesinfo': json.loads(json_three),
     'price_sma_volume_chart': price_sma_volume_chart(request, df, crypto_name),
-    'candle_stick': candle_stick(request, df, crypto_name),
+    'death_cross': death_cross(request, df, crypto_name),
     'hist_box_pct_change': hist_box_pct_change(request, y, crypto_name),
     'rolling_m_sd': rolling_m_sd(request, y, crypto_name)
     })

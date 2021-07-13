@@ -47,6 +47,11 @@
 
       <br />
 
+      {% if error %}
+      {{ error }}
+      <br />
+      <br />
+      {% endif %}
 
       <script>
         $('#inputbutton').on('click', function(evt){
@@ -57,7 +62,7 @@
 
           $.get(url, function(data) {
             console.log(data)
-            // $detailDiv.html(data.item)
+            $detailDiv.html(data.item)
           });
         });
       </script>
