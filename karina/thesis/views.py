@@ -35,7 +35,6 @@ from thesis.services.get_crypto_info import get_crypto_info
 from thesis.services.get_crypto_name import get_crypto_name
 
 
-
 def thesis(request):
     df_cryptolist, json_three = get_yahoo_table(request)
 
@@ -55,7 +54,7 @@ def thesis(request):
         print(cryptolist)
     # getting the user's input
     crypto = request.GET.get('crypto_ticket')
-    crypto_ticket = str(crypto)
+    crypto_ticket = str(crypto).upper()
     print(crypto_ticket)
 
     if not crypto_ticket in cryptolist:
@@ -78,7 +77,7 @@ def thesis(request):
 
         df_cryptolist, json_three = get_yahoo_table(request)
 
-        return render(request, 'thesis/thesis_home.html', {'error':'You have selected: {}'.format(str(crypto_ticket)),
+        return render(request, 'thesis/thesis_home1.html', {'error':'You have selected: {}'.format(str(crypto_ticket)),
             'get_crypto_info': json.loads(get_crypto_info(request, crypto_ticket)),
             'tablesinfo': json.loads(json_three),
             'price_sma_volume_chart': price_sma_volume_chart(request, df, crypto_name),
