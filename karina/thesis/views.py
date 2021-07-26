@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Thesis
+# from .models import Thesis
 import re
 import json
 import html
@@ -9,18 +9,16 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from pandas.io.json import json_normalize
 from django.http import HttpResponse
-import operator
 from django.http import JsonResponse
+import operator
 from plotly.offline import download_plotlyjs, plot
 import plotly.offline as py
 import plotly.graph_objs as go
 import plotly.graph_objects as go
-import plotly.graph_objs as go
 import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.io as pio
-import plotly.offline as py
-from plotly.offline import download_plotlyjs, plot
+
 
 # taking functions from files and using them accordingly
 from thesis.services.get_yahoo_table import get_yahoo_table
@@ -57,6 +55,7 @@ def thesis(request):
     crypto_ticket = str(crypto).upper()
     print(crypto_ticket)
 
+
     if not crypto_ticket in cryptolist:
         print('Sorry. You did not select an available symbol or you misspelled the symbol')
         return render(request, 'thesis/thesis_home.html', {'tablesinfo': json.loads(json_three), 'error':'Sorry. You did not select an available symbol or you misspelled the symbol'})
@@ -64,21 +63,21 @@ def thesis(request):
     else:
         print('You have selected: ', crypto_ticket)
 
-        crypto_name = get_crypto_name(request, crypto_ticket)
+        crypto_name = get_crypto_name(request, 'BTC-USD')
         print(crypto_name)
 
         # creating the df dataset
-        df = create_df(request,  crypto_ticket, crypto_name)
+        df = create_df(request,  'BTC-USD', crypto_name)
         #print(df)
 
         # creating the df dataset
-        y = create_y(request,  crypto_ticket, crypto_name)
+        y = create_y(request,  'BTC-USD', crypto_name)
         #print(y)
 
         df_cryptolist, json_three = get_yahoo_table(request)
 
         return render(request, 'thesis/thesis_home1.html', {'error':'You have selected: {}'.format(str(crypto_ticket)),
-            'get_crypto_info': json.loads(get_crypto_info(request, crypto_ticket)),
+            'get_crypto_info': json.loads(get_crypto_info(request, 'BTC-USD')),
             'tablesinfo': json.loads(json_three),
             'price_sma_volume_chart': price_sma_volume_chart(request, df, crypto_name),
             'death_cross': death_cross(request, df, crypto_name),

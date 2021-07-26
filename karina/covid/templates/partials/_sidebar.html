@@ -1,0 +1,71 @@
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <h3>Top 10 Cryptocurrencies</h3>
+      </div>
+      <br />
+
+
+      <table  class="table">
+        <thead>
+          <tr>
+            <th scope="col">Symbol</th>
+            <th scope="col">Name</th>
+            <th scope="col">Market Cap</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for k in tablesinfo %}
+          <tr>
+            {% for i in k.items %}
+            <td>{{ i.1 }}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="row">
+        <div class="col">
+          <div class="card card-body">
+            <form action="" method="POST">
+              <!-- {% csrf_token %} -->
+              <textarea id="search_value" cols="40" rows="1" name="crypto_ticket"></textarea>
+              <br />
+              <input id="inputbutton" type="button" value="Submit" />
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <br />
+      {% if error %}
+      {{ error }}
+      <br />
+      <br />
+      {% endif %}
+
+      <script>
+        $('#inputbutton').on('click', function(evt){
+          evt.preventDefault();
+          evt.stopPropagation();
+          var $detailDiv = $('#dashboard_section'),
+          url='/thesis?crypto_ticket='+ $('#search_value').val();
+
+          $.get(url, function(data) {
+            console.log(data)
+            $detailDiv.html(data.item)
+          });
+        });
+      </script>
+
+
+    </nav>
