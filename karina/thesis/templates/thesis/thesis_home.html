@@ -3,6 +3,31 @@
 {% load static %}}
 {% block content %}
 
+
+<style>
+  .table{
+    display:block;
+  }
+
+  .two{
+    display:none;
+  }
+
+  .three{
+    display:none;
+  }
+
+  .four{
+      display:none;
+  }
+
+
+  .five{
+    display:none;
+  }
+
+</style>
+
 <div id="dashboard_section">
   {% if get_crypto_info %}
   <h5>Chosen Cryptocurrency</h5>
@@ -33,7 +58,7 @@
 
 
 
-<div id='price_sma_volume_chart_graph'>
+<div id='price_sma_volume_chart_graph' class="two">
   {% if price_sma_volume_chart %}
   {{ price_sma_volume_chart|safe }}
   {% else %}
@@ -42,7 +67,7 @@
 </div>
 
 
-<div id='candle_stick_graph'>
+<div id='candle_stick_graph' class="three">
   {% if death_cross %}
   {{ death_cross|safe }}
   {% else %}
@@ -53,7 +78,7 @@
 
 
 
-<div id='hist_box_pct_change_graph'>
+<div id='hist_box_pct_change_graph' class="four">
   {% if hist_box_pct_change %}
   {{ hist_box_pct_change|safe }}
   {% else %}
@@ -63,7 +88,7 @@
 
 
 
-<div id='rolling_m_sd_graph'>
+<div id='rolling_m_sd_graph' class="five">
   {% if rolling_m_sd %}
   {{ rolling_m_sd|safe }}
   {% else %}
