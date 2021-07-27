@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Karina Jonina - Home</title>
+    <title>Karina Jonina - Achievements</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
 
@@ -35,15 +35,15 @@
         }
       }
     </style>
-
-
   </head>
+
+
   <body>
 
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'home' %}">Karina Jonina </a>
+          <a class="navbar-brand" href="{% url 'home' %}">Karina Jonina</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -56,7 +56,7 @@
               <a class="nav-link" href="{% url 'allblogs' %}">Blog</a>
               <a class="nav-link" href="{% url 'COVID_Dashboard' %}">COVID-19 Dashboard</a>
               <a class="nav-link " href="{% url 'thesis' %}">Thesis</a>
-              <a class="nav-link " href="{% url 'sports' %}">Personal Achievements</a>
+              <a class="nav-link " href="{% url 'achievements' %}">Personal Achievements</a>
             </div>
           </div>
         </div>
@@ -65,29 +65,12 @@
 
 
 <main>
-  <!-- Main Content -->
-  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group me-2">
-          <!--Navs at the top -->
-          <button type="button" id="tableau_button" class="btn btn-sm btn-outline-secondary">Tableau Projects</button>
-          <button type="button" id="python_button" class="btn btn-sm btn-outline-secondary">Python Projects</button>
-          <button type="button" id="r_button" class="btn btn-sm btn-outline-secondary">R Projects</button>
-        </div>
-      </div>
-    </div>
-    <div class="row">
 
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Hi, I am Karina!</h1>
-        <p class="lead text-muted">A student currently enrolled in Higher Diploma in Science in Data Analytics in Dublin Business School. I wish to abide in my passion for the community by creating, evolving, maintaining, and ultimately revealing meaningful insights that support and validate relevant, data-driven change. To satisfy my curiosity and challenge myself by using my multidisciplinary background to implement scalable, statistical analysis, and beautiful visual assessments. </p>
-        <p>
-          <a href="mailto: karinajonina@yahoo.com" class="btn btn-primary my-2">Contat Me!</a>
-        </p>
-        <!-- <img class="img-fluid" src="{% static 'IMG_9968.JPG' %}" height=200 width=200> -->
+        <h1 class="fw-light">Personal Achievements</h1>
+        <p class="lead text-muted">In my free time .... </p>
       </div>
     </div>
   </section>
@@ -96,13 +79,13 @@
     <div class="container">
 <!-- one -->
       <div class="row">
-        {% for job in jobs.all %}
+        {% for achievement in achievements.all %}
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{ job.image.url }}"/>
+            <img class="card-img-top" src="{{ achievement.image.url }}"/>
             <div class="card-body">
-              <h4 class="card-text">{{ job.title }}</h4>
-              <p class="card-text">{{ job.summary }}</p>
+              <h4 class="card-text">{{ achievement.title }}</h4>
+              <p class="card-text">{{ achievement.summary }}</p>
             </div>
           </div>
         </div>

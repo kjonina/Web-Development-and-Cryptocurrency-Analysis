@@ -56,7 +56,7 @@
               <a class="nav-link" href="{% url 'allblogs' %}">Blog</a>
               <a class="nav-link" href="{% url 'COVID_Dashboard' %}">COVID-19 Dashboard</a>
               <a class="nav-link " href="{% url 'thesis' %}">Thesis</a>
-              <a class="nav-link " href="{% url 'sports' %}">Personal Achievements</a>
+              <a class="nav-link " href="{% url 'achievements' %}">Personal Achievements</a>
             </div>
           </div>
         </div>
@@ -65,51 +65,46 @@
 
 
 <main>
-  <!-- Main Content -->
-  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group me-2">
-          <!--Navs at the top -->
-          <button type="button" id="tableau_button" class="btn btn-sm btn-outline-secondary">Tableau Projects</button>
-          <button type="button" id="python_button" class="btn btn-sm btn-outline-secondary">Python Projects</button>
-          <button type="button" id="r_button" class="btn btn-sm btn-outline-secondary">R Projects</button>
-        </div>
-      </div>
-    </div>
-    <div class="row">
 
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Hi, I am Karina!</h1>
-        <p class="lead text-muted">A student currently enrolled in Higher Diploma in Science in Data Analytics in Dublin Business School. I wish to abide in my passion for the community by creating, evolving, maintaining, and ultimately revealing meaningful insights that support and validate relevant, data-driven change. To satisfy my curiosity and challenge myself by using my multidisciplinary background to implement scalable, statistical analysis, and beautiful visual assessments. </p>
-        <p>
-          <a href="mailto: karinajonina@yahoo.com" class="btn btn-primary my-2">Contat Me!</a>
-        </p>
-        <!-- <img class="img-fluid" src="{% static 'IMG_9968.JPG' %}" height=200 width=200> -->
-      </div>
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-<!-- one -->
-      <div class="row">
-        {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{ job.image.url }}"/>
-            <div class="card-body">
-              <h4 class="card-text">{{ job.title }}</h4>
-              <p class="card-text">{{ job.summary }}</p>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Embedded Analytics with Tableau Online</title>
+  </head>
+  <body>
+    <script type='text/javascript' src='https://us-east-1.online.tableau.com/javascripts/api/viz_v1.js'></script>
+    <div class='tableauPlaceholder' id='viz1627161533938' style='position: relative'>
+      <noscript>
+        <a href='#'><img alt='Deaths per 100,000 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;CO&#47;COVID-19Dashboard_16121687154650&#47;Deathsper100000&#47;1_rss.png' style='border: none' /></a>
+      </noscript>
+      <object class='tableauViz' width='1488' height='706' style='display:none;'>
+      <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+      <param name='embed_code_version' value='3' />
+      <param name='site_root' value='' />
+      <param name='name' value='COVID-19Dashboard_16121687154650&#47;Deathsper100000' />
+      <param name='tabs' value='no' />
+      <param name='toolbar' value='yes' />
+      <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;CO&#47;COVID-19Dashboard_16121687154650&#47;Deathsper100000&#47;1.png' />
+      <param name='animate_transition' value='yes' />
+      <param name='display_static_image' value='yes' />
+      <param name='display_spinner' value='yes' />
+      <param name='display_overlay' value='yes' />
+      <param name='display_count' value='yes' />
+      <param name='language' value='en-US' />
+    </object>
   </div>
+  <script type='text/javascript'>
+  var divElement = document.getElementById('viz1627161533938');
+  var vizElement = divElement.getElementsByTagName('object')[0];
+  if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1600px';vizElement.style.height='931px';}
+  else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1600px';vizElement.style.height='931px';}
+  else { vizElement.style.width='100%';vizElement.style.height='1877px';}
+  var scriptElement = document.createElement('script');
+  scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+  vizElement.parentNode.insertBefore(scriptElement, vizElement);
+  </script>
+
+
 </main>
 
 <footer class="text-muted py-5">
