@@ -58,8 +58,7 @@ def thesis(request):
             print(cryptolist)
 
         if crypto_ticket == 'NONE':
-            print('Please select a cryptocurrency.')
-            return render(request, 'thesis/thesis_home.html', {'tablesinfo': json.loads(json_three), 'error':'Please select a cryptocurrency.'})
+            return render(request, 'thesis/thesis_home.html', {'tablesinfo': json.loads(json_three), 'error':'Please write the cryptocurrency symbol of your choice.'})
 
 
         elif crypto_ticket in cryptolist:
@@ -76,7 +75,7 @@ def thesis(request):
             y = create_y(request,  crypto_ticket, crypto_name)
             # print(y)
 
-            return render(request, 'thesis/thesis_home.html', {'error':'You have selected: {}'.format(str(crypto_ticket)),
+            return render(request, 'thesis/thesis_home.html', {'error':'You have selected: {}'.format(str(crypto_name)),
                 'get_crypto_info': json.loads(get_crypto_info(request, crypto_ticket)),
                 'tablesinfo': json.loads(json_three),
                 'price_sma_volume_chart': price_sma_volume_chart(request, df, crypto_name),
