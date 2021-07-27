@@ -36,14 +36,15 @@
       <div class="row">
         <div class="col">
           <div class="card card-body">
-            <form action="" method="POST">
+            {% csrf_token %}
+            <form action="" method="GET">
               <!-- {% csrf_token %} -->
               <textarea id="search_value" cols="40" rows="1" name="crypto_ticket"></textarea>
-              <br />
-              <input id="inputbutton" type="button" value="Submit" />
+
+              <input id="inputbutton" type="submit" value="Submit" />
             </form>
           </div>
-        </div>
+        </
       </div>
 
       <br />
@@ -53,7 +54,7 @@
       <br />
       {% endif %}
 
-      <script>
+      <!-- <script>
         $('#inputbutton').on('click', function(evt){
           evt.preventDefault();
           evt.stopPropagation();
@@ -63,9 +64,9 @@
           $.get(url, function(data) {
             console.log(data)
             $detailDiv.html(data.item)
-          });
+
         });
-      </script>
+      </script> -->
 
 
     </nav>

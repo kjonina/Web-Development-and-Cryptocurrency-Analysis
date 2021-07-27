@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% load static %}}
+{% block content %}
+
+<div id="dashboard_section">
+  {% if get_crypto_info %}
+  <h5>Chosen Cryptocurrency</h5>
+  <table  class="table">
+    <thead>
+      <tr>
+        <th scope="col">Symbol</th>
+        <th scope="col">Info</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for k in get_crypto_info %}
+      <tr>
+        {% for i in k.items %}
+        <td>{{ i.1 }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>No cryptocurrency was chosen.</p>
+  {% endif %}
+
+  <p>Please click on the button in the top right to select graphs</p>
+</div>
+
+
+
+<div id='price_sma_volume_chart_graph'>
+  {% if price_sma_volume_chart %}
+  {{ price_sma_volume_chart|safe }}
+  {% else %}
+  <p>No graph was provided.</p>
+  {% endif %}
+</div>
+
+
+<div id='candle_stick_graph'>
+  {% if death_cross %}
+  {{ death_cross|safe }}
+  {% else %}
+  <p>No graph was provided.</p>
+  {% endif %}
+</div>
+
+
+
+
+<div id='hist_box_pct_change_graph'>
+  {% if hist_box_pct_change %}
+  {{ hist_box_pct_change|safe }}
+  {% else %}
+  <p>No graph was provided.</p>
+  {% endif %}
+</div>
+
+
+
+<div id='rolling_m_sd_graph'>
+  {% if rolling_m_sd %}
+  {{ rolling_m_sd|safe }}
+  {% else %}
+  <p>No graph was provided.</p>
+  {% endif %}
+</div>
+
+
+{% endblock %}
