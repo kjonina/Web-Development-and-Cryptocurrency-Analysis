@@ -13,7 +13,7 @@ import plotly.graph_objects as go
 from pylab import rcParams
 
 
-def death_cross(request, df,crypto_name):
+def candlestick_moving_average(request, df,crypto_name):
 
     fig = make_subplots(rows=2, cols=1, shared_xaxes=True, subplot_titles=[
             'Price and Moving Averages of {}'.format(str(crypto_name)),
@@ -77,34 +77,7 @@ def death_cross(request, df,crypto_name):
         step['args'][1][i] = True
         sliders["steps"].append(step)
 
-    updatemenus = dict(
 
-        # GENERAL
-        type = "buttons",
-        showactive = False,
-        x = 0,
-        y = 0,
-        pad = dict(t = 0, b = 0),
-        yanchor = "bottom",
-        xanchor = "left",
-
-        # BUTTONS
-        buttons=[
-            dict(
-                method = "restyle",
-                label = "Golden Cross",
-                args = ["visible", [False] * ((200 // 5) + 1)],
-            )
-        ],
-
-    )
-
-
-    # Golden cross refers to the 50SMA and 200SMA cross
-    # and is an indicator of long term market support
-    updatemenus["buttons"][0]["args"][1][0] = True # Main plot
-    updatemenus["buttons"][0]["args"][1][10] = True # SMA 50
-    updatemenus["buttons"][0]["args"][1][40] = True # SMA 200
 
     layout = dict(
 
@@ -112,8 +85,6 @@ def death_cross(request, df,crypto_name):
 
         # ANIMATIONS
         sliders = [sliders],
-        updatemenus = [updatemenus],
-
         xaxis = dict(
 
             rangeselector = dict(
@@ -145,6 +116,6 @@ def death_cross(request, df,crypto_name):
 
     fig = go.Figure(data = data, layout = layout)
 
-    death_cross = fig.to_html(full_html=False, default_height=1000, default_width=1500)
+    candlestick_moving_average = fig.to_html(full_html=False, default_height=1000, default_width=1500)
 
-    return death_cross
+    return candlestick_moving_average

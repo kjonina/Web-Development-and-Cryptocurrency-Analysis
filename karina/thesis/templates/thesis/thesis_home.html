@@ -26,6 +26,10 @@
     display:none;
   }
 
+  .six{
+    display:none;
+  }
+
 </style>
 
 <div id="dashboard_section">
@@ -69,8 +73,8 @@
 
 
 <div id='candle_stick_graph' class="three">
-  {% if death_cross %}
-  {{ death_cross|safe }}
+  {% if candlestick_moving_average %}
+  {{ candlestick_moving_average|safe }}
   {% else %}
   <p>No graph was provided.</p>
   {% endif %}
@@ -92,6 +96,14 @@
 <div id='rolling_m_sd_graph' class="five">
   {% if rolling_m_sd %}
   {{ rolling_m_sd|safe }}
+  {% else %}
+  <p>No graph was provided.</p>
+  {% endif %}
+</div>
+
+<div id='training_and_test_graph' class="six">
+  {% if training_and_test_plot %}
+  {{ training_and_test_plot|safe }}
   {% else %}
   <p>No graph was provided.</p>
   {% endif %}

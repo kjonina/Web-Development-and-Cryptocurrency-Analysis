@@ -25,12 +25,18 @@ from thesis.services.get_yahoo_table import get_yahoo_table
 from thesis.services.create_df import create_df
 from thesis.services.create_y import create_y
 from thesis.services.candle_stick import candle_stick
-from thesis.services.death_cross import death_cross
 from thesis.services.price_sma_volume_chart import price_sma_volume_chart
 from thesis.services.hist_box_pct_change import hist_box_pct_change
 from thesis.services.rolling_m_sd import rolling_m_sd
 from thesis.services.get_crypto_info import get_crypto_info
 from thesis.services.get_crypto_name import get_crypto_name
+from thesis.services.df_train_test import create_train_and_test
+from thesis.services.training_and_test_plot import training_and_test_plot
+
+from thesis.services.candlestick_rolling_average import candlestick_moving_average
+
+
+
 
 
 def thesis(request):
@@ -40,7 +46,7 @@ def thesis(request):
         # getting the user's input
         crypto = request.GET.get('crypto_ticket')
         crypto_ticket = str(crypto).upper()
-        print(crypto_ticket)
+        # print(crypto_ticket)
 
         cryptolist = []
 
@@ -75,12 +81,15 @@ def thesis(request):
             y = create_y(request,  crypto_ticket, crypto_name)
             # print(y)
 
+            df_train, df_test = create_train_and_test(request,y, crypto_name)
+
             return render(request, 'thesis/thesis_home.html', {'error':'You have selected: {}'.format(str(crypto_name)),
                 'get_crypto_info': json.loads(get_crypto_info(request, crypto_ticket)),
                 'tablesinfo': json.loads(json_three),
                 'price_sma_volume_chart': price_sma_volume_chart(request, df, crypto_name),
-                'death_cross': death_cross(request, df, crypto_name),
+                'candlestick_moving_average': candlestick_moving_average(request, df, crypto_name),
                 'hist_box_pct_change': hist_box_pct_change(request, y, crypto_name),
+                'training_and_test_plot': training_and_test_plot(request,df_train, df_test, crypto_name),
                 'rolling_m_sd': rolling_m_sd(request, y, crypto_name)})
         else:
             # print('Sorry. You did not select an available symbol or you misspelled the symbol')

@@ -47,11 +47,13 @@
       <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group me-2">
           <!--Navs at the top -->
-          <button type="button" id="dashboard_section_button" class="btn btn-sm btn-outline-secondary">Information</button>
-          <button type="button" id="price_sma_volume_chart_button" class="btn btn-sm btn-outline-secondary">Price and Volume</button>
-          <button type="button" id="candle_stick_button" class="btn btn-sm btn-outline-secondary">Candlestick</button>
+          <button type="button" id="dashboard_section_button" class="btn btn-sm btn-outline-secondary">Summary</button>
+          <button type="button" id="price_sma_volume_chart_button" class="btn btn-sm btn-outline-secondary">Death Cross and Volume Chart</button>
+          <button type="button" id="candle_stick_button" class="btn btn-sm btn-outline-secondary">Candlestick Chart </button>
           <button type="button" id="hist_box_pct_change_button" class="btn btn-sm btn-outline-secondary">Percentage Change</button>
           <button type="button" id="rolling_m_sd_button" class="btn btn-sm btn-outline-secondary">Rolling Mean and Standard Deviation</button>
+          <button type="button" id="training_and_test_graph_button" class="btn btn-sm btn-outline-secondary">Test and Training Set</button>
+
         </div>
       </div>
     </div>
@@ -83,6 +85,7 @@
               $('#candle_stick_graph').hide();
               $('#hist_box_pct_change_graph').hide();
               $('#rolling_m_sd_graph').hide();
+              $('#training_and_test_graph').hide();
               $(identifier).show();
             };
               $('#dashboard_section_button').click(()=> hideAllButOne("#dashboard_section"));
@@ -90,8 +93,11 @@
               $('#candle_stick_button').click(()=> hideAllButOne("#candle_stick_graph"));
               $('#hist_box_pct_change_button').click(()=> hideAllButOne("#hist_box_pct_change_graph"));
               $('#rolling_m_sd_button').click(()=> hideAllButOne("#rolling_m_sd_graph"));
+              $('#training_and_test_graph_button').click(()=> hideAllButOne("#training_and_test_graph"));
 
           });
+
+
 
   </script>
 </body>

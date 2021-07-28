@@ -35,7 +35,7 @@ def price_sma_volume_chart(request, df, crypto_name):
 
     fig.add_trace(go.Scatter(x = df.index,
                              y = df['short_SMA'],
-                             name = 'Short SMA',
+                             name = 'Short SMA 50',
                              mode = 'lines',
                              customdata = df['Name'],
                              hovertemplate="<b>%{customdata}</b><br><br>" +
@@ -46,7 +46,7 @@ def price_sma_volume_chart(request, df, crypto_name):
 
     fig.add_trace(go.Scatter(x = df.index,
                              y = df['long_SMA'],
-                             name = 'Long SMA',
+                             name = 'Long SMA 200',
                              mode = 'lines',
                              customdata = df['Name'],
                              hovertemplate="<b>%{customdata}</b><br><br>" +
