@@ -4,18 +4,19 @@ from blog.models import Blog
 
 
 class TestBlogModel(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.title = Blog.objects.create(title="Django Testing")
+        cls.body = Blog.objects.create(body="This will be a miracle if this works!")
 
-    def test_model_str(self):
+    def test_model_title(self):
+        self.assertEqual(str(self.title), "Django Testing")
 
-        title = Blog.objects.create(title="Django Testing")
-        body = Blog.objects.create(body="It will be a miracle if this works")
-        # pub_date  = Blog.objects.create(pub_date ="2021/05/19 05:05")
+    def test_model_body(self):
+        self.assertEqual(str(self.body), "This will be a miracle if this works!")
 
-        self.assertEqual(str(title), "Django Testing")
-        # self.assertEqual(to_datetime(pub_date), "2021/05/19 05:05")
-        # self.assertEqual(str(summary), "It will be a miracle if this works")
-
-
+    # def test_pub_date_pretty(self):
+    #     self.assertEqual(pub_date_pretty('2021/05/05 05:05:05'), "5 May 2021")
 
 
 ## run in the command line

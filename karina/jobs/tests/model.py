@@ -1,20 +1,23 @@
 from django.test import TestCase
 
-from achievements.models import Achievement
+from jobs.models import Job
 
 
-class TestAchievementsModel(TestCase):
+class TestBlogModel(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.title = Achievement.objects.create(title="Django Testing")
-        cls.summary = Achievement.objects.create(summary="This will be a miracle if this works!")
+        cls.title = Job.objects.create(title="Django Testing")
+        cls.summary = Job.objects.create(summary="This will be a miracle if this works!")
 
     def test_model_title(self):
         self.assertEqual(str(self.title), "Django Testing")
 
     def test_model_body(self):
         self.assertEqual(str(self.summary), "This will be a miracle if this works!")
+
+
+
 
 
 
