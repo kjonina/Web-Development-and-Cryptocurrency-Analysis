@@ -1,3 +1,3 @@
 from django.test import TestCase
 
-# Create your tests here.
+# No models are used in this app.

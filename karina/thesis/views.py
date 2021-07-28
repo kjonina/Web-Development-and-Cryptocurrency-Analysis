@@ -61,7 +61,7 @@ def thesis(request):
             except:
                 index = len(df_cryptolist.iloc[:,0])
                 break
-            print(cryptolist)
+            # print(cryptolist)
 
         if crypto_ticket == 'NONE':
             return render(request, 'thesis/thesis_home.html', {'tablesinfo': json.loads(json_three), 'error':'Please write the cryptocurrency symbol of your choice.'})

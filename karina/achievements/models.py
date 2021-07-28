@@ -2,8 +2,8 @@ from django.db import models
 
 
 class Achievement(models.Model):
-    image = models.ImageField(upload_to='images/')
-    pub_date = models.DateTimeField()
+    image = models.ImageField(null= True, upload_to='images/')
+    pub_date = models.DateTimeField(null= True)
     title = models.CharField(max_length=50)
     summary = models.CharField(max_length=200)
 
