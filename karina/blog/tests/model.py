@@ -16,7 +16,7 @@ class TestBlogModel(TestCase):
         self.assertEqual(str(self.body), "This will be a miracle if this works!")
 
     # def test_pub_date_pretty(self):
-    #     self.assertEqual(pub_date_pretty('2021/05/05 05:05:05'), "5 May 2021")
+    #     self.assertEqual(self.pub_date_pretty('2021/05/05 05:05:05'), "5 May 2021")
 
 
 ## run in the command line

@@ -53,8 +53,7 @@
               <a class="nav-link" href="https://github.com/kjonina/">Github</a>
               <a class="nav-link" href="{% static 'CV Karina Jonina.pdf' %}">Resume</a>
               <a class="nav-link" href="{% url 'allblogs' %}">Blog</a>
-              <a class="nav-link" href="{% url 'COVID_Dashboard' %}">COVID-19 Dashboard</a>
-              <a class="nav-link " href="{% url 'thesis' %}">Thesis</a>
+              <a class="nav-link " href="{% url 'thesis' %}">HDIP Project</a>
               <a class="nav-link " href="{% url 'achievements' %}">Personal Achievements</a>
             </div>
           </div>
@@ -70,7 +69,7 @@
   <h2>Lastest Posts</h2>
   <hr />
     {% for blog in blogs.all %}
-    <a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
+    <a href="{% url 'detail' blog.slug %}"><h3>{{ blog.title }}</h3></a>
     {{ blog.pub_date_pretty }}
     <br />
     <img class="img-fluid" src="{{ blog.image.url }}" height=200 width=200/>

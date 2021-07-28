@@ -2,69 +2,66 @@
 <!doctype html>
 <html lang="en">
 
-  <head>
-    {% load static %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
-    <title>Karina Jonina - Home</title>
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.84.0">
+  <title>Karina Jonina - Home</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
 
-    <!-- Bootstrap core CSS -->
+  <!-- Bootstrap core CSS -->
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
 
 
-  </head>
-  <body>
+  <style>
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
 
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'home' %}">Karina Jonina </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link" href="https://www.linkedin.com/in/karinajonina/">LinkedIn</a>
-              <a class="nav-link" href="https://public.tableau.com/profile/karina.jonina#!/">Tableau</a>
-              <a class="nav-link" href="https://github.com/kjonina/">Github</a>
-              <a class="nav-link" href="{% static 'CV Karina Jonina.pdf' %}">Resume</a>
-              <a class="nav-link" href="{% url 'allblogs' %}">Blog</a>
-              <a class="nav-link" href="{% url 'COVID_Dashboard' %}">COVID-19 Dashboard</a>
-              <a class="nav-link " href="{% url 'thesis' %}">Thesis</a>
-              <a class="nav-link " href="{% url 'achievements' %}">Personal Achievements</a>
-            </div>
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+  </style>
+
+
+</head>
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">Karina Jonina </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" href="https://www.linkedin.com/in/karinajonina/">LinkedIn</a>
+            <a class="nav-link" href="https://public.tableau.com/profile/karina.jonina#!/">Tableau</a>
+            <a class="nav-link" href="https://github.com/kjonina/">Github</a>
+            <a class="nav-link" href="{% static 'CV Karina Jonina.pdf' %}">Resume</a>
+            <a class="nav-link" href="{% url 'allblogs' %}">Blog</a>
+            <a class="nav-link " href="{% url 'thesis' %}">HDIP Project</a>
+            <a class="nav-link " href="{% url 'achievements' %}">Personal Achievements</a>
           </div>
         </div>
-      </nav>
-    </header>
+      </div>
+    </nav>
+  </header>
 
-
-<main>
   <!-- Main Content -->
   <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -79,42 +76,99 @@
     </div>
     <div class="row">
 
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Hi, I am Karina!</h1>
-        <p class="lead text-muted">A student currently enrolled in Higher Diploma in Science in Data Analytics in Dublin Business School. I wish to abide in my passion for the community by creating, evolving, maintaining, and ultimately revealing meaningful insights that support and validate relevant, data-driven change. To satisfy my curiosity and challenge myself by using my multidisciplinary background to implement scalable, statistical analysis, and beautiful visual assessments. </p>
-        <p>
-          <a href="mailto: karinajonina@yahoo.com" class="btn btn-primary my-2">Contat Me!</a>
-        </p>
-        <!-- <img class="img-fluid" src="{% static 'IMG_9968.JPG' %}" height=200 width=200> -->
-      </div>
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-<!-- one -->
-      <div class="row">
-        {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{ job.image.url }}"/>
-            <div class="card-body">
-              <h4 class="card-text">{{ job.title }}</h4>
-              <p class="card-text">{{ job.summary }}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-            </div>
+      <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Hi, I am Karina!</h1>
+            <p class="lead text-muted">A student currently enrolled in Higher Diploma in Science in Data Analytics in Dublin Business School. I wish to abide in my passion for the community by creating, evolving, maintaining, and ultimately revealing meaningful insights that support and validate relevant, data-driven change. To satisfy my curiosity and challenge myself by using my multidisciplinary background to implement scalable, statistical analysis, and beautiful visual assessments. </p>
+            <p>
+              <a href="mailto: karinajonina@yahoo.com" class="btn btn-primary my-2">Contat Me!</a>
+            </p>
+            <!-- <img class="img-fluid" src="{% static 'IMG_9968.JPG' %}" height=200 width=200> -->
           </div>
         </div>
-        {% endfor %}
-      </div>
+      </section>
+
+      <!-- <div class="album py-5 bg-light">
+      <div class="container">
+      <div class="row">
+      {% for job in jobs.all %}
+      <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+      <img class="card-img-top" src="{{ job.image.url }}"/>
+      <div class="card-body">
+      <h4 class="card-text">{{ job.title }}</h4>
+      <p class="card-text">{{ job.summary }}</p>
+      <div class="d-flex justify-content-between align-items-center">
+      <div class="btn-group">
+      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
     </div>
   </div>
 </div>
+{% endfor %}
 </div>
+</div>
+</div>
+</div>
+</div> -->
+
+<div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <img class="card-img-top" width="100%" height="225"src="{% static 'HDIP_Project.JPG' %}"</img>
+
+            <div class="card-body">
+              <h4 class="card-text">HDIP Project</h4>
+              <p class="card-text">Predicting the price of cryptocurrency using Time Series analysis. Graphs were created using Plotly and scraping from Yahoo Finance</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a type="button" class="btn btn-sm btn-outline-secondary" href="{% url 'thesis' %}">View</a>
+                </div>
+                <small class="text-muted">5 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img class="card-img-top" width="100%" height="225" src="{% static 'covid.JPG' %}"</img>
+            <div class="card-body">
+              <h4 class="card-text">COVID-19 Dashboard</h4>
+              <p class="card-text">Tableau dashboard comparing Ireland with other countries in their battle against COVID-19 in cases and deaths using ‘per 100,000’.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a type="button" class="btn btn-sm btn-outline-secondary" href="{% url 'COVID_Dashboard' %}">View</a>
+                </div>
+                <small class="text-muted">3 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img class="card-img-top" width="100%" height="225" src="{% static 'airbnb.JPG' %}"</img>
+            <div class="card-body">
+              <h4 class="card-text">AirBnB Dashboard</h4>
+              <p class="card-text">Tableau dashboard examining the locations of AirBnB Listings in Ireland</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a type="button" class="btn btn-sm btn-outline-secondary" href="{% url 'AirBnB_Listing' %}">View</a>
+                </div>
+                <small class="text-muted">3 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
 </main>
 
 <footer class="text-muted py-5">
@@ -123,9 +177,9 @@
   </div>
 </footer>
 
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 
-  </body>
+</body>
 </html>
