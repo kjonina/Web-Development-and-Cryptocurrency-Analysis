@@ -67,14 +67,9 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
       <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group me-2">
-          <!--Navs at the top -->
-          <button type="button" id="tableau_button" class="btn btn-sm btn-outline-secondary">Tableau Projects</button>
-          <button type="button" id="python_button" class="btn btn-sm btn-outline-secondary">Python Projects</button>
-          <button type="button" id="r_button" class="btn btn-sm btn-outline-secondary">R Projects</button>
         </div>
       </div>
     </div>
-    <div class="row">
 
       <section class="py-5 text-center container">
         <div class="row py-lg-5">
@@ -89,37 +84,22 @@
         </div>
       </section>
 
-      <!-- <div class="album py-5 bg-light">
-      <div class="container">
-      <div class="row">
-      {% for job in jobs.all %}
-      <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-      <img class="card-img-top" src="{{ job.image.url }}"/>
-      <div class="card-body">
-      <h4 class="card-text">{{ job.title }}</h4>
-      <p class="card-text">{{ job.summary }}</p>
-      <div class="d-flex justify-content-between align-items-center">
-      <div class="btn-group">
-      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h1">Python Projects</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group me-2">
     </div>
   </div>
 </div>
-{% endfor %}
-</div>
-</div>
-</div>
-</div>
-</div> -->
 
 <div class="album py-5 bg-light">
     <div class="container">
-
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col">
-          <div class="card shadow-sm">
+          <div id="python_projects">
             <img class="card-img-top" width="100%" height="225"src="{% static 'HDIP_Project.JPG' %}"</img>
-
             <div class="card-body">
               <h4 class="card-text">HDIP Project</h4>
               <p class="card-text">Predicting the price of cryptocurrency using Time Series analysis. Graphs were created using Plotly and scraping from Yahoo Finance</p>
@@ -132,8 +112,10 @@
             </div>
           </div>
         </div>
-        <div class="col">
-          <div class="card shadow-sm">
+
+
+        <!-- <div class="col">
+          <div id="tableau_projects">
             <img class="card-img-top" width="100%" height="225" src="{% static 'covid.JPG' %}"</img>
             <div class="card-body">
               <h4 class="card-text">COVID-19 Dashboard</h4>
@@ -147,8 +129,10 @@
             </div>
           </div>
         </div>
+
+
         <div class="col">
-          <div class="card shadow-sm">
+          <div id="r_projects">
             <img class="card-img-top" width="100%" height="225" src="{% static 'airbnb.JPG' %}"</img>
             <div class="card-body">
               <h4 class="card-text">AirBnB Dashboard</h4>
@@ -161,12 +145,59 @@
               </div>
             </div>
           </div>
+        </div> -->
+      </div>
+    </div>
+
+
+
+
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h1">Tableau Projects</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+            </div>
+          </div>
         </div>
 
+        <div class="album py-5 bg-light">
+            <div class="container">
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col">
+                  <div id="tableau_projects">
+                    <img class="card-img-top" width="100%" height="225" src="{% static 'covid.JPG' %}"</img>
+                    <div class="card-body">
+                      <h4 class="card-text">COVID-19 Dashboard</h4>
+                      <p class="card-text">Tableau dashboard comparing Ireland with other countries in their battle against COVID-19 in cases and deaths using ‘per 100,000’.</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                          <a type="button" class="btn btn-sm btn-outline-secondary" href="{% url 'COVID_Dashboard' %}">View</a>
+                        </div>
+                        <small class="text-muted">3 mins</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
 
-
-
+                <div class="col">
+                  <div id="r_projects">
+                    <img class="card-img-top" width="100%" height="225" src="{% static 'airbnb.JPG' %}"</img>
+                    <div class="card-body">
+                      <h4 class="card-text">AirBnB Dashboard</h4>
+                      <p class="card-text">Tableau dashboard examining the locations of AirBnB Listings in Ireland</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                          <a type="button" class="btn btn-sm btn-outline-secondary" href="{% url 'AirBnB_Listing' %}">View</a>
+                        </div>
+                        <small class="text-muted">3 mins</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
 
 
 </main>

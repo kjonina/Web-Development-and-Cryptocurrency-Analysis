@@ -14,7 +14,6 @@ urlpatterns = [
     path('COVID_Dashboard/', jobs.views.COVID_Dashboard, name='COVID_Dashboard'),
     path('AirBnB_Listing/', jobs.views.AirBnB_Listing, name='AirBnB_Listing'),
     path('thesis/', thesis.views.thesis, name =  'thesis'),
-    # path('COVID-Dashboard/', covid.views.COVID_Dashboard, name = 'COVID_Dashboard'),
     path('achievements/', achievements.views.achievements, name = 'achievements'),
     path('blog/', include('blog.urls')),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
