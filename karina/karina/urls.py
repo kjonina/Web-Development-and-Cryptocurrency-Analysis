@@ -5,7 +5,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 import jobs.views
 import thesis.views
-import covid.views
 import achievements.views
 
 urlpatterns = [
