@@ -14,8 +14,20 @@ def create_df(request,x, crypto_name):
     # creating a dataset for selected cryptocurrency
     df = yf.download(x, start, end,interval = '1d')
     df = pd.DataFrame(df.dropna(), columns = ['Open', 'High','Low','Close', 'Adj Close', 'Volume'])
+    # Create short SMA
     df['short_SMA'] = df.iloc[:,1].rolling(window = short_sma).mean()
+
+    # Create Long SMA
     df['long_SMA'] = df.iloc[:,1].rolling(window = long_sma).mean()
+
+    # Create daily_return
+    df['daily_return'] = df['Close'].pct_change(periods=1)
+
+    # Create monthly_return
+    df['monthly_return'] = df['Close'].pct_change(periods=30)
+
+    # Create annual_return
+    df['annual_return'] = df['Close'].pct_change(periods=365)
     df['Name'] = crypto_name
 
     # preparing data from time series analysis

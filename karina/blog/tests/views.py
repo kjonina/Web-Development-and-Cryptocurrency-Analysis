@@ -12,12 +12,13 @@ class TestViews(TestCase):
     def setUp(self):
         self.client =  Client()
         self.allblogs_url = reverse('allblogs')
-        # self.detail_url = reverse('detail', args = ['project1'])
-        # Project1 = Blog.objects.create(
-        #     title = 'project1',
-        #     pub_date = datetime.now(),
-        #     body = 'This is a test',
-        #     image = 'None')
+        self.detail_url = reverse('detail', args = ['project1'])
+        self.Project1 = Blog.objects.create(
+            title = 'project1',
+            pub_date = datetime.now(),
+            body = 'This is a test',
+            image = 'null',
+            slug = 'null')
 
 
     def test_allblogs_GET(self):
@@ -27,8 +28,8 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'blog/allblogs.html')
 
 
-    # def test_detail_GET(self):
-    #     response = self.client.get(self.detail_url)
-    #
-    #     self.assertEquals(response.status_code, 200)
-    #     self.assertTemplateUsed(response, 'blog/details.html')
+    def test_detail_GET(self):
+        response = self.client.get(self.detail_url)
+
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'blog/detail.html')

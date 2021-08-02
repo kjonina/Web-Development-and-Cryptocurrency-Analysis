@@ -32,6 +32,7 @@ from thesis.services.get_crypto_info import get_crypto_info
 from thesis.services.get_crypto_name import get_crypto_name
 from thesis.services.df_train_test import create_train_and_test
 from thesis.services.training_and_test_plot import training_and_test_plot
+from thesis.services.returns import returns
 
 from thesis.services.candlestick_rolling_average import candlestick_moving_average
 
@@ -90,7 +91,8 @@ def thesis(request):
                 'candlestick_moving_average': candlestick_moving_average(request, df, crypto_name),
                 'hist_box_pct_change': hist_box_pct_change(request, y, crypto_name),
                 'training_and_test_plot': training_and_test_plot(request,df_train, df_test, crypto_name),
-                'rolling_m_sd': rolling_m_sd(request, y, crypto_name)})
+                'rolling_m_sd': rolling_m_sd(request, y, crypto_name),
+                'returns_chart': returns(request, df, crypto_name)})
         else:
             # print('Sorry. You did not select an available symbol or you misspelled the symbol')
             return render(request, 'thesis/thesis_home.html', {'tablesinfo': json.loads(json_three), 'error':'Sorry. You did not select an available symbol or you misspelled the symbol'})

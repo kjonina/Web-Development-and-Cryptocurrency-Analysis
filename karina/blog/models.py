@@ -13,8 +13,8 @@ class Blog(models.Model):
         self.slug = slugify(self.title)
         super(Blog, self).save(*args, **kwargs)
 
-    def __str__(self):
-        return self.title
+    # def __str__(self):
+    #     return self.title
 
     def summary(self):
         return self.body[:100]

@@ -30,6 +30,10 @@
     display:none;
   }
 
+  .seven{
+    display:none;
+  }
+
 </style>
 
 <div id="dashboard_section">
@@ -101,13 +105,21 @@
   {% endif %}
 </div>
 
-<div id='training_and_test_graph' class="six">
+
+<div id='returns_chart' class="six">
+  {% if returns_chart %}
+  {{ returns_chart|safe }}
+  {% else %}
+  <p>No graph was provided.</p>
+  {% endif %}
+</div>
+
+<div id='training_and_test_graph' class="seven">
   {% if training_and_test_plot %}
   {{ training_and_test_plot|safe }}
   {% else %}
   <p>No graph was provided.</p>
   {% endif %}
 </div>
-
 
 {% endblock %}
