@@ -15,9 +15,7 @@ from pylab import rcParams
 
 def candlestick_moving_average(request, df,crypto_name):
 
-    fig = make_subplots(rows=2, cols=1, shared_xaxes=True, subplot_titles=[
-            'Price and Moving Averages of {}'.format(str(crypto_name)),
-            'Volume of {}'.format(str(crypto_name))])
+    fig  = go.Figure()
 
     trace1 = go.Candlestick(
         x = df.index,
@@ -56,9 +54,9 @@ def candlestick_moving_average(request, df,crypto_name):
             xanchor = "left",
         ),
 
-        x = 0.15,
+        x = 0,
         y = 0,
-        len = 0.85,
+        len = 1,
         pad = dict(t = 0, b = 0),
         yanchor = "bottom",
         xanchor = "left",
@@ -105,7 +103,7 @@ def candlestick_moving_average(request, df,crypto_name):
 
         ),
         yaxis = dict(
-            tickprefix = "$",
+            tickprefix = "$", tickformat = ',.',
             type = "linear",
             domain = [0.25, 1],
         ),
