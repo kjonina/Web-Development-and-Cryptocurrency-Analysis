@@ -23,15 +23,15 @@ def create_y(request,x, crypto_name):
     y['Close Percentage Change'] = y['Close'].pct_change(1)
 
     # Creating a new variable, examining the difference for each observation
-    y['Close Difference'] = y['Close'].diff()
+    y['Close_diff'] = y['Close'].diff()
 
     # logging the target varialbe due to great variance
-    y['Logged Close'] = np.log(y['Close'])
+    y['log_Close'] = np.log(y['Close'])
 
     # Creating a new variable, examining the difference for each observation
-    y['Logged Close Diff'] = y['Logged Close'].diff()
+    y['log_Close_diff'] = y['log_Close'].diff()
 
-    y['Logged Close Percentage Change'] = y['Logged Close'].pct_change(1)
+    y['Logged Close Percentage Change'] = y['log_Close'].pct_change(1)
 
     # logging the target varialbe due to great variance
     y['Square Root Close'] = np.sqrt(y['Close'])

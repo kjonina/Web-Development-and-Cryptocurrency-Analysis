@@ -33,6 +33,10 @@ from thesis.services.get_crypto_name import get_crypto_name
 from thesis.services.df_train_test import create_train_and_test
 from thesis.services.training_and_test_plot import training_and_test_plot
 from thesis.services.returns import returns
+from thesis.services.decomposition import decomposition
+from thesis.services.prediction1 import prediction1
+from thesis.services.prediction2 import prediction2
+from thesis.services.prediction3 import prediction3
 
 from thesis.services.candlestick_rolling_average import candlestick_moving_average
 
@@ -92,6 +96,10 @@ def thesis(request):
                 'hist_box_pct_change': hist_box_pct_change(request, y, crypto_name),
                 'training_and_test_plot': training_and_test_plot(request,df_train, df_test, crypto_name),
                 'rolling_m_sd': rolling_m_sd(request, y, crypto_name),
+                'decomposition_chart': decomposition(request, df, df['Close'], crypto_name),
+                'prediction1': prediction1(request, df_train, df_test, crypto_name),
+                'prediction2': prediction2(request, df_train, df_test, crypto_name),
+                'prediction3': prediction3(request, df, crypto_name),
                 'returns_chart': returns(request, df, crypto_name)})
         else:
             # print('Sorry. You did not select an available symbol or you misspelled the symbol')

@@ -52,8 +52,12 @@
           <button type="button" id="candle_stick_button" class="btn btn-sm btn-outline-secondary">Candlestick Chart </button>
           <button type="button" id="hist_box_pct_change_button" class="btn btn-sm btn-outline-secondary">Percentage Change</button>
           <button type="button" id="rolling_m_sd_button" class="btn btn-sm btn-outline-secondary">Rolling Mean and Standard Deviation</button>
-        <button type="button" id="returns_button" class="btn btn-sm btn-outline-secondary">Returns</button>
+          <button type="button" id="returns_button" class="btn btn-sm btn-outline-secondary">Returns</button>
+          <button type="button" id="decomposition_button" class="btn btn-sm btn-outline-secondary">Decomposition</button>
           <button type="button" id="training_and_test_graph_button" class="btn btn-sm btn-outline-secondary">Test and Training Set</button>
+          <button type="button" id="prediction1_button" class="btn btn-sm btn-outline-secondary">Predicting 1</button>
+          <button type="button" id="prediction2_button" class="btn btn-sm btn-outline-secondary">Predicting 2</button>
+          <button type="button" id="prediction3_button" class="btn btn-sm btn-outline-secondary">Predicting 3</button>
 
         </div>
       </div>
@@ -87,7 +91,11 @@
               $('#hist_box_pct_change_graph').hide();
               $('#rolling_m_sd_graph').hide();
               $('#returns_chart').hide();
+              $('#returns_chart').hide();
               $('#training_and_test_graph').hide();
+              $('#prediction1').hide();
+              $('#prediction2').hide();
+              $('#prediction3').hide();
               $(identifier).show();
             };
               $('#dashboard_section_button').click(()=> hideAllButOne("#dashboard_section"));
@@ -96,7 +104,11 @@
               $('#hist_box_pct_change_button').click(()=> hideAllButOne("#hist_box_pct_change_graph"));
               $('#rolling_m_sd_button').click(()=> hideAllButOne("#rolling_m_sd_graph"));
               $('#returns_button').click(()=> hideAllButOne("#returns_chart"));
+              $('#decomposition_button').click(()=> hideAllButOne("#decomposition_chart"));
               $('#training_and_test_graph_button').click(()=> hideAllButOne("#training_and_test_graph"));
+              $('#prediction1_button').click(()=> hideAllButOne("#prediction1"));
+              $('#prediction2_button').click(()=> hideAllButOne("#prediction2"));
+              $('#prediction3_button').click(()=> hideAllButOne("#prediction3"));
 
           });
 

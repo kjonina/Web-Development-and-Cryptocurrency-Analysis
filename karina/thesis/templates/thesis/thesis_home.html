@@ -34,6 +34,18 @@
     display:none;
   }
 
+  .prediction1{
+    display:none;
+  }
+
+  .prediction2{
+    display:none;
+  }
+
+  .prediction3{
+    display:none;
+  }
+
 </style>
 
 <div id="dashboard_section">
@@ -112,11 +124,46 @@
   {% else %}
   <p>No graph was provided.</p>
   {% endif %}
+
+  </div>
+
+  <div id='decomposition_chart' class="seven">
+
+  {% if decomposition_chart %}
+  {{ decomposition_chart|safe }}
+  {% else %}
+  <p>No graph was provided.</p>
+  {% endif %}
+
 </div>
 
 <div id='training_and_test_graph' class="seven">
   {% if training_and_test_plot %}
   {{ training_and_test_plot|safe }}
+  {% else %}
+  <p>No graph was provided.</p>
+  {% endif %}
+</div>
+
+<div id='prediction1' class="prediction1">
+  {% if prediction1 %}
+  {{ prediction1|safe }}
+  {% else %}
+  <p>No graph was provided.</p>
+  {% endif %}
+</div>
+
+<div id='prediction2' class="prediction2">
+  {% if prediction2 %}
+  {{ prediction2|safe }}
+  {% else %}
+  <p>No graph was provided.</p>
+  {% endif %}
+</div>
+
+<div id='prediction3' class="prediction3">
+  {% if prediction3 %}
+  {{ prediction3|safe }}
   {% else %}
   <p>No graph was provided.</p>
   {% endif %}

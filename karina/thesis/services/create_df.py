@@ -34,9 +34,9 @@ def create_df(request,x, crypto_name):
     # eliminating any NAs
     df.index = pd.to_datetime(df.index)
     df = df.asfreq('D')
-    print('Nan in each columns' , df.isna().sum())
+    # print('Nan in each columns' , df.isna().sum())
     df = df.ffill()
-    print('Nan in each columns' , df.isna().sum())
+    # print('Nan in each columns' , df.isna().sum())
 
 
     return df
