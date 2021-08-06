@@ -17,7 +17,7 @@ import statsmodels.api as sm
 
 def decomposition(request, df, data, crypto_name):
 
-    decomposition = sm.tsa.seasonal_decompose(data)
+    decomposition = sm.tsa.seasonal_decompose(data, period=30)
 
     #seasonality
     decomp_seasonal = decomposition.seasonal

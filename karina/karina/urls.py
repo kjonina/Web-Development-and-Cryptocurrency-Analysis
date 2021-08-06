@@ -12,6 +12,7 @@ urlpatterns = [
     path('', jobs.views.home, name =  'home'),
     path('COVID_Dashboard/', jobs.views.COVID_Dashboard, name='COVID_Dashboard'),
     path('AirBnB_Listing/', jobs.views.AirBnB_Listing, name='AirBnB_Listing'),
+    path('tableau_cv/', jobs.views.tableau_cv, name='tableau_cv'),
     path('thesis/', thesis.views.thesis, name =  'thesis'),
     path('achievements/', achievements.views.achievements, name = 'achievements'),
     path('blog/', include('blog.urls')),

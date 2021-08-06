@@ -12,3 +12,6 @@ def COVID_Dashboard(request):
 
 def AirBnB_Listing(request):
     return render(request, 'jobs/airbnb_listings.html')
+
+def tableau_cv(request):
+    return render(request, 'jobs/tableau_cv.html')
