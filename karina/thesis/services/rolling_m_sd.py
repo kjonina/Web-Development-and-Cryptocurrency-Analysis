@@ -16,8 +16,8 @@ from plotly.offline import download_plotlyjs, plot
 
 def rolling_m_sd(request, y, crypto_name):
     #Determing rolling statistics
-    rolmean = y['Close'].rolling(window = 12).mean()
-    rolstd = y['Close'].rolling(window = 12).std()
+    rolmean = y['Close'].rolling(window = 365).mean()
+    rolstd = y['Close'].rolling(window = 365).std()
 
     #Plot rolling statistics:
     fig = go.Figure()
@@ -53,7 +53,7 @@ def rolling_m_sd(request, y, crypto_name):
                                 line = dict(color="black")))
     # Add titles
     fig.update_layout(
-            title = 'Rolling Mean & Standard Deviation of {}'.format(crypto_name),
+            title = 'Rolling Mean & Standard Deviation of {} over 365 days'.format(crypto_name),
             yaxis_title = 'US Dollars',
             yaxis_tickprefix = '$', yaxis_tickformat = ',.')
 

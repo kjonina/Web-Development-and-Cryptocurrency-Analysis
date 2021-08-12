@@ -100,6 +100,7 @@ def returns(request, df, crypto_name):
     fig.update_yaxes(tickformat = ',.0%', row = 3, col = 1)
     fig.update_yaxes(tickformat = ',.0%', row = 4, col = 1)
 
+    fig.update_layout(showlegend=False)
     returns_chart = fig.to_html(full_html=False, default_height=1000, default_width=1500)
 
     return returns_chart

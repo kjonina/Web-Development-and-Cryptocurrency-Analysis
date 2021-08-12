@@ -37,6 +37,7 @@ def hist_box_pct_change(request, y, crypto_name):
 
     fig.update_xaxes(tickformat = '.0%', row = 1, col = 1)
     fig.update_xaxes(tickformat = '.0%', row = 2, col = 1)
+    fig.update_layout(showlegend=False)
 
     hist_box_pct_change = fig.to_html(full_html=False, default_height=1000, default_width=1500)
 

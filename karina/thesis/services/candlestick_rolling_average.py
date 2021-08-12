@@ -50,7 +50,7 @@ def candlestick_moving_average(request, df,crypto_name):
         steps = [],
         currentvalue = dict(
             font = dict(size = 16),
-            prefix = "SMA: ",
+            prefix = "Simple Moving Average Step: ",
             xanchor = "left",
         ),
 
@@ -113,6 +113,12 @@ def candlestick_moving_average(request, df,crypto_name):
 
 
     fig = go.Figure(data = data, layout = layout)
+
+
+#
+    fig.update_layout(xaxis_rangeslider_visible = False)
+    fig.update_layout(showlegend=False)
+#    fig.update_xaxes(rangeselector= {'visible' :False})
 
     candlestick_moving_average = fig.to_html(full_html=False, default_height=1000, default_width=1500)
 

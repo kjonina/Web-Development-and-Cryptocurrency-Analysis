@@ -4,7 +4,6 @@ import yfinance as yf
 import datetime as dt
 
 def create_df(request,x, crypto_name):
-    global df
 
     start = "2009-01-01"
     end = dt.datetime.now()
@@ -35,7 +34,7 @@ def create_df(request,x, crypto_name):
     df.index = pd.to_datetime(df.index)
     df = df.asfreq('D')
     # print('Nan in each columns' , df.isna().sum())
-    df = df.ffill()
+    df = df.bfill()
     # print('Nan in each columns' , df.isna().sum())
 
 

@@ -11,7 +11,7 @@ def create_train_and_test(request,y, crypto_name):
     # print('{} Training Set'.format(crypto_name))
     # print('============================================================')
     # print(df_train.head())
-    print('Training set has {} rows and {} columns.'.format(*df_train.shape))
+    # print('Training set has {} rows and {} columns.'.format(*df_train.shape))
 
     # Test data - 20%
     df_test = y[int(0.90*(len(y))):]
@@ -19,5 +19,5 @@ def create_train_and_test(request,y, crypto_name):
     # print('{} Test Set'.format(crypto_name))
     # print('============================================================')
     # print(df_test.head())
-    print('Test set has {} rows and {} columns.'.format(*df_test.shape))
+    # print('Test set has {} rows and {} columns.'.format(*df_test.shape))
     return df_train, df_test

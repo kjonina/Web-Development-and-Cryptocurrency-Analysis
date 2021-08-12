@@ -31,16 +31,16 @@ from thesis.services.rolling_m_sd import rolling_m_sd
 from thesis.services.get_crypto_info import get_crypto_info
 from thesis.services.get_crypto_name import get_crypto_name
 from thesis.services.df_train_test import create_train_and_test
-from thesis.services.training_and_test_plot import training_and_test_plot
+# from thesis.services.training_and_test_plot import training_and_test_plot
 from thesis.services.returns import returns
 from thesis.services.decomposition import decomposition
-from thesis.services.prediction1 import prediction1
+# from thesis.services.prediction1 import prediction1
 from thesis.services.prediction2 import prediction2
 from thesis.services.prediction3 import prediction3
 
 from thesis.services.candlestick_rolling_average import candlestick_moving_average
 
-
+# from thesis.services.plot_acf import simple_plot_acf
 
 
 
@@ -83,7 +83,7 @@ def thesis(request):
             # print(df)
 
             # creating the df dataset
-            y = create_y(request,  crypto_ticket, crypto_name)
+            y = create_y(request, crypto_name, crypto_ticket)
             # print(y)
 
             df_train, df_test = create_train_and_test(request,y, crypto_name)
@@ -92,15 +92,13 @@ def thesis(request):
                 'get_crypto_info': json.loads(get_crypto_info(request, crypto_ticket)),
                 'tablesinfo': json.loads(json_three),
                 'price_sma_volume_chart': price_sma_volume_chart(request, df, crypto_name),
+                'returns_chart': returns(request, df, crypto_name),
                 'candlestick_moving_average': candlestick_moving_average(request, df, crypto_name),
                 'hist_box_pct_change': hist_box_pct_change(request, y, crypto_name),
-                'training_and_test_plot': training_and_test_plot(request,df_train, df_test, crypto_name),
                 'rolling_m_sd': rolling_m_sd(request, y, crypto_name),
                 'decomposition_chart': decomposition(request, df, df['Close'], crypto_name),
-                'prediction1': prediction1(request, df_train, df_test, crypto_name),
-                'prediction2': prediction2(request, df_train, df_test, crypto_name),
-                'prediction3': prediction3(request, df, crypto_name),
-                'returns_chart': returns(request, df, crypto_name)})
+                'predicting_test': prediction2(request, df_train, df_test, crypto_name),
+                'forecasting': prediction3(request, df, crypto_name)})
         else:
             # print('Sorry. You did not select an available symbol or you misspelled the symbol')
             return render(request, 'thesis/thesis_home.html', {'tablesinfo': json.loads(json_three), 'error':'Sorry. You did not select an available symbol or you misspelled the symbol'})

@@ -1,4 +1,4 @@
-from .model import *
+# from .model import *
 
 from .urls import *
 

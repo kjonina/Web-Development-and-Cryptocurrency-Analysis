@@ -34,15 +34,12 @@
     display:none;
   }
 
-  .prediction1{
+
+  .predicting_test{
     display:none;
   }
 
-  .prediction2{
-    display:none;
-  }
-
-  .prediction3{
+  .forecasting{
     display:none;
   }
 
@@ -137,33 +134,18 @@
 
 </div>
 
-<div id='training_and_test_graph' class="seven">
-  {% if training_and_test_plot %}
-  {{ training_and_test_plot|safe }}
+
+<div id='predicting_test_graph' class="predicting_test">
+  {% if predicting_test %}
+  {{ predicting_test|safe }}
   {% else %}
   <p>No graph was provided.</p>
   {% endif %}
 </div>
 
-<div id='prediction1' class="prediction1">
-  {% if prediction1 %}
-  {{ prediction1|safe }}
-  {% else %}
-  <p>No graph was provided.</p>
-  {% endif %}
-</div>
-
-<div id='prediction2' class="prediction2">
-  {% if prediction2 %}
-  {{ prediction2|safe }}
-  {% else %}
-  <p>No graph was provided.</p>
-  {% endif %}
-</div>
-
-<div id='prediction3' class="prediction3">
-  {% if prediction3 %}
-  {{ prediction3|safe }}
+<div id='forecasting_graph' class="forecasting">
+  {% if forecasting %}
+  {{ forecasting|safe }}
   {% else %}
   <p>No graph was provided.</p>
   {% endif %}

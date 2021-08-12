@@ -17,7 +17,7 @@ from plotly.offline import download_plotlyjs, plot
 
 def price_sma_volume_chart(request, df, crypto_name):
     fig = make_subplots(rows=2, cols=1, shared_xaxes=True, subplot_titles=[
-            'Price and Moving Averages of {}'.format(str(crypto_name)),
+            'Price and Death Cross of {}'.format(str(crypto_name)),
             'Volume of {}'.format(str(crypto_name))])
 
     # Lineplots of price and moving averages
@@ -88,9 +88,7 @@ def price_sma_volume_chart(request, df, crypto_name):
     #time buttons
     fig.update_xaxes(rangeselector= {'visible' :False}, row = 2, col = 1)
 
-    #plot_div = py.plot(fig, include_plotlyjs=False, output_type='div')
-    #print(plot_div)
-    ##print(plot_div) prints the necessary script!!
+    fig.update_layout(showlegend=False)
 
     price_sma_volume_chart = fig.to_html(full_html=False, default_height=1000, default_width=1500)
 
