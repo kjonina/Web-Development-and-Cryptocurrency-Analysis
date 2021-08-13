@@ -73,7 +73,7 @@ def thesis(request):
 
         elif crypto_ticket in cryptolist:
             # print('You have selected: ', crypto_ticket)
-
+            #
             crypto_name = get_crypto_name(request, crypto_ticket)
             # print(crypto_name)
 
