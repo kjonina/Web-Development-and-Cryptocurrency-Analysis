@@ -29,30 +29,27 @@ def price_sma_volume_chart(request, df, crypto_name):
                             customdata = df['Name'],
                             hovertemplate="<b>%{customdata}</b><br><br>" +
                                             "Date: %{x|%d %b %Y} <br>" +
-                                            "Closing Price: %{y:$,.2f}<br>" +
-                                            "<extra></extra>",
+                                            "Closing Price: %{y:$,.2f}<br>" ,
                             line = dict(color="black")), row = 1, col = 1)
 
     fig.add_trace(go.Scatter(x = df.index,
                              y = df['short_SMA'],
-                             name = 'Short SMA 50',
+                             name = 'Short SMA 50-Day',
                              mode = 'lines',
                              customdata = df['Name'],
                              hovertemplate="<b>%{customdata}</b><br><br>" +
                                             "Date: %{x|%d %b %Y} <br>" +
-                                            "Short Moving Average Price: %{y:$,.2f}<br>" +
-                                            "<extra></extra>",
+                                            "Short (50-Day) Moving Average Price: %{y:$,.2f}<br>",
                              line = dict(color="red")), row = 1, col = 1)
 
     fig.add_trace(go.Scatter(x = df.index,
                              y = df['long_SMA'],
-                             name = 'Long SMA 200',
+                             name = 'Long SMA 200-Day',
                              mode = 'lines',
                              customdata = df['Name'],
                              hovertemplate="<b>%{customdata}</b><br><br>" +
                                             "Date: %{x|%d %b %Y} <br>" +
-                                            "Long Moving Average Price: %{y:$,.2f}<br>"+
-                                            "<extra></extra>",
+                                            "Long (200-Day) Moving Average Price: %{y:$,.2f}<br>",
                              line = dict(color="green")), row = 1, col = 1)
     # Barplot of volume
     fig.add_trace(go.Bar(x = df.index,
@@ -66,7 +63,7 @@ def price_sma_volume_chart(request, df, crypto_name):
                     marker = dict(color="black", opacity = True)), row = 2, col = 1)
     # Add titles
     fig.update_layout(
-            title = 'Price of {}'.format(str(crypto_name)))
+            title = 'Summary of {}'.format(str(crypto_name)))
     fig['layout']['yaxis1']['title']='US Dollars'
     fig['layout']['yaxis2']['title']='Volume'
     # X-Axes

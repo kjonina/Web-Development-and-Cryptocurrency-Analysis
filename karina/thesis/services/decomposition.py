@@ -15,9 +15,9 @@ import statsmodels.api as sm
 
 
 
-def decomposition(request, df, data, crypto_name):
+def decomposition(request, df, data, crypto_name, period):
 
-    decomposition = sm.tsa.seasonal_decompose(data, period=365)
+    decomposition = sm.tsa.seasonal_decompose(data, period=period)
 
     #seasonality
     decomp_seasonal = decomposition.seasonal
@@ -60,7 +60,7 @@ def decomposition(request, df, data, crypto_name):
 
     # Add titles
     fig.update_layout(
-            title = 'Decomposition of {}'.format(str(crypto_name)))
+            title = 'Decomposition of {} for {} days'.format(str(crypto_name),period))
     fig['layout']['yaxis1']['title']='US Dollars'
     fig['layout']['yaxis2']['title']='Trend'
     fig['layout']['yaxis3']['title']='Seasonality'

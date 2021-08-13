@@ -6,13 +6,17 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from pandas.io.json import json_normalize
 
+# url_yahoo_finance = []
+# for num in range(0,201,25):
+#     url = 'https://finance.yahoo.com/cryptocurrencies/?offset=25&count='+ str(num)
+#     url_yahoo_finance.append(url)
+
 # getting the live page
 def get_yahoo_table(request):
     global df_cryptolist
 
     headers = {'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36'}
     url = 'https://finance.yahoo.com/cryptocurrencies/'
-    # url = 'https://coinmarketcap.com/'
     response = requests.get(url , headers = headers)
     content = response.content
     soup = BeautifulSoup(content, features="html.parser")

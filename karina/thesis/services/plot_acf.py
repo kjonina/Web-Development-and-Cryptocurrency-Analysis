@@ -3,43 +3,24 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
+import seaborn as sns
+import mpld3
 from statsmodels.graphics.tsaplots import plot_acf
 from statsmodels.graphics.tsaplots import plot_pacf
 from statsmodels.tsa.stattools import pacf, adfuller, kpss
-
-
-
-# # Dickey Fuller Test
-# def adfuller_test(data):
-#     dftest = adfuller(data)
-#     dfoutput = pd.Series(dftest[0:4], index=['Test Statistic','p-value','#Lags Used','Number of Observations Used'])
-#     for key,value in dftest[4].items():
-#         dfoutput['Critical Value (%s)'%key] = value
-#     print('============================================================')
-#     print('Results of Dickey-Fuller Test for {}:'.format(crypto_name))
-#     print('============================================================')
-#     print (dfoutput)
-#     if dftest[1]>0.05:
-#         print('Conclude not stationary')
-#     else:
-#         print('Conclude stationary')
-
-
-# def simple_plot_acf(request, data, no_lags):
-#     fig, (ax1, ax2) = plt.subplots(1,2, figsize = (14,5))
-#     ax1.plot(data)
-#     ax1.set_title('Original')
-#     plot_pacf(data, lags=no_lags, ax=ax2);
+# from pandas.plotting import register_matplotlib_conververs
 #
-#     simple_plot_acf = fig.to_html(full_html=False, default_height=1000, default_width=1500)
-#
-#     return simple_plot_acf
+# pd.register_matplotlib_converters()
 
+def acf_and_pacf_plots(request, data, crypto_name):
+    sns.set_style('dark')
+#    fig, (ax1, ax2,ax3) = plt.subplots(3,1, figsize = (8,15)) # graphs in a column
+    fig, (ax1, ax2,ax3) = plt.subplots(1,3, figsize = (20,5)) # graphs in a row
+    fig.suptitle('ACF and PACF plots of Logged Closing Price Difference for {}'.format(crypto_name), fontsize=16)
+    ax1.plot(data)
+    ax1.set_title('Original')
+    plot_acf(data, lags=40, ax=ax2);
+    plot_pacf(data, lags=40, ax=ax3);
+    acf_and_pacf_plots = mpld3.fig_to_html(fig)
 
-# def simple_plot_pacf(data, no_lags):
-#     fig, (ax1, ax2) = plt.subplots(1,2, figsize = (14,5))
-#     ax1.plot(data)
-#     ax1.set_title('Original')
-#     plot_acf(data, lags=no_lags, ax=ax2);
-#     plt.show()
+    return acf_and_pacf_plots

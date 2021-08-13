@@ -16,7 +16,7 @@ from pandas.plotting import register_matplotlib_converters
 
 from statsmodels.tsa.arima.model import ARIMA
 
-def prediction3(request, df, crypto_name):
+def arima_forecast(request, df, crypto_name):
 
     # Construct the model
     #    mod = sm.tsa.SARIMAX(y[['Close']], order=(1, 0, 0), trend='c')
@@ -100,5 +100,5 @@ def prediction3(request, df, crypto_name):
     fig.update_layout({'title': {'text':'ARIMA Forecasting of {}'.format(str(crypto_name))}},
                       yaxis_tickprefix = '$', yaxis_tickformat = ',.')
 
-    prediction3 = fig.to_html(full_html=False, default_height=1000, default_width=1500)
-    return prediction3
+    arima_forecast = fig.to_html(full_html=False, default_height=1000, default_width=1500)
+    return arima_forecast

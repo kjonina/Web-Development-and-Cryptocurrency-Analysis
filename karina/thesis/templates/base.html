@@ -51,11 +51,15 @@
           <button type="button" id="price_sma_volume_chart_button" class="btn btn-sm btn-outline-secondary">Death Cross</button>
           <button type="button" id="candle_stick_button" class="btn btn-sm btn-outline-secondary">Candlestick Chart</button>
           <button type="button" id="rolling_m_sd_button" class="btn btn-sm btn-outline-secondary">Rolling Statistics</button>
-          <button type="button" id="hist_box_pct_change_button" class="btn btn-sm btn-outline-secondary">Percentage Change</button>
-          <button type="button" id="returns_button" class="btn btn-sm btn-outline-secondary">Returns</button>
+          <button type="button" id="hist_box_pct_change_button" class="btn btn-sm btn-outline-secondary">% Change</button>
+          <button type="button" id="returns_button" class="btn btn-sm btn-outline-secondary">% Returns</button>
           <button type="button" id="decomposition_button" class="btn btn-sm btn-outline-secondary">Decomposition</button>
-          <button type="button" id="predicting_test_button" class="btn btn-sm btn-outline-secondary">Predicting Test Set</button>
-          <button type="button" id="forecasting_button" class="btn btn-sm btn-outline-secondary">Forecasting</button>
+          <button type="button" id="acf_and_pacf_button" class="btn btn-sm btn-outline-secondary">ACF and PACF Plots</button>
+          <button type="button" id="adfuller_test_button" class="btn btn-sm btn-outline-secondary">Adfuller Test</button>
+          <button type="button" id="arima_prediction_button" class="btn btn-sm btn-outline-secondary">ARIMA Predicting</button>
+          <button type="button" id="arima_forecast_button" class="btn btn-sm btn-outline-secondary">ARIMA Forecasting</button>
+          <button type="button" id="prophet_prediction_button" class="btn btn-sm btn-outline-secondary">FBProphet Predicting</button>
+          <button type="button" id="prophet_forecast_button" class="btn btn-sm btn-outline-secondary">FBProphet Forecasting</button>
 
         </div>
       </div>
@@ -90,8 +94,12 @@
               $('#rolling_m_sd_graph').hide();
               $('#returns_chart').hide();
               $('#decomposition_chart').hide();
-              $('#predicting_test_graph').hide();
-              $('#forecasting_graph').hide();
+              $('#acf_and_pacf_plots').hide();
+              $('#adfuller_test').hide();
+              $('#arima_prediction_graph').hide();
+              $('#arima_forecast_graph').hide();
+              $('#prophet_prediction_graph').hide();
+              $('#prophet_forecast_graph').hide();
               $(identifier).show();
             };
               $('#dashboard_section_button').click(()=> hideAllButOne("#dashboard_section"));
@@ -101,8 +109,12 @@
               $('#rolling_m_sd_button').click(()=> hideAllButOne("#rolling_m_sd_graph"));
               $('#returns_button').click(()=> hideAllButOne("#returns_chart"));
               $('#decomposition_button').click(()=> hideAllButOne("#decomposition_chart"));
-              $('#predicting_test_button').click(()=> hideAllButOne("#predicting_test_graph"));
-              $('#forecasting_button').click(()=> hideAllButOne("#forecasting_graph"));
+              $('#acf_and_pacf_button').click(()=> hideAllButOne("#acf_and_pacf_plots"));
+              $('#adfuller_test_button').click(()=> hideAllButOne("#adfuller_test"));
+              $('#arima_prediction_button').click(()=> hideAllButOne("#arima_prediction_graph"));
+              $('#arima_forecast_button').click(()=> hideAllButOne("#arima_forecast_graph"));
+              $('#prophet_prediction_button').click(()=> hideAllButOne("#prophet_prediction_graph"));
+              $('#prophet_forecast_button').click(()=> hideAllButOne("#prophet_forecast_graph"));
 
           });
 

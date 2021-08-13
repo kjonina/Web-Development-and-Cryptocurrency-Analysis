@@ -16,7 +16,7 @@ from pandas.plotting import register_matplotlib_converters
 
 from statsmodels.tsa.arima.model import ARIMA
 
-def prediction2(request, df_train, df_test, crypto_name):
+def arima_prediction(request, df_train, df_test, crypto_name):
 
 
     # Instantiate the model
@@ -112,5 +112,5 @@ def prediction2(request, df_train, df_test, crypto_name):
     fig.update_layout({'title': {'text':'ARIMA Forecasting of {}'.format(str(crypto_name))}},
                       yaxis_tickprefix = '$', yaxis_tickformat = ',.')
 
-    prediction2 = fig.to_html(full_html=False, default_height=1000, default_width=1500)
-    return prediction2
+    arima_prediction = fig.to_html(full_html=False, default_height=1000, default_width=1500)
+    return arima_prediction

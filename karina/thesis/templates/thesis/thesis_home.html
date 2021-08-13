@@ -35,13 +35,30 @@
   }
 
 
-  .predicting_test{
+  .acf_and_pacf_plots{
     display:none;
   }
 
-  .forecasting{
+  .adfuller_test{
     display:none;
   }
+
+  .arima_prediction_graph{
+    display:none;
+  }
+
+  .arima_forecast_graph{
+    display:none;
+  }
+
+  .prophet_prediction_graph{
+    display:none;
+  }
+
+  .prophet_forecast_graph{
+    display:none;
+  }
+
 
 </style>
 
@@ -134,18 +151,75 @@
 
 </div>
 
+<div id='acf_and_pacf_plots' class="acf_and_pacf_plots">
 
-<div id='predicting_test_graph' class="predicting_test">
-  {% if predicting_test %}
-  {{ predicting_test|safe }}
+{% if acf_and_pacf_plots %}
+{{ acf_and_pacf_plots|safe }}
+{% else %}
+<p>No graph was provided.</p>
+{% endif %}
+
+</div>
+
+
+<!-- <div id="adfuller_test" class="adfuller_test">
+  {% if adfuller_test %}
+  <h5>Adfuller Test</h5>
+  <table  class="table">
+    <thead>
+      <tr>
+        <th scope="col">Symbol</th>
+        <th scope="col">Info</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for k in adfuller_test %}
+      <tr>
+        {% for i in k.items %}
+        <td>{{ i.1 }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% else %}
+  <p>Adfuller Test was not conducted.</p>
+  {% endif %}
+
+</div> -->
+
+
+
+<div id='arima_prediction_graph' class="arima_prediction_graph">
+  {% if arima_prediction %}
+  {{ arima_prediction|safe }}
   {% else %}
   <p>No graph was provided.</p>
   {% endif %}
 </div>
 
-<div id='forecasting_graph' class="forecasting">
-  {% if forecasting %}
-  {{ forecasting|safe }}
+<div id='arima_forecast_graph' class="arima_forecast_graph">
+  {% if arima_forecast %}
+  {{ arima_forecast|safe }}
+  {% else %}
+  <p>No graph was provided.</p>
+  {% endif %}
+</div>
+
+
+<div id='prophet_prediction_graph' class="prophet_prediction_graph">
+  {% if prophet_prediction %}
+  {{ prophet_prediction|safe }}
+  {% else %}
+  <p>No graph was provided.</p>
+  {% endif %}
+</div>
+
+<div id='prophet_forecast_graph' class="prophet_forecast_graph">
+  {% if prophet_forecast %}
+  {{ prophet_forecast|safe }}
   {% else %}
   <p>No graph was provided.</p>
   {% endif %}
