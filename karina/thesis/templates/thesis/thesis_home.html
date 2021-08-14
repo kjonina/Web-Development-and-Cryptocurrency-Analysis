@@ -245,15 +245,33 @@
 
 </div>
 
-
 <div id='prophet_evaluation' class="prophet_evaluation">
   {% if prophet_evaluation %}
-  {{ prophet_evaluation|safe }}
+  <h5>Prophet Evaluation</h5>
+  <table  class="table">
+    <thead>
+      <tr>
+        <th scope="col">Evaluation</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for k in arima_evaluation %}
+      <tr>
+        {% for i in k.items %}
+        <td>{{ i.1 }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
   {% else %}
   <p>Prophet evaluation was not provided.</p>
   {% endif %}
-</div>
 
+</div>
 
 <div id='prophet_prediction_graph' class="prophet_prediction_graph">
   {% if prophet_prediction %}

@@ -18,7 +18,6 @@ from fbprophet import Prophet
 
 def prophet_prediction(request, df_train, df_test, crypto_name):
 
-
     crypto = df_train[['Close', 'Name']]
     crypto = crypto.reset_index()
     crypto = crypto.rename(columns={'Date': 'ds', 'Close': 'y'})
@@ -30,7 +29,9 @@ def prophet_prediction(request, df_train, df_test, crypto_name):
     df_forecast = df_prophet.predict(df_forecast)
     df_forecast['Name'] = df_test['Name']
     df_forecast['Name'] = df_forecast['Name'].replace(np.nan, crypto_name)
+    return df_forecast
 
+def prophet_prediction_plot(request, df_forecast, df_train, df_test, crypto_name):
     df_train = go.Scatter(
         x = df_train.index,
         y = df_train['Close'],
@@ -115,3 +116,23 @@ def prophet_prediction(request, df_train, df_test, crypto_name):
     prophet_prediction = fig.to_html(full_html=False, default_height=1000, default_width=1500)
 
     return prophet_prediction
+
+
+
+def prophet_evaluation(request, df_forecast, df_test):
+
+    df_forecast['dtest_trend'] = df_forecast['trend'].iloc[-len(df_test):]
+    df_forecast1= df_forecast[['dtest_trend']].dropna()
+
+    results = pd.DataFrame({'R2 Score':r2_score(df_test['Close'], df_forecast1['dtest_trend']),
+                            }, index=[0])
+    results['Mean Absolute Error'] = '{:.4f}'.format(np.mean(np.abs((df_test['Close'] - df_forecast1['dtest_trend']) / df_test['Close'])) * 100)
+    results['Median Absolute Error'] = '{:.4f}'.format(median_absolute_error(df_test['Close'], df_forecast1['dtest_trend']))
+    results['MSE'] = '{:.4f}'.format(mean_squared_error(df_test['Close'], df_forecast1['dtest_trend']))
+    results['MSLE'] = '{:.4f}'.format(mean_squared_log_error(df_test['Close'], df_forecast1['dtest_trend']))
+    results['MAPE'] = '{:.4f}'.format(np.mean(np.abs((df_test['Close'] - df_forecast1['dtest_trend']) / df_test['Close'])) * 100)
+    results['RMSE'] = '{:.4f}'.format(np.sqrt(float(results['MSE'])))
+
+    results = pd.DataFrame(results).transpose()
+    results = results.reset_index()
+    return results.to_json(orient='records')
