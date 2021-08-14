@@ -119,6 +119,9 @@ def prophet_prediction_plot(request, df_forecast, df_train, df_test, crypto_name
 
 
 
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, median_absolute_error, mean_squared_log_error
+from math import sqrt
+
 def prophet_evaluation(request, df_forecast, df_test):
 
     df_forecast['dtest_trend'] = df_forecast['trend'].iloc[-len(df_test):]

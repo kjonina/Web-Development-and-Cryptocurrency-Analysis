@@ -108,7 +108,7 @@ def thesis(request):
                 'arima_forecast': arima_forecast(request, df, crypto_name),
                 'prophet_prediction': prophet_prediction_plot(request,df_forecast, df_train, df_test, crypto_name),
                 'prophet_evaluation':json.loads(prophet_evaluation(request,df_forecast, df_test)),
-                # 'prophet_forecast': prophet_forecast(request, df, crypto_name)
+                'prophet_forecast': prophet_forecast(request, df, crypto_name)
                 })
         else:
             # print('Sorry. You did not select an available symbol or you misspelled the symbol')
