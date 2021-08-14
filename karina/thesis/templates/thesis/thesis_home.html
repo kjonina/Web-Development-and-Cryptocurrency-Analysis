@@ -11,8 +11,6 @@
 
   .two{
     display:none;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .three{
@@ -179,8 +177,8 @@
   <table  class="table">
     <thead>
       <tr>
-        <th scope="col">Symbol</th>
-        <th scope="col">Info</th>
+        <th scope="col">Adfuller Test</th>
+        <th scope="col"></th>
       </tr>
     </thead>
 
@@ -219,14 +217,34 @@
   {% endif %}
 </div>
 
-
 <div id='arima_evaluation' class="arima_evaluation">
   {% if arima_evaluation %}
-  {{ arima_evaluation|safe }}
+  <h5>ARIMA Evaluation</h5>
+  <table  class="table">
+    <thead>
+      <tr>
+        <th scope="col">Evaluation</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for k in arima_evaluation %}
+      <tr>
+        {% for i in k.items %}
+        <td>{{ i.1 }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
   {% else %}
-  <p>Arima Evaluation was provided.</p>
+  <p>Arima Evaluation was not provided.</p>
   {% endif %}
+
 </div>
+
 
 <div id='prophet_evaluation' class="prophet_evaluation">
   {% if prophet_evaluation %}

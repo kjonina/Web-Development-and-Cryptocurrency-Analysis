@@ -37,7 +37,7 @@ from thesis.services.plot_acf import acf_and_pacf_plots
 from thesis.services.adfuller_test import adfuller_test
 from thesis.services.prophet_prediction import prophet_prediction
 from thesis.services.prophet_forecast import prophet_forecast
-from thesis.services.arima_prediction  import arima_prediction
+from thesis.services.arima_prediction  import arima_prediction, arima_prediction_plot, arima_evaluation
 from thesis.services.arima_forecast import arima_forecast
 # from thesis.services.arima_evaluation  import arima_evaluation
 # from thesis.services.prophet_evaluation import prophet_evaluation
@@ -90,20 +90,22 @@ def thesis(request):
             period = int(period)
 
             df_train, df_test = create_train_and_test(request,y, crypto_name)
+            fcast = arima_prediction(request, df_train, df_test, crypto_name)
 
             return render(request, 'thesis/thesis_home.html', {'error':'You have selected: {}'.format(str(crypto_name)),
                 'get_crypto_info': json.loads(get_crypto_info(request, crypto_ticket)),
                 'tablesinfo': json.loads(json_three),
                 'price_sma_volume_chart': price_sma_volume_chart(request, df, crypto_name),
-                # 'returns_chart': returns(request, df, crypto_name),
-                # 'candlestick_moving_average': candlestick_moving_average(request, df, crypto_name),
-                # 'hist_box_pct_change': hist_box_pct_change(request, y, crypto_name),
-                # 'rolling_m_sd': rolling_m_sd(request, y, crypto_name, period),
-                # 'decomposition_chart': decomposition(request, df, df['Close'], crypto_name,period),
-                # # 'adfuller_test': json.loads(adfuller_test(request, df['Close'], crypto_name)),
-                # 'acf_and_pacf_plots': acf_and_pacf_plots(request, y['log_Close_diff'], crypto_name),
-                # 'arima_prediction': arima_prediction(request, df_train, df_test, crypto_name),
-                # 'arima_forecast': arima_forecast(request, df, crypto_name),
+                'returns_chart': returns(request, df, crypto_name),
+                'candlestick_moving_average': candlestick_moving_average(request, df, crypto_name),
+                'hist_box_pct_change': hist_box_pct_change(request, y, crypto_name),
+                'rolling_m_sd': rolling_m_sd(request, y, crypto_name, period),
+                'decomposition_chart': decomposition(request, df, df['Close'], crypto_name,period),
+                # 'adfuller_test': json.loads(adfuller_test(request, df['Close'], crypto_name)),
+                'acf_and_pacf_plots': acf_and_pacf_plots(request, y['log_Close_diff'], crypto_name),
+                'arima_prediction': arima_prediction_plot(request, fcast, df_train, df_test, crypto_name),
+                'arima_evaluation' : json.loads(arima_evaluation(request, df_test, fcast)),
+                'arima_forecast': arima_forecast(request, df, crypto_name),
                 # 'prophet_prediction': prophet_prediction(request, df_train, df_test, crypto_name),
                 # 'prophet_forecast': prophet_forecast(request, df, crypto_name)
                 })
