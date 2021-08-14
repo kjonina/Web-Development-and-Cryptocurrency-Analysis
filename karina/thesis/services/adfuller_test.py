@@ -10,11 +10,11 @@ from statsmodels.tsa.stattools import pacf, adfuller, kpss
 from pandas.io.json import json_normalize
 import json
 import requests
+import codecs
 
 
 
-
-def adfuller_test(request, data):
+def adfuller_test(request, data, crypto_name):
     dftest = adfuller(data)
     dfoutput = pd.Series(dftest[0:4], index=['Test Statistic','p-value','#Lags Used','Number of Observations Used'])
     for key,value in dftest[4].items():
@@ -22,9 +22,13 @@ def adfuller_test(request, data):
 
     dfoutput = pd.DataFrame(dfoutput)
     dfoutput = dfoutput.reset_index()
-    dfoutput1 = pd.DataFrame([['stationary', np.where(dftest[1]>0.05, 'Conclude not stationary', 'Conclude  stationary')]], columns=['index', 0])
+    dfoutput = dfoutput.rename(columns={'index': crypto_name, '0': 0})
+    dfoutput1 = pd.DataFrame([['Stationary', np.where(dftest[1]>0.05, 'Conclude not stationary', 'Conclude stationary')]], columns=[crypto_name, 0])
 
-    dfoutput = pd.concat([dfoutput,dfoutput1])
+    dfoutput = pd.concat([dfoutput,dfoutput1], sort=False).reset_index(drop=True)
 
-    dfoutput.to_json(orient='records')
-    return dfoutput
+    print(type(dfoutput))
+
+    print(dfoutput.index)
+# does not work, why???
+    return dfoutput.to_json(orient="records")

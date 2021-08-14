@@ -29,23 +29,21 @@ def prophet_forecast(request, df, crypto_name):
 
     df_forecast = df_prophet.predict(df_forecast)
     df_forecast['Name'] = crypto['Name']
+    df_forecast['Name'] = df_forecast['Name'].replace(np.nan, crypto_name)
 
-    trace = go.Scatter(
-        name = 'Actual price',
-        mode = 'markers',
-        x = list(df_forecast['ds']),
-        y = list(crypto['y']),
-        customdata = crypto['Name'],
+    actual = go.Scatter(
+        x = df.index,
+        y = df['Close'],
+        customdata = df['Name'],
         hovertemplate="<b>%{customdata}</b><br><br>" +
-                        "Date: %{x|%d %b %Y} <br>" +
-                        "Actual Closing Price: %{y:$,.2f}<br>",
-        marker=dict(
-            color='#FFBAD2',
-            line=dict(width=1)
+        "Date: %{x|%d %b %Y} <br>" +
+        "Closing Price: %{y:$,.2f}<br>",
+        name = 'Actual Price',
+        marker = dict(line = dict(width=1))
         )
-    )
-    trace1 = go.Scatter(
-        name = 'trend',
+
+    trend = go.Scatter(
+        name = 'Trend',
         mode = 'lines',
         x = list(df_forecast['ds']),
         y = list(df_forecast['yhat']),
@@ -53,13 +51,11 @@ def prophet_forecast(request, df, crypto_name):
         hovertemplate="<b>%{customdata}</b><br><br>" +
                         "Date: %{x|%d %b %Y} <br>" +
                         "Trend: %{y:$,.2f}<br>",
-        marker=dict(
-            color='red',
-            line=dict(width=3)
-        )
+        marker=dict(color='red', line=dict(width=3))
     )
+
     upper_band = go.Scatter(
-        name = 'upper band',
+        name = 'Upper Band',
         mode = 'lines',
         x = list(df_forecast['ds']),
         y = list(df_forecast['yhat_upper']),
@@ -70,8 +66,9 @@ def prophet_forecast(request, df, crypto_name):
         line= dict(color='#57b88f'),
         fill = 'tonexty'
     )
+
     lower_band = go.Scatter(
-        name= 'lower band',
+        name= 'Lower Band',
         mode = 'lines',
         x = list(df_forecast['ds']),
         y = list(df_forecast['yhat_lower']),
@@ -82,10 +79,9 @@ def prophet_forecast(request, df, crypto_name):
         line= dict(color='#57b88f')
        )
 
+    data = [trend, lower_band, upper_band, actual]
 
-    data = [trace1, lower_band, upper_band, trace]
-
-    layout = dict(title='{} Price Forecasting Estimation Using FbProphet'.format(crypto_name),
+    layout = dict(title='Forecasting Closing Price of {} Using FbProphet'.format(crypto_name),
                  xaxis=dict(title = 'Dates', ticklen=2, zeroline=True))
 
     fig = go.Figure(data = data, layout=layout)
@@ -106,9 +102,7 @@ def prophet_forecast(request, df, crypto_name):
     fig.update_layout(xaxis_rangeslider_visible = False)
     fig.update_yaxes(tickprefix = '$', tickformat = ',.')
 
-
     fig.update_layout(showlegend=False)
-
 
     prophet_forecast = fig.to_html(full_html=False, default_height=1000, default_width=1500)
 

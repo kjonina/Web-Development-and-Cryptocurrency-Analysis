@@ -56,10 +56,10 @@
           <button type="button" id="decomposition_button" class="btn btn-sm btn-outline-secondary">Decomposition</button>
           <button type="button" id="acf_and_pacf_button" class="btn btn-sm btn-outline-secondary">ACF and PACF Plots</button>
           <button type="button" id="adfuller_test_button" class="btn btn-sm btn-outline-secondary">Adfuller Test</button>
-          <button type="button" id="arima_prediction_button" class="btn btn-sm btn-outline-secondary">ARIMA Predicting</button>
-          <button type="button" id="arima_forecast_button" class="btn btn-sm btn-outline-secondary">ARIMA Forecasting</button>
-          <button type="button" id="prophet_prediction_button" class="btn btn-sm btn-outline-secondary">FBProphet Predicting</button>
-          <button type="button" id="prophet_forecast_button" class="btn btn-sm btn-outline-secondary">FBProphet Forecasting</button>
+          <button type="button" id="prediction_button" class="btn btn-sm btn-outline-secondary">Cross Validation</button>
+          <button type="button" id="evaluation_button" class="btn btn-sm btn-outline-secondary">Evaluatipn</button>
+          <button type="button" id="forecast_button" class="btn btn-sm btn-outline-secondary">Forecast</button>
+
 
         </div>
       </div>
@@ -98,6 +98,8 @@
               $('#adfuller_test').hide();
               $('#arima_prediction_graph').hide();
               $('#arima_forecast_graph').hide();
+              $('#arima_evaluation').hide();
+              $('#prophet_evaluation').hide();
               $('#prophet_prediction_graph').hide();
               $('#prophet_forecast_graph').hide();
               $(identifier).show();
@@ -111,11 +113,60 @@
               $('#decomposition_button').click(()=> hideAllButOne("#decomposition_chart"));
               $('#acf_and_pacf_button').click(()=> hideAllButOne("#acf_and_pacf_plots"));
               $('#adfuller_test_button').click(()=> hideAllButOne("#adfuller_test"));
-              $('#arima_prediction_button').click(()=> hideAllButOne("#arima_prediction_graph"));
-              $('#arima_forecast_button').click(()=> hideAllButOne("#arima_forecast_graph"));
-              $('#prophet_prediction_button').click(()=> hideAllButOne("#prophet_prediction_graph"));
-              $('#prophet_forecast_button').click(()=> hideAllButOne("#prophet_forecast_graph"));
+          });
 
+
+          $('#evaluation_button').on('click', function(){
+            $('#dashboard_section').hide();
+            $('#price_sma_volume_chart_graph').hide();
+            $('#candle_stick_graph').hide();
+            $('#hist_box_pct_change_graph').hide();
+            $('#rolling_m_sd_graph').hide();
+            $('#returns_chart').hide();
+            $('#decomposition_chart').hide();
+            $('#acf_and_pacf_plots').hide();
+            $('#adfuller_test').hide();
+            $('#arima_prediction_graph').hide();
+            $('#arima_forecast_graph').hide();
+            $('#arima_evaluation').show();
+            $('#prophet_evaluation').show();
+            $('#prophet_prediction_graph').hide();
+            $('#prophet_forecast_graph').hide();
+          });
+          $('#prediction_button').on('click', function(){
+            $('#dashboard_section').hide();
+            $('#price_sma_volume_chart_graph').hide();
+            $('#candle_stick_graph').hide();
+            $('#hist_box_pct_change_graph').hide();
+            $('#rolling_m_sd_graph').hide();
+            $('#returns_chart').hide();
+            $('#decomposition_chart').hide();
+            $('#acf_and_pacf_plots').hide();
+            $('#adfuller_test').hide();
+            $('#arima_prediction_graph').show();
+            $('#arima_forecast_graph').hide();
+            $('#arima_evaluation').hide();
+            $('#prophet_evaluation').hide();
+            $('#prophet_prediction_graph').show();
+            $('#prophet_forecast_graph').hide();
+          });
+
+          $('#forecast_button').on('click', function(){
+            $('#dashboard_section').hide();
+            $('#price_sma_volume_chart_graph').hide();
+            $('#candle_stick_graph').hide();
+            $('#hist_box_pct_change_graph').hide();
+            $('#rolling_m_sd_graph').hide();
+            $('#returns_chart').hide();
+            $('#decomposition_chart').hide();
+            $('#acf_and_pacf_plots').hide();
+            $('#adfuller_test').hide();
+            $('#arima_prediction_graph').hide();
+            $('#arima_forecast_graph').show();
+            $('#arima_evaluation').hide();
+            $('#prophet_evaluation').hide();
+            $('#prophet_prediction_graph').hide();
+            $('#prophet_forecast_graph').show();
           });
 
 

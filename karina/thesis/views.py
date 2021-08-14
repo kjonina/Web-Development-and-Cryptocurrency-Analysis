@@ -18,7 +18,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.io as pio
-
+from fbprophet import Prophet
 
 # taking functions from files and using them accordingly
 from thesis.services.get_yahoo_table import get_yahoo_table
@@ -39,6 +39,8 @@ from thesis.services.prophet_prediction import prophet_prediction
 from thesis.services.prophet_forecast import prophet_forecast
 from thesis.services.arima_prediction  import arima_prediction
 from thesis.services.arima_forecast import arima_forecast
+# from thesis.services.arima_evaluation  import arima_evaluation
+# from thesis.services.prophet_evaluation import prophet_evaluation
 
 from thesis.services.candlestick_rolling_average import candlestick_moving_average
 
@@ -93,17 +95,17 @@ def thesis(request):
                 'get_crypto_info': json.loads(get_crypto_info(request, crypto_ticket)),
                 'tablesinfo': json.loads(json_three),
                 'price_sma_volume_chart': price_sma_volume_chart(request, df, crypto_name),
-                'returns_chart': returns(request, df, crypto_name),
-                'candlestick_moving_average': candlestick_moving_average(request, df, crypto_name),
-                'hist_box_pct_change': hist_box_pct_change(request, y, crypto_name),
-                'rolling_m_sd': rolling_m_sd(request, y, crypto_name, period),
-                'decomposition_chart': decomposition(request, df, df['Close'], crypto_name,period),
-                # 'adfuller_test': adfuller_test(request, df['Close']),
-                'acf_and_pacf_plots': acf_and_pacf_plots(request, y['log_Close_diff'], crypto_name),
+                # 'returns_chart': returns(request, df, crypto_name),
+                # 'candlestick_moving_average': candlestick_moving_average(request, df, crypto_name),
+                # 'hist_box_pct_change': hist_box_pct_change(request, y, crypto_name),
+                # 'rolling_m_sd': rolling_m_sd(request, y, crypto_name, period),
+                # 'decomposition_chart': decomposition(request, df, df['Close'], crypto_name,period),
+                # # 'adfuller_test': json.loads(adfuller_test(request, df['Close'], crypto_name)),
+                # 'acf_and_pacf_plots': acf_and_pacf_plots(request, y['log_Close_diff'], crypto_name),
+                # 'arima_prediction': arima_prediction(request, df_train, df_test, crypto_name),
+                # 'arima_forecast': arima_forecast(request, df, crypto_name),
                 # 'prophet_prediction': prophet_prediction(request, df_train, df_test, crypto_name),
                 # 'prophet_forecast': prophet_forecast(request, df, crypto_name)
-                'arima_prediction': arima_prediction(request, df_train, df_test, crypto_name),
-                'arima_forecast': arima_forecast(request, df, crypto_name)
                 })
         else:
             # print('Sorry. You did not select an available symbol or you misspelled the symbol')

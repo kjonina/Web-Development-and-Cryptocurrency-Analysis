@@ -28,31 +28,30 @@ def prophet_prediction(request, df_train, df_test, crypto_name):
     df_forecast = df_prophet.make_future_dataframe(periods= len(df_test), freq='D')
 
     df_forecast = df_prophet.predict(df_forecast)
-    df_forecast['Name'] = crypto['Name']
+    df_forecast['Name'] = df_test['Name']
+    df_forecast['Name'] = df_forecast['Name'].replace(np.nan, crypto_name)
 
-    trace1 = go.Scatter(
+    df_train = go.Scatter(
         x = df_train.index,
         y = df_train['Close'],
         customdata = df_train['Name'],
         hovertemplate="<b>%{customdata}</b><br><br>" +
         "Date: %{x|%d %b %Y} <br>" +
-        "Closing Price: %{y:$,.2f}<br>"+
-        "<extra></extra>",
+        "Closing Price: %{y:$,.2f}<br>",
         name = 'Training Set')
 
-    trace2 = go.Scatter(
+    df_test = go.Scatter(
         x = df_test.index,
         y = df_test['Close'],
         name = 'Test Set',
         customdata = df_test['Name'],
         hovertemplate="<b>%{customdata}</b><br><br>" +
         "Date: %{x|%d %b %Y} <br>" +
-        "Closing Price: %{y:$,.2f}<br>"+
-        "<extra></extra>",
+        "Closing Price: %{y:$,.2f}<br>",
         yaxis="y1")
 
     trend = go.Scatter(
-        name = 'trend',
+        name = 'Trend',
         mode = 'lines',
         x = list(df_forecast['ds']),
         y = list(df_forecast['yhat']),
@@ -60,13 +59,10 @@ def prophet_prediction(request, df_train, df_test, crypto_name):
         hovertemplate="<b>%{customdata}</b><br><br>" +
                         "Date: %{x|%d %b %Y} <br>" +
                         "Trend: %{y:$,.2f}<br>",
-        marker=dict(
-            color='red',
-            line=dict(width=3)
-        )
+        marker=dict(color='red', line=dict(width=3))
     )
     upper_band = go.Scatter(
-        name = 'upper band',
+        name = 'Upper Band',
         mode = 'lines',
         x = list(df_forecast['ds']),
         y = list(df_forecast['yhat_upper']),
@@ -78,7 +74,7 @@ def prophet_prediction(request, df_train, df_test, crypto_name):
         fill = 'tonexty'
     )
     lower_band = go.Scatter(
-        name= 'lower band',
+        name= 'Lower Band',
         mode = 'lines',
         x = list(df_forecast['ds']),
         y = list(df_forecast['yhat_lower']),
@@ -90,9 +86,9 @@ def prophet_prediction(request, df_train, df_test, crypto_name):
        )
 
 
-    data = [trace1, trace2, trend, lower_band, upper_band]
+    data = [df_train, df_test, trend, lower_band, upper_band]
 
-    layout = dict(title='{} Price Forecasting Estimation Using FbProphet'.format(crypto_name),
+    layout = dict(title='Predicting Closing Price of {} Using FbProphet'.format(crypto_name),
                  xaxis=dict(title = 'Dates', ticklen=2, zeroline=True))
 
     fig = go.Figure(data = data, layout=layout)

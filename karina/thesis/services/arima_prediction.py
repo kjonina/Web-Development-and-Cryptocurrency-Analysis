@@ -43,73 +43,83 @@ def arima_prediction(request, df_train, df_test, crypto_name):
     # print(fcast.tail())
 
     # a plotly graph for training and test set
-    trace1 = go.Scatter(
+    df_train = go.Scatter(
         x = df_train.index,
         y = df_train['Close'],
+        name = 'Training Set',
         customdata = df_train['Name'],
         hovertemplate="<b>%{customdata}</b><br><br>" +
         "Date: %{x|%d %b %Y} <br>" +
-        "Closing Price: %{y:$,.2f}<br>"+
-        "<extra></extra>")
+        "Closing Price: %{y:$,.2f}<br>")
 
-    trace5 = go.Scatter(
+    dt_test = go.Scatter(
         x = df_test.index,
         y = df_test['Close'],
         name = 'Test Set',
         customdata = df_test['Name'],
         hovertemplate="<b>%{customdata}</b><br><br>" +
         "Date: %{x|%d %b %Y} <br>" +
-        "Closing Price: %{y:$,.2f}<br>"+
-        "<extra></extra>",
+        "Closing Price: %{y:$,.2f}<br>",
         yaxis="y1")
 
     y_upper = fcast['mean_ci_upper']
     y_lower = fcast['mean_ci_lower']
 
-    trace2 = go.Scatter(
+    upper_band = go.Scatter(
         x=df_test.index,
         y=y_upper,
-        line = dict(color='green'),
-#        name = 'Predicted2',
+        line= dict(color='#57b88f'),
+        name = 'Upper Band',
         customdata = df_test['Name'],
         hovertemplate="<b>%{customdata}</b><br><br>" +
         "Date: %{x|%d %b %Y} <br>" +
-        "Predicted Closing Price: %{y:$,.2f}<br>"+
-        "<extra></extra>")
+        "Predicted Closing Price: %{y:$,.2f}<br>")
 
 
-    trace3 = go.Scatter(
-        x=df_test.index,
-        y= y_lower,
-        line = dict(color='green'),
-#        name = 'Predicted Lower Confidence ',
+    lower_band = go.Scatter(
+        x = df_test.index,
+        y = y_lower,
+        line = dict(color='#57b88f'),
+        name = 'Lower Band',
         customdata = df_test['Name'],
         hovertemplate="<b>%{customdata}</b><br><br>" +
         "Date: %{x|%d %b %Y} <br>" +
-        "Predicted Closing Price: %{y:$,.2f}<br>"+
-        "<extra></extra>",
+        "Predicted Closing Price: %{y:$,.2f}<br>",
         fill='tonexty'
         )
 
 
-    trace4 = go.Scatter(
+    mean = go.Scatter(
         x=df_test.index,
         y=fcast['mean'],
-#        name = 'Predicted',
-        line = dict(color='firebrick', width=4, dash='dot'),
+        name = 'Predicted',
+        marker=dict(color='red', line=dict(width=3)),
         customdata = df_test['Name'],
         hovertemplate="<b>%{customdata}</b><br><br>" +
         "Date: %{x|%d %b %Y} <br>" +
-        "Predicted Closing Price: %{y:$,.2f}<br>"+
-        "<extra></extra>")
+        "Predicted Closing Price: %{y:$,.2f}<br>")
 
 
 
-    data = [trace1, trace2, trace3, trace4, trace5]
+    data = [df_train, dt_test, upper_band, lower_band, mean]
     fig = go.Figure(data = data)
     fig.update_layout(showlegend=False)
 
-    fig.update_layout({'title': {'text':'ARIMA Forecasting of {}'.format(str(crypto_name))}},
+    fig.update_xaxes(
+        rangeslider_visible = True,
+        rangeselector = dict(
+            buttons = list([
+                dict(count = 7, label = "1W", step = "day", stepmode = "backward"),
+                dict(count = 28, label = "1M", step = "day", stepmode = "backward"),
+                dict(count = 6, label = "6M", step = "month", stepmode = "backward"),
+                dict(count = 1, label = "YTD", step = "year", stepmode = "todate"),
+                dict(count = 1, label = "1Y", step = "year", stepmode = "backward"),
+                dict(count = 3, label = "3Y", step = "year", stepmode = "backward"),
+                dict(count = 5, label = "5Y", step = "year", stepmode = "backward"),
+                dict(step = "all")])))
+    fig.update_layout(xaxis_rangeslider_visible = False)
+
+    fig.update_layout({'title': {'text':'Predicting Closing Price of {} Using ARIMA'.format(str(crypto_name))}},
                       yaxis_tickprefix = '$', yaxis_tickformat = ',.')
 
     arima_prediction = fig.to_html(full_html=False, default_height=1000, default_width=1500)

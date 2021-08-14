@@ -44,60 +44,70 @@ def arima_forecast(request, df, crypto_name):
     y_lower = fcast['mean_ci_lower']
 
     # a plotly graph for training and test set
-    trace1 = go.Scatter(
+    actual = go.Scatter(
         x = df.index,
         y = df['Close'],
-        customdata = df['Name'],
+        customdata = df['Name'],name = 'Acutal Price',
         hovertemplate="<b>%{customdata}</b><br><br>" +
         "Date: %{x|%d %b %Y} <br>" +
-        "Closing Price: %{y:$,.2f}<br>"+
-        "<extra></extra>")
+        "Closing Price: %{y:$,.2f}<br>")
 
 
-    trace2 = go.Scatter(
+    upper_band = go.Scatter(
         x=y_upper.index,
         y=y_upper,
-        line = dict(color='green'),
-#        name = 'Predicted2',
+        name = 'Upper Band',
         customdata = df['Name'],
         hovertemplate="<b>%{customdata}</b><br><br>" +
         "Date: %{x|%d %b %Y} <br>" +
-        "Predicted Closing Price: %{y:$,.2f}<br>"+
-        "<extra></extra>")
-
-
-    trace3 = go.Scatter(
-        x=y_lower.index,
-        y= y_lower,
-        line = dict(color='green'),
-#        name = 'Predicted Lower Confidence ',
-        customdata = df['Name'],
-        hovertemplate="<b>%{customdata}</b><br><br>" +
-        "Date: %{x|%d %b %Y} <br>" +
-        "Predicted Closing Price: %{y:$,.2f}<br>"+
-        "<extra></extra>",
-        fill='tonexty'
+        "Predicted Closing Price: %{y:$,.2f}<br>",
+        line= dict(color='#57b88f')
         )
 
 
-    trace4 = go.Scatter(
-        x=fcast['mean_ci_upper'].index,
-        y=fcast['mean'],
-#        name = 'Predicted',
-        line = dict(color='firebrick', width=4, dash='dot'),
+    lower_band = go.Scatter(
+        x=y_lower.index,
+        y= y_lower,
+        name = 'Lower Band',
+        line= dict(color='#57b88f'),
         customdata = df['Name'],
         hovertemplate="<b>%{customdata}</b><br><br>" +
         "Date: %{x|%d %b %Y} <br>" +
-        "Predicted Closing Price: %{y:$,.2f}<br>"+
-        "<extra></extra>")
+        "Predicted Closing Price: %{y:$,.2f}<br>",
+        fill='tonexty',
+
+        )
+
+
+    mean = go.Scatter(
+        x=fcast['mean_ci_upper'].index,
+        y=fcast['mean'],name = 'Predicted',
+        marker=dict(color='red', line=dict(width=3)),
+        customdata = df['Name'],
+        hovertemplate="<b>%{customdata}</b><br><br>" +
+        "Date: %{x|%d %b %Y} <br>" +
+        "Predicted Closing Price: %{y:$,.2f}<br>")
 
 
 
-    data = [trace1, trace2, trace3, trace4]
+    data = [actual, upper_band, lower_band, mean]
     fig = go.Figure(data = data)
     fig.update_layout(showlegend=False)
+    fig.update_xaxes(
+        rangeslider_visible = True,
+        rangeselector = dict(
+            buttons = list([
+                dict(count = 7, label = "1W", step = "day", stepmode = "backward"),
+                dict(count = 28, label = "1M", step = "day", stepmode = "backward"),
+                dict(count = 6, label = "6M", step = "month", stepmode = "backward"),
+                dict(count = 1, label = "YTD", step = "year", stepmode = "todate"),
+                dict(count = 1, label = "1Y", step = "year", stepmode = "backward"),
+                dict(count = 3, label = "3Y", step = "year", stepmode = "backward"),
+                dict(count = 5, label = "5Y", step = "year", stepmode = "backward"),
+                dict(step = "all")])))
+    fig.update_layout(xaxis_rangeslider_visible = False)
 
-    fig.update_layout({'title': {'text':'ARIMA Forecasting of {}'.format(str(crypto_name))}},
+    fig.update_layout({'title': {'text':'Forecasting Closing Price of {} Using ARIMA'.format(str(crypto_name))}},
                       yaxis_tickprefix = '$', yaxis_tickformat = ',.')
 
     arima_forecast = fig.to_html(full_html=False, default_height=1000, default_width=1500)

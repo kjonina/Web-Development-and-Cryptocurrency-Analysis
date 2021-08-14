@@ -11,6 +11,8 @@
 
   .two{
     display:none;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .three{
@@ -48,6 +50,15 @@
   }
 
   .arima_forecast_graph{
+    display:none;
+  }
+
+
+  .arima_evaluation{
+    display:none;
+  }
+
+  .prophet_evaluation{
     display:none;
   }
 
@@ -97,7 +108,7 @@
   {% if price_sma_volume_chart %}
   {{ price_sma_volume_chart|safe }}
   {% else %}
-  <p>No graph was provided.</p>
+  <p>Graph with Death Cross and Volume was not provided.</p>
   {% endif %}
 </div>
 
@@ -106,7 +117,7 @@
   {% if candlestick_moving_average %}
   {{ candlestick_moving_average|safe }}
   {% else %}
-  <p>No graph was provided.</p>
+  <p>Candlestick (with sliding moving averages) graph was not provided.</p>
   {% endif %}
 </div>
 
@@ -117,7 +128,7 @@
   {% if hist_box_pct_change %}
   {{ hist_box_pct_change|safe }}
   {% else %}
-  <p>No graph was provided.</p>
+  <p>Histogram and Boxplot graphs was not provided.</p>
   {% endif %}
 </div>
 
@@ -127,7 +138,7 @@
   {% if rolling_m_sd %}
   {{ rolling_m_sd|safe }}
   {% else %}
-  <p>No graph was provided.</p>
+  <p>Rolling Mean and Standard Deviation graph was not provided.</p>
   {% endif %}
 </div>
 
@@ -136,7 +147,7 @@
   {% if returns_chart %}
   {{ returns_chart|safe }}
   {% else %}
-  <p>No graph was provided.</p>
+  <p>Return graph was not provided.</p>
   {% endif %}
 
   </div>
@@ -146,7 +157,7 @@
   {% if decomposition_chart %}
   {{ decomposition_chart|safe }}
   {% else %}
-  <p>No graph was provided.</p>
+  <p>Decomposition graph was not provided.</p>
   {% endif %}
 
 </div>
@@ -156,13 +167,13 @@
 {% if acf_and_pacf_plots %}
 {{ acf_and_pacf_plots|safe }}
 {% else %}
-<p>No graph was provided.</p>
+<p>ACF and PACF graph was not provided.</p>
 {% endif %}
 
 </div>
 
 
-<!-- <div id="adfuller_test" class="adfuller_test">
+<div id="adfuller_test" class="adfuller_test">
   {% if adfuller_test %}
   <h5>Adfuller Test</h5>
   <table  class="table">
@@ -188,7 +199,7 @@
   <p>Adfuller Test was not conducted.</p>
   {% endif %}
 
-</div> -->
+</div>
 
 
 
@@ -196,7 +207,7 @@
   {% if arima_prediction %}
   {{ arima_prediction|safe }}
   {% else %}
-  <p>No graph was provided.</p>
+  <p>ARIMA Cross Validation was not provided.</p>
   {% endif %}
 </div>
 
@@ -204,7 +215,24 @@
   {% if arima_forecast %}
   {{ arima_forecast|safe }}
   {% else %}
-  <p>No graph was provided.</p>
+  <p>ARIMA Forecast graph was not provided.</p>
+  {% endif %}
+</div>
+
+
+<div id='arima_evaluation' class="arima_evaluation">
+  {% if arima_evaluation %}
+  {{ arima_evaluation|safe }}
+  {% else %}
+  <p>Arima Evaluation was provided.</p>
+  {% endif %}
+</div>
+
+<div id='prophet_evaluation' class="prophet_evaluation">
+  {% if prophet_evaluation %}
+  {{ prophet_evaluation|safe }}
+  {% else %}
+  <p>Prophet evaluation was not provided.</p>
   {% endif %}
 </div>
 
@@ -213,7 +241,7 @@
   {% if prophet_prediction %}
   {{ prophet_prediction|safe }}
   {% else %}
-  <p>No graph was provided.</p>
+  <p>Prophet Cross Validation was not provided.</p>
   {% endif %}
 </div>
 
@@ -221,7 +249,7 @@
   {% if prophet_forecast %}
   {{ prophet_forecast|safe }}
   {% else %}
-  <p>No graph was provided.</p>
+  <p>Prophet Forecast was not provided.</p>
   {% endif %}
 </div>
 
