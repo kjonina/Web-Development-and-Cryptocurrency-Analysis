@@ -24,8 +24,7 @@ def prophet_forecast(request, df, crypto_name):
     df_prophet = Prophet(changepoint_prior_scale=0.15,yearly_seasonality=True,daily_seasonality=True)
     df_prophet.fit(crypto)
 
-    estimated_days=91
-    df_forecast = df_prophet.make_future_dataframe(periods= estimated_days*2, freq='D')
+    df_forecast = df_prophet.make_future_dataframe(periods= 120, freq='D')
 
     df_forecast = df_prophet.predict(df_forecast)
     df_forecast['Name'] = crypto['Name']

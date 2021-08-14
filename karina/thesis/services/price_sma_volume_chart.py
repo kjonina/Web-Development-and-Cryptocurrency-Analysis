@@ -85,7 +85,7 @@ def price_sma_volume_chart(request, df, crypto_name):
     #time buttons
     fig.update_xaxes(rangeselector= {'visible' :False}, row = 2, col = 1)
 
-    fig.update_layout(showlegend=False)
+    # fig.update_layout(showlegend=False)
 
     price_sma_volume_chart = fig.to_html(full_html=False, default_height=1000, default_width=1500)
 
