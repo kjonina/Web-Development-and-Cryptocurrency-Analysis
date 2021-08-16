@@ -178,7 +178,6 @@ pytest-doctestplus==0.4.0
 pytest-openfiles==0.4.0
 pytest-remotedata==0.3.2
 python-dateutil==2.8.0
-pytz==2019.3
 pywin32==223
 pywinpty==0.5.5
 PyYAML==5.1.2
