@@ -89,7 +89,7 @@ def thesis(request):
 
             df_train, df_test = create_train_and_test(request,y, crypto_name)
             fcast = arima_prediction(request, df_train, df_test, crypto_name)
-            df_forecast = prophet_prediction(request, df_train, df_test, crypto_name)
+            # df_forecast = prophet_prediction(request, df_train, df_test, crypto_name)
 
             return render(request, 'thesis/thesis_home.html', {'error':'You have selected: {}'.format(str(crypto_name)),
                 'get_crypto_info': json.loads(get_crypto_info(request, crypto_ticket)),
