@@ -1,7 +1,4 @@
 alabaster==0.7.12
-anaconda-client==1.7.2
-anaconda-navigator==2.0.4
-anaconda-project==0.8.3
 appdirs==1.4.4
 arctic==1.79.4
 arviz==0.11.2
