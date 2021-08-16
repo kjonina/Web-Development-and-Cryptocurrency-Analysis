@@ -18,7 +18,6 @@ import plotly.graph_objects as go
 import plotly.express as px
 from plotly.subplots import make_subplots
 import plotly.io as pio
-from fbprophet import Prophet
 
 # taking functions from files and using them accordingly
 from thesis.services.get_yahoo_table import get_yahoo_table
