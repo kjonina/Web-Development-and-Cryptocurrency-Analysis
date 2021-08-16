@@ -35,8 +35,8 @@ from thesis.services.returns import returns
 from thesis.services.decomposition import decomposition
 from thesis.services.plot_acf import acf_and_pacf_plots
 from thesis.services.adfuller_test import adfuller_test
-from thesis.services.prophet_prediction import prophet_prediction, prophet_prediction_plot, prophet_evaluation
-from thesis.services.prophet_forecast import prophet_forecast
+# from thesis.services.prophet_prediction import prophet_prediction, prophet_prediction_plot, prophet_evaluation
+# from thesis.services.prophet_forecast import prophet_forecast
 from thesis.services.arima_prediction  import arima_prediction, arima_prediction_plot, arima_evaluation
 from thesis.services.arima_forecast import arima_forecast
 
@@ -107,8 +107,8 @@ def thesis(request):
                 'arima_evaluation' : json.loads(arima_evaluation(request, df_test, fcast)),
                 'arima_forecast': arima_forecast(request, df, crypto_name),
                 'prophet_prediction': prophet_prediction_plot(request,df_forecast, df_train, df_test, crypto_name),
-                'prophet_evaluation':json.loads(prophet_evaluation(request,df_forecast, df_test)),
-                'prophet_forecast': prophet_forecast(request, df, crypto_name)
+                # 'prophet_evaluation':json.loads(prophet_evaluation(request,df_forecast, df_test)),
+                # 'prophet_forecast': prophet_forecast(request, df, crypto_name)
                 })
         else:
             # print('Sorry. You did not select an available symbol or you misspelled the symbol')
