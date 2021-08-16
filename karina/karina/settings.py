@@ -144,6 +144,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 try:
-    from .local_setting import *
+    from .local_settings import *
 except ImportError:
     pass
