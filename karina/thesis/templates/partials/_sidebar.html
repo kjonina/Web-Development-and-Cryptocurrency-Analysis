@@ -1,74 +1,71 @@
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <style>
+  .slideContainer{
+    width:90%;
+    nargin-top:200px;
+  }
+
   p {
     margin-top:50px;
     opacity:0.7;
   }
 
 
-  /* .slideContainer{
-    width:75%;
-    nargin-top:200px;
-  } */
-
-
-
-
   .slider{
     -webkit-appearance:none;
     width:100%;
-    height: 15px;
-    background:grey;
+    height: 20px;
+    background: grey;
     outline: none;
     opacity:0.7;
-    -webkit-transition:0.2s;
-    transition: opacity 0.2s;
+    -webkit-appearance:0.2s;
+    transition:  opacity 0.2s;
     border-radius: 12px;
-    /* box-shadow:0px 1px 10px 1px black; */
+
   }
 
+  /* .slider:after {
+  content: '100';
+  color:black;
+  font-size: 2rem;
+  position: absolute;
+  left: 80%
+  top:20%;
+}
 
-  /* .slider::after {
-    content: '365';
-    color:black;
-    font-size: 1rem;
-    position: absolute;
-    left: 80%;
-    top:0%;
-  }
+.slider:before {
+content: '0';
+color:black;
+font-size: 2rem;
+position: absolute;
+left: 80%
+top:20%;
+} */
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance:none;
+  appeareance: none;
+  width:30px;
+  height:30px;
+  background: black;
+  border-radius: 50%;
+  cursor:pointer;
+}
+
+.slider::-moz-range-thumb {
+  width:30px;
+  height:30px;
+  background: black;
+  border-radius: 50%;
+  cursor:pointer;
+}
 
 
-  .slider::before {
-    content: '1';
-    color:black;
-    font-size: 1rem;
-    position: absolute;
-    left: 12%;
-    top:0%;
-  } */
-
-  .slider:hover {
-    opacity: 1;
-  }
-
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance:none;
-    appeareance: none;
-    width:30px;
-    height:30px;
-    background: black;
-    border-radius: 50%;
-    cursor:pointer;
-  }
-
-  .slider::-moz-range-thumb {
-    width:30px;
-    height:30px;
-    background: black;
-    border-radius: 50%;
-    cursor:pointer;
-  }
 </style>
 
 
@@ -111,7 +108,7 @@
         <div class="col">
           <div class="card card-body">
 
-              <h6>Cryptocurrency</h6>
+            <h6>Cryptocurrency</h6>
             {% if error %}
             {{ error }}
             <br />
@@ -125,49 +122,35 @@
               <br />
               <br />
 
-
-
-
               <div class="slideContainer">
                 <h6>Number of Days</h6>
-                <p<>Use the slider to select the number for days to be used in decomposition and rolling statistics</p>
-                <input type="range" min="1" max="365"  id="myRange" name="slider" class="slider">
+                <p>Select the number for days to be used in decomposition and rolling statistics</p>
+                <input type="range" min="1" max="365"  value="1" id="myRange" name="slider" class="slider">
                 <br />
-
-                <br />
-                <p<># of Days: <span id="value"></span></p>
-                    </div>
-                <input id="inputbutton" type="submit" value="Submit" style="float: right;"/>
-              </form>
-            </div>
+                <p>Value: <span id="value"></span></p>
+              </div>
+              <input id="inputbutton" type="submit" value="Submit" style="float: right;" />
+            </form>
           </div>
         </div>
 
 
 
         <script>
-          // $('#inputbutton').on('click', function(evt){
-          //   evt.preventDefault();
-          //   evt.stopPropagation();
-          //   var $detailDiv = $('#dashboard_section'),
-          //   url='/thesis?crypto_ticket='+ $('#search_value').val();
-          //
-          //   $.get(url, function(data) {
-          //     console.log(data)
-          //     $detailDiv.html(data.item)
-          //
-          // });
-
           var slider = document.getElementById("myRange");
           var output = document.getElementById("value");
 
           output.innerHTML = slider.value;
 
-          // slider.oninput = function() {
-          //   output.innerHTML = this.value;
-          //
-          // }
+
+          slider.oninput = function() {
+            output.innerHTML = this.value;
+
+          }
 
         </script>
+
+
+
 
       </nav>

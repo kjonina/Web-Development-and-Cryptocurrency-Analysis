@@ -84,9 +84,6 @@ def thesis(request):
             y = create_y(request, crypto_name, crypto_ticket)
             # print(y)
 
-            # period = request.GET.get('number_value')
-            # period = int(period)
-
             period = request.GET.get('slider')
             period = int(period)
 
