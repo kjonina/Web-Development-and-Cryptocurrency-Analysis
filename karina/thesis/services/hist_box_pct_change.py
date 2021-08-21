@@ -32,7 +32,8 @@ def hist_box_pct_change(request, y, crypto_name):
                                     "<extra></extra>"
                     ), row=2, col=1)
 
-    fig.update_layout(title = 'Plots of 1-Day Close Percentage Change for {}'.format(crypto_name))
+    fig.update_layout(title = 'Plots of 1-Day Close Percentage Change for {}'.format(crypto_name),
+            title_font_size=30)
     fig['layout']['yaxis1']['title'] = '# of Observations'
 
     fig.update_xaxes(tickformat = '.0%', row = 1, col = 1)

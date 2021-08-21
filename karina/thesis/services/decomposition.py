@@ -60,12 +60,15 @@ def decomposition(request, df, data, crypto_name, period):
 
     # Add titles
     fig.update_layout(
-            title = 'Decomposition of {} for {} days'.format(str(crypto_name),period))
+            title = 'Decomposition of {} for {} days'.format(str(crypto_name),period),
+            title_font_size=30)
     fig['layout']['yaxis1']['title']='US Dollars'
     fig['layout']['yaxis2']['title']='Trend'
     fig['layout']['yaxis3']['title']='Seasonality'
     fig['layout']['yaxis4']['title']='Residual'
     fig.update_layout(showlegend=False)
+    fig.update_yaxes(tickprefix = '$', tickformat = ',.', row = 1, col = 1)
+
 
     decomposition = fig.to_html(full_html=False, default_height=1000, default_width=1500)
 

@@ -37,7 +37,8 @@ def candle_stick(request, df, crypto_name):
 
     # Add titles
     fig.update_layout(
-            title = 'Price of {}'.format(str(crypto_name)))
+            title = 'Price of {}'.format(str(crypto_name)),
+            title_font_size=30)
     fig['layout']['yaxis']['title']='US Dollars'
 
     # X-Axes

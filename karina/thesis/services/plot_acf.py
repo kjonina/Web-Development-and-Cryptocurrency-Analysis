@@ -38,7 +38,7 @@ def acf_and_pacf_plots(request, data, crypto_name):
     sns.set_style('darkgrid')
 #    fig, (ax1, ax2,ax3) = plt.subplots(3,1, figsize = (8,15)) # graphs in a column
     fig, (ax1, ax2,ax3) = plt.subplots(1,3, figsize = (20,5)) # graphs in a row
-    fig.suptitle('ACF and PACF plots of Logged Closing Price Difference for {}'.format(crypto_name), fontsize=16)
+    fig.suptitle('ACF and PACF plots of Logged Closing Price Difference for {}'.format(crypto_name), fontsize=22)
     ax1.plot(data)
     ax1.set_title('Original')
     plot_acf(data, lags=40, ax=ax2);

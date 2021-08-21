@@ -81,7 +81,7 @@
 #     data = [trend, lower_band, upper_band, actual]
 #
 #     layout = dict(title='Forecasting Closing Price of {} Using FbProphet'.format(crypto_name),
-#                  xaxis=dict(title = 'Dates', ticklen=2, zeroline=True))
+#                 title_font_size=30, xaxis=dict(title = 'Dates', ticklen=2, zeroline=True))
 #
 #     fig = go.Figure(data = data, layout=layout)
 # #    fig['layout']['yaxis1']['title']='US Dollars'

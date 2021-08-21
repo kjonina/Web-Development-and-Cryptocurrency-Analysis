@@ -67,7 +67,7 @@ def returns(request, df, crypto_name):
 
     # Add titles
     fig.update_layout(
-            title = 'Price of {}'.format(str(crypto_name)))
+            title = 'Price of {}'.format(str(crypto_name)),title_font_size=30)
     fig['layout']['yaxis1']['title']='US Dollars'
     fig['layout']['yaxis2']['title']='% Return'
     fig['layout']['yaxis3']['title']='% Return'

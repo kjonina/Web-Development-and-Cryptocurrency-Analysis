@@ -54,6 +54,7 @@ def rolling_m_sd(request, y, crypto_name, period):
     # Add titles
     fig.update_layout(
             title = 'Rolling Mean & Standard Deviation of {} over {} days'.format(crypto_name,period),
+            title_font_size=30,
             yaxis_title = 'US Dollars',
             yaxis_tickprefix = '$', yaxis_tickformat = ',.')
 

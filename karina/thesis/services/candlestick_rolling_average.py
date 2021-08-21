@@ -80,6 +80,7 @@ def candlestick_moving_average(request, df,crypto_name):
     layout = dict(
 
         title = 'Price of {}'.format(str(crypto_name)),
+        title_font_size=30,
 
         # ANIMATIONS
         sliders = [sliders],

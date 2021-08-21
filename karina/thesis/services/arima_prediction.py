@@ -125,8 +125,10 @@ def arima_prediction_plot(request, fcast, df_train, df_test, crypto_name):
                             dict(count = 1, step = "year", stepmode = "todate", label = "YTD")])))
     fig.update_layout(xaxis_rangeslider_visible = False)
 
-    fig.update_layout({'title': {'text': '{} Price Forecasting Estimation Using ARIMA'.format(str(crypto_name))}},
-                      yaxis_tickprefix = '$', yaxis_tickformat = ',.')
+
+    fig.update_layout(title = 'Predicting Closing Price of {} Using ARIMA'.format(str(crypto_name)),
+            title_font_size=30)
+    fig.update_layout(yaxis_tickprefix = '$', yaxis_tickformat = ',.')
 
     arima_prediction = fig.to_html(full_html=False, default_height=1000, default_width=1500)
     return arima_prediction

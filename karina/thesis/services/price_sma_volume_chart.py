@@ -63,7 +63,8 @@ def price_sma_volume_chart(request, df, crypto_name):
                     marker = dict(color="black", opacity = True)), row = 2, col = 1)
     # Add titles
     fig.update_layout(
-            title = 'Summary of {}'.format(str(crypto_name)))
+            title = 'Summary of {}'.format(str(crypto_name)),
+            title_font_size=30)
     fig['layout']['yaxis1']['title']='US Dollars'
     fig['layout']['yaxis2']['title']='Volume'
     # X-Axes
