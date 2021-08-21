@@ -1,5 +1,79 @@
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<style>
+  p {
+    margin-top:50px;
+    opacity:0.7;
+  }
+
+
+  /* .slideContainer{
+    width:75%;
+    nargin-top:200px;
+  } */
+
+
+
+
+  .slider{
+    -webkit-appearance:none;
+    width:100%;
+    height: 15px;
+    background:grey;
+    outline: none;
+    opacity:0.7;
+    -webkit-transition:0.2s;
+    transition: opacity 0.2s;
+    border-radius: 12px;
+    /* box-shadow:0px 1px 10px 1px black; */
+  }
+
+
+  /* .slider::after {
+    content: '365';
+    color:black;
+    font-size: 1rem;
+    position: absolute;
+    left: 80%;
+    top:0%;
+  }
+
+
+  .slider::before {
+    content: '1';
+    color:black;
+    font-size: 1rem;
+    position: absolute;
+    left: 12%;
+    top:0%;
+  } */
+
+  .slider:hover {
+    opacity: 1;
+  }
+
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance:none;
+    appeareance: none;
+    width:30px;
+    height:30px;
+    background: black;
+    border-radius: 50%;
+    cursor:pointer;
+  }
+
+  .slider::-moz-range-thumb {
+    width:30px;
+    height:30px;
+    background: black;
+    border-radius: 50%;
+    cursor:pointer;
+  }
+</style>
+
+
+
+
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -37,6 +111,7 @@
         <div class="col">
           <div class="card card-body">
 
+              <h6>Cryptocurrency</h6>
             {% if error %}
             {{ error }}
             <br />
@@ -50,32 +125,49 @@
               <br />
               <br />
 
-              <p>Write a number for days to be used in decomposition and rolling statistics</p>
-              <br />
-              <textarea id="number_value" cols="40" rows="1" name="number_value"></textarea>
-              <br />
-              <br />
-              <input id="inputbutton" type="submit" value="Submit" />
-            </form>
+
+
+
+              <div class="slideContainer">
+                <h6>Number of Days</h6>
+                <p<>Use the slider to select the number for days to be used in decomposition and rolling statistics</p>
+                <input type="range" min="1" max="365"  id="myRange" name="slider" class="slider">
+                <br />
+
+                <br />
+                <p<># of Days: <span id="value"></span></p>
+                    </div>
+                <input id="inputbutton" type="submit" value="Submit" style="float: right;"/>
+              </form>
+            </div>
           </div>
-        </
-      </div>
+        </div>
 
 
 
-      <!-- <script>
-        $('#inputbutton').on('click', function(evt){
-          evt.preventDefault();
-          evt.stopPropagation();
-          var $detailDiv = $('#dashboard_section'),
-          url='/thesis?crypto_ticket='+ $('#search_value').val();
+        <script>
+          // $('#inputbutton').on('click', function(evt){
+          //   evt.preventDefault();
+          //   evt.stopPropagation();
+          //   var $detailDiv = $('#dashboard_section'),
+          //   url='/thesis?crypto_ticket='+ $('#search_value').val();
+          //
+          //   $.get(url, function(data) {
+          //     console.log(data)
+          //     $detailDiv.html(data.item)
+          //
+          // });
 
-          $.get(url, function(data) {
-            console.log(data)
-            $detailDiv.html(data.item)
+          var slider = document.getElementById("myRange");
+          var output = document.getElementById("value");
 
-        });
-      </script> -->
+          output.innerHTML = slider.value;
 
+          // slider.oninput = function() {
+          //   output.innerHTML = this.value;
+          //
+          // }
 
-    </nav>
+        </script>
+
+      </nav>

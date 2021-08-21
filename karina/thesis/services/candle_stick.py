@@ -27,10 +27,10 @@ def candle_stick(request, df, crypto_name):
 
     # Candlestick
     fig.add_trace(go.Candlestick(x = df.index,
-                    open = df['Open'],
-                    high = df['High'],
-                    low = df['Low'],
-                    close = df['Close'],
+                    Open = df['Open'],
+                    High = df['High'],
+                    Low = df['Low'],
+                    Close = df['Close'],
 #                    text=hovertext,
 #                    hoverinfo='text',
                     name = 'market data'))
@@ -60,9 +60,3 @@ def candle_stick(request, df, crypto_name):
     candle_stick = fig.to_html(full_html=False, default_height=1000, default_width=1500)
 
     return candle_stick
-
-"""
-TO FIX
-- fix hovertemplate for Candlestick
-- create a slider for short and long SMA
-"""

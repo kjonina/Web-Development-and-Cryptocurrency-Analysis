@@ -99,14 +99,15 @@
 #         rangeslider_visible = True,
 #         rangeselector = dict(
 #             buttons = list([
-#                 dict(count = 7, label = "1W", step = "day", stepmode = "backward"),
-#                 dict(count = 28, label = "1M", step = "day", stepmode = "backward"),
-#                 dict(count = 6, label = "6M", step = "month", stepmode = "backward"),
-#                 dict(count = 1, label = "YTD", step = "year", stepmode = "todate"),
-#                 dict(count = 1, label = "1Y", step = "year", stepmode = "backward"),
-#                 dict(count = 3, label = "3Y", step = "year", stepmode = "backward"),
-#                 dict(count = 5, label = "5Y", step = "year", stepmode = "backward"),
-#                 dict(step = "all")])))
+#                             dict(count = 7, step = "day", stepmode = "backward", label = "1W"),
+#                             dict(count = 1, step = "month", stepmode = "backward", label = "1M"),
+#                             dict(count = 3, step = "month", stepmode = "backward", label = "3M"),
+#                             dict(count = 6, step = "month", stepmode = "backward", label = "6M"),
+#                             dict(count = 1, step = "year", stepmode = "backward", label = "1Y"),
+#                             dict(count = 2, step = "year", stepmode = "backward", label = "2Y"),
+#                             dict(count = 5, step = "year", stepmode = "backward", label = "5Y"),
+#                             dict(count = 1, step = "all", stepmode = "backward", label = "MAX"),
+#                             dict(count = 1, step = "year", stepmode = "todate", label = "YTD")])))
 #     fig.update_layout(xaxis_rangeslider_visible = False)
 #     fig.update_yaxes(tickprefix = '$', tickformat = ',.')
 #

@@ -70,7 +70,6 @@ def thesis(request):
         if crypto_ticket == 'NONE':
             return render(request, 'thesis/thesis_home.html', {'tablesinfo': json.loads(json_three), 'error':'Please write the cryptocurrency symbol of your choice.'})
 
-
         elif crypto_ticket in cryptolist:
             # print('You have selected: ', crypto_ticket)
 
@@ -84,7 +83,11 @@ def thesis(request):
             # creating the df dataset
             y = create_y(request, crypto_name, crypto_ticket)
             # print(y)
-            period = request.GET.get('number_value')
+
+            # period = request.GET.get('number_value')
+            # period = int(period)
+
+            period = request.GET.get('slider')
             period = int(period)
 
             df_train, df_test = create_train_and_test(request,y, crypto_name)
@@ -100,7 +103,7 @@ def thesis(request):
                 'hist_box_pct_change': hist_box_pct_change(request, y, crypto_name),
                 'rolling_m_sd': rolling_m_sd(request, y, crypto_name, period),
                 'decomposition_chart': decomposition(request, df, df['Close'], crypto_name,period),
-                # 'adfuller_test': json.loads(adfuller_test(request, df['Close'], crypto_name)),
+                # # 'adfuller_test': json.loads(adfuller_test(request, df['Close'], crypto_name)),
                 'acf_and_pacf_plots': acf_and_pacf_plots(request, y['log_Close_diff'], crypto_name),
                 'arima_prediction': arima_prediction_plot(request, fcast, df_train, df_test, crypto_name),
                 'arima_evaluation' : json.loads(arima_evaluation(request, df_test, fcast)),
