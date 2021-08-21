@@ -115,3 +115,7 @@ def thesis(request):
 
     else:
         return render(request, 'thesis/thesis_home.html')
+
+
+def error_404_view(request, exception):
+    return render(request, '404.html')

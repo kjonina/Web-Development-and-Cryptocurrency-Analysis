@@ -17,3 +17,6 @@ urlpatterns = [
     path('achievements/', achievements.views.achievements, name = 'achievements'),
     path('blog/', include('blog.urls')),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+
+handler404 = 'thesis.views.error_404_view'
