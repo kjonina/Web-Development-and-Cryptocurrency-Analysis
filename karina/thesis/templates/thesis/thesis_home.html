@@ -163,7 +163,7 @@
 <div id='acf_and_pacf_plots' class="acf_and_pacf_plots">
 
 {% if acf_and_pacf_plots %}
-{{ acf_and_pacf_plots|safe }}
+<img src="data:image/png;base64, {{ acf_and_pacf_plots|safe }}"">
 {% else %}
 <p>ACF and PACF graph was not provided.</p>
 {% endif %}
