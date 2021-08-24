@@ -46,7 +46,7 @@ def arima_prediction(request, df_train, df_test, crypto_name):
     # print(fcast.tail())
     return fcast
 
-def arima_prediction_plot(request, fcast, df_train, df_test, crypto_name):
+def arima_prediction_plot(request, fcast, df_train, df_test,  test_period, crypto_name):
     # a plotly graph for training and test set
     df_train = go.Scatter(
         x = df_train.index,
@@ -126,7 +126,7 @@ def arima_prediction_plot(request, fcast, df_train, df_test, crypto_name):
     fig.update_layout(xaxis_rangeslider_visible = False)
 
 
-    fig.update_layout(title = 'Predicting Closing Price of {} Using ARIMA'.format(str(crypto_name)),
+    fig.update_layout(title = 'Predicting Closing Price of {} Using ARIMA for {} days'.format(test_period, crypto_name),
             title_font_size=30)
     fig.update_layout(yaxis_tickprefix = '$', yaxis_tickformat = ',.')
 

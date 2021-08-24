@@ -31,7 +31,7 @@
 #     df_forecast['Name'] = df_forecast['Name'].replace(np.nan, crypto_name)
 #     return df_forecast
 #
-# def prophet_prediction_plot(request, df_forecast, df_train, df_test, crypto_name):
+# def prophet_prediction_plot(request, df_forecast, df_train, df_test, crypto_name, test_period):
 #     df_train = go.Scatter(
 #         x = df_train.index,
 #         y = df_train['Close'],
@@ -89,7 +89,7 @@
 #
 #     data = [df_train, df_test, trend, lower_band, upper_band]
 #
-#     layout = dict(title='Predicting Closing Price of {} Using FbProphet'.format(crypto_name),
+#     layout = dict(title='Predicting Closing Price of {} Using FbProphet for {} days'.format(test_period, crypto_name),
 #                 title_font_size=30, xaxis=dict(title = 'Dates', ticklen=2, zeroline=True))
 #
 #     fig = go.Figure(data = data, layout=layout)
@@ -118,23 +118,18 @@
 #
 #     return prophet_prediction
 #
-#
-#
 # from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, median_absolute_error, mean_squared_log_error
 # from math import sqrt
 #
-# def prophet_evaluation(request, df_forecast, df_test):
 #
-#     df_forecast['dtest_trend'] = df_forecast['trend'].iloc[-len(df_test):]
-#     df_forecast1= df_forecast[['dtest_trend']].dropna()
-#
-#     results = pd.DataFrame({'R2 Score':r2_score(df_test['Close'], df_forecast1['dtest_trend']),
-#                             }, index=[0])
-#     results['Mean Absolute Error'] = '{:.4f}'.format(np.mean(np.abs((df_test['Close'] - df_forecast1['dtest_trend']) / df_test['Close'])) * 100)
-#     results['Median Absolute Error'] = '{:.4f}'.format(median_absolute_error(df_test['Close'], df_forecast1['dtest_trend']))
-#     results['MSE'] = '{:.4f}'.format(mean_squared_error(df_test['Close'], df_forecast1['dtest_trend']))
-#     results['MSLE'] = '{:.4f}'.format(mean_squared_log_error(df_test['Close'], df_forecast1['dtest_trend']))
-#     results['MAPE'] = '{:.4f}'.format(np.mean(np.abs((df_test['Close'] - df_forecast1['dtest_trend']) / df_test['Close'])) * 100)
+# def prophet_evaluation(request, df_test, fcast):
+#     results = pd.DataFrame({'R2 Score':r2_score(df_test['Close'], fcast['mean_se']),
+#                            }, index=[0])
+#     results['Mean Absolute Error'] = '{:.4f}'.format(np.mean(np.abs((df_test['Close'] - fcast['mean_se']) / df_test['Close'])) * 100)
+#     results['Median Absolute Error'] = '{:.4f}'.format(median_absolute_error(df_test['Close'], fcast['mean_se']))
+#     results['MSE'] = '{:.4f}'.format(mean_squared_error(df_test['Close'], fcast['mean_se']))
+#     results['MSLE'] = '{:.4f}'.format(mean_squared_log_error(df_test['Close'], fcast['mean_se']))
+#     results['MAPE'] = '{:.4f}'.format(np.mean(np.abs((df_test['Close'] - fcast['mean_se']) / df_test['Close'])) * 100)
 #     results['RMSE'] = '{:.4f}'.format(np.sqrt(float(results['MSE'])))
 #
 #     results = pd.DataFrame(results).transpose()

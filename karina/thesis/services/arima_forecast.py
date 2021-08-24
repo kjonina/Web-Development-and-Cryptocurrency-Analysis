@@ -16,7 +16,7 @@ from pandas.plotting import register_matplotlib_converters
 
 from statsmodels.tsa.arima.model import ARIMA
 
-def arima_forecast(request, df, crypto_name):
+def arima_forecast(request, df, crypto_name, forecasting_period):
 
     # Construct the model
     #    mod = sm.tsa.SARIMAX(y[['Close']], order=(1, 0, 0), trend='c')
@@ -28,7 +28,7 @@ def arima_forecast(request, df, crypto_name):
 
 
     # Forecasting out-of-sample
-    forecast = res.get_forecast(steps=120, dynamic = True)
+    forecast = res.get_forecast(steps=forecasting_period, dynamic = True)
 
     # # Confidence level of 90%
     # print('============================================================')
@@ -37,7 +37,7 @@ def arima_forecast(request, df, crypto_name):
     # print(forecast.summary_frame(alpha=0.10).tail())
 
     # Construct the forecasts
-    fcast = res.get_forecast('2021-12-30').summary_frame()
+    fcast = res.get_forecast('2021-09-30').summary_frame()
 
     # print(fcast.index)
     y_upper = fcast['mean_ci_upper']
@@ -108,7 +108,7 @@ def arima_forecast(request, df, crypto_name):
                             dict(count = 1, step = "year", stepmode = "todate", label = "YTD")])))
     fig.update_layout(xaxis_rangeslider_visible = False)
 
-    fig.update_layout(title = 'Forecasting Closing Price of {} Using ARIMA'.format(str(crypto_name)),
+    fig.update_layout(title = 'Forecasting Closing Price of {} Using ARIMA for {} days'.format(str(crypto_name), forecasting_period),
             title_font_size=30)
 
     fig.update_layout(yaxis_tickprefix = '$', yaxis_tickformat = ',.')

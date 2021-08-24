@@ -16,7 +16,7 @@
 # from fbprophet import Prophet
 #
 #
-# def prophet_forecast(request, df, crypto_name):
+# def prophet_forecast(request, df, crypto_name, forecasting_period):
 #
 #     crypto = df[['Close', 'Name']]
 #     crypto = crypto.reset_index()
@@ -24,7 +24,7 @@
 #     df_prophet = Prophet(changepoint_prior_scale=0.15,yearly_seasonality=True,daily_seasonality=True)
 #     df_prophet.fit(crypto)
 #
-#     df_forecast = df_prophet.make_future_dataframe(periods= 120, freq='D')
+#     df_forecast = df_prophet.make_future_dataframe(periods= forecasting_period, freq='D')
 #
 #     df_forecast = df_prophet.predict(df_forecast)
 #     df_forecast['Name'] = crypto['Name']
@@ -80,7 +80,7 @@
 #
 #     data = [trend, lower_band, upper_band, actual]
 #
-#     layout = dict(title='Forecasting Closing Price of {} Using FbProphet'.format(crypto_name),
+#     layout = dict(title='Forecasting Closing Price of {} Using FbProphet for {} days'.format(crypto_name, forecasting_period),
 #                 title_font_size=30, xaxis=dict(title = 'Dates', ticklen=2, zeroline=True))
 #
 #     fig = go.Figure(data = data, layout=layout)

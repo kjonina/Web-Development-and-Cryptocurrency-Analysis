@@ -87,7 +87,14 @@ def thesis(request):
             period = request.GET.get('slider')
             period = int(period)
 
-            df_train, df_test = create_train_and_test(request,y, crypto_name)
+            test_period = request.GET.get('slider1')
+            test_period = int(test_period)
+
+            forecasting_period = request.GET.get('slider2')
+            forecasting_period = int(forecasting_period)
+
+
+            df_train, df_test = create_train_and_test(request,y, crypto_name,test_period)
             fcast = arima_prediction(request, df_train, df_test, crypto_name)
             # df_forecast = prophet_prediction(request, df_train, df_test, crypto_name)
 
@@ -102,12 +109,12 @@ def thesis(request):
                 'decomposition_chart': decomposition(request, df, df['Close'], crypto_name,period),
                 # 'adfuller_test': json.loads(adfuller_test(request, df['Close'], crypto_name)),
                 'acf_and_pacf_plots': acf_and_pacf_plots(request, y['log_Close_diff'], crypto_name),
-                'arima_prediction': arima_prediction_plot(request, fcast, df_train, df_test, crypto_name),
+                'arima_prediction': arima_prediction_plot(request, fcast, df_train, df_test, crypto_name, test_period),
                 'arima_evaluation' : json.loads(arima_evaluation(request, df_test, fcast)),
-                'arima_forecast': arima_forecast(request, df, crypto_name),
-                # 'prophet_prediction': prophet_prediction_plot(request,df_forecast, df_train, df_test, crypto_name),
+                'arima_forecast': arima_forecast(request, df, crypto_name, forecasting_period),
+                # 'prophet_prediction': prophet_prediction_plot(request,df_forecast, df_train, df_test, test_period, crypto_name),
                 # 'prophet_evaluation':json.loads(prophet_evaluation(request,df_forecast, df_test)),
-                # 'prophet_forecast': prophet_forecast(request, df, crypto_name)
+                # 'prophet_forecast': prophet_forecast(request, df, crypto_name, forecasting_period)
                 })
         else:
             # print('Sorry. You did not select an available symbol or you misspelled the symbol')

@@ -119,16 +119,31 @@ top:20%;
             <form action="" method="GET">
               <!-- {% csrf_token %} -->
               <textarea id="search_value" cols="40" rows="1" name="crypto_ticket"></textarea>
-              <br />
-              <br />
+              <!-- <br />
+              <br /> -->
 
               <div class="slideContainer">
                 <h6>Number of Days</h6>
                 <p>Select the number for days to be used in decomposition and rolling statistics</p>
                 <input type="range" min="1" max="365"  value="1" id="myRange" name="slider" class="slider">
-                <br />
+                <!-- <br /> -->
                 <p># of Days: <span id="value"></span></p>
+
+                <div class="slideContainer">
+                  <h6>Validation Period</h6>
+                  <p>Select the number for days to be used in the validation period</p>
+                  <input type="range" min="1" max="100"  value="1" id="myRange1" name="slider1" class="slider">
+                  <!-- <br /> -->
+                  <p>Validation Period: <span id="value1"></span></p>
               </div>
+
+              <div class="slideContainer">
+                <h6>Forecasting Period</h6>
+                <p>Select the number for days to forecast</p>
+                <input type="range" min="1" max="100"  value="1" id="myRange2" name="slider2" class="slider">
+                <!-- <br /> -->
+                <p>Forecasting period: <span id="value2"></span></p>
+
               <input id="inputbutton" type="submit" value="Submit" style="float: right;" />
             </form>
           </div>
@@ -145,6 +160,28 @@ top:20%;
 
           slider.oninput = function() {
             output.innerHTML = this.value;
+
+          }
+
+          var slider1 = document.getElementById("myRange1");
+          var output1 = document.getElementById("value1");
+
+          output1.innerHTML = slider1.value;
+
+
+          slider1.oninput = function() {
+            output1.innerHTML = this.value;
+
+          }
+
+          var slider2 = document.getElementById("myRange2");
+          var output2 = document.getElementById("value2");
+
+          output2.innerHTML = slider2.value;
+
+
+          slider2.oninput = function() {
+            output2.innerHTML = this.value;
 
           }
 
