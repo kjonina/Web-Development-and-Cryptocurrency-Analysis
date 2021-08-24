@@ -37,7 +37,7 @@ def arima_forecast(request, df, crypto_name, forecasting_period):
     # print(forecast.summary_frame(alpha=0.10).tail())
 
     # Construct the forecasts
-    fcast = res.get_forecast('2021-09-30').summary_frame()
+    fcast = forecast.summary_frame()
 
     # print(fcast.index)
     y_upper = fcast['mean_ci_upper']
